@@ -14,7 +14,7 @@
     * {
       box-sizing: border-box;
       margin: 0;
-      padding: 0
+      padding: 0;
       -webkit-tap-highlight-color: transparent;
 }
 
@@ -983,6 +983,283 @@
       .btn { padding: 11px 13px; font-size: 11px !important; letter-spacing: 1px }
       html, body { overflow-x: hidden }
     }
+
+    /* ---------- approved cover-up comparison ---------- */
+    .coverProof {
+      max-width: 1240px;
+      margin: 0 auto 52px;
+      padding: clamp(22px, 4vw, 48px);
+      border: 1px solid var(--line);
+      background: rgba(3, 6, 3, .88)
+    }
+
+    .coverProofHead {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 28px
+    }
+
+    .coverProofHead h3 {
+      margin: 12px 0 0;
+      color: #fff;
+      font: clamp(42px, 6vw, 82px)/.94 var(--disp);
+      letter-spacing: .02em
+    }
+
+    .coverProofHead h3 span { color: var(--green) }
+
+    .coverProofHead p {
+      max-width: 390px;
+      margin: 0;
+      color: #f1f5f2;
+      font-size: 16px;
+      line-height: 1.6
+    }
+
+    .compareViewport {
+      width: min(88vw, 36.5svh, 360px);
+      aspect-ratio: 890 / 2014;
+      margin: 0 auto;
+      overflow: hidden;
+      border: 1px solid var(--green);
+      background: #000;
+      box-shadow: 0 0 34px rgba(63, 233, 255, .12)
+    }
+
+    .compareTrack {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      will-change: transform;
+      transition: transform 120ms cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .comparePanel {
+      position: relative;
+      flex: 0 0 50%;
+      width: 50%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #000
+    }
+
+    .comparePanel img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center
+    }
+
+    .comparePanel figcaption {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 7px 10px;
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 999px;
+      background: rgba(0, 0, 0, .8);
+      color: #fff;
+      font: 700 10px/1 var(--mono);
+      letter-spacing: .12em
+    }
+
+    .iosSlider {
+      position: relative;
+      display: block;
+      width: min(88vw, 420px);
+      height: 48px;
+      margin: 18px auto 0;
+      background: transparent;
+      cursor: pointer;
+      touch-action: none;
+      user-select: none
+    }
+
+    .iosRange {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      opacity: .001;
+      cursor: pointer;
+      touch-action: none
+    }
+
+    .iosSlider:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, .65);
+      outline-offset: 2px;
+      border-radius: 999px
+    }
+
+    .iosRail {
+      position: absolute;
+      inset: 2px 0;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #2c2c2e;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16), inset 0 2px 5px rgba(0, 0, 0, .45)
+    }
+
+    .iosProgress {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0;
+      border-radius: inherit;
+      background: #0a84ff;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12)
+    }
+
+    .iosThumb {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      left: 22px;
+      width: 44px;
+      height: 44px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 0 1px #fff, 0 2px 8px rgba(0, 0, 0, .58);
+      pointer-events: none
+    }
+
+    .compareBottom {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      margin-top: 14px;
+      color: #f4f7f4;
+      font: 700 11px/1.5 var(--mono);
+      letter-spacing: .08em
+    }
+
+    .compareBottom button,
+    .compareBottom a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      border: 0;
+      background: transparent;
+      color: var(--green);
+      font: inherit;
+      cursor: pointer
+    }
+
+    .compareBottom a { color: #bbff39 }
+
+    /* ---------- compact vertical flash wheel ---------- */
+    .wheel {
+      width: min(100%, 330px);
+      height: 500px;
+      margin: 0 auto;
+      overflow: hidden;
+      cursor: grab;
+      touch-action: none;
+      overscroll-behavior: contain
+    }
+
+    .wheel.is-dragging { cursor: grabbing }
+
+    .fcard {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 232px;
+      height: 310px;
+      margin: 0;
+      transform: translate(-50%, -50%);
+      opacity: .2;
+      filter: brightness(.48) saturate(.82);
+      transition: opacity 120ms linear, filter 120ms linear, border-color 120ms linear, box-shadow 120ms linear;
+      will-change: transform, opacity, filter;
+      contain: layout paint style
+    }
+
+    .fcard.on {
+      opacity: 1 !important;
+      filter: brightness(1.08) saturate(1.05) !important;
+      border-color: var(--green);
+      box-shadow: 0 14px 34px rgba(63, 233, 255, .22), 0 0 25px rgba(187, 255, 57, .1)
+    }
+
+    .fcard img { object-position: center !important }
+
+    .workMore { display: none; margin: 18px auto 0 }
+
+    .contactChoices {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      place-items: center;
+      padding: 22px;
+      background: rgba(0, 0, 0, .84);
+      backdrop-filter: blur(8px)
+    }
+
+    .contactChoices.open { display: grid }
+
+    .contactCard {
+      position: relative;
+      width: min(100%, 390px);
+      display: grid;
+      gap: 12px;
+      padding: 30px;
+      border: 1px solid var(--green);
+      background: #070a07;
+      box-shadow: 0 0 40px rgba(63, 233, 255, .2)
+    }
+
+    .contactCard h2 { margin: 0; font-size: 48px }
+    .contactCard p { margin: 0; color: #fff; font: 700 13px/1.5 var(--mono) }
+    .contactCard strong { color: #bbff39; font-size: 26px }
+    .contactCard .btn { width: 100%; min-height: 52px; justify-content: center; text-align: center }
+    .contactClose { position: absolute; top: 5px; right: 9px; border: 0; background: transparent; color: #fff; font-size: 30px; cursor: pointer }
+
+    @media (max-width: 640px) {
+      section { padding: 64px 18px }
+      .hero { min-height: 680px; padding-inline: 18px }
+      h1.heroName { font-size: clamp(54px, 17vw, 74px) !important; line-height: .92 !important }
+      .heroSub { font-size: 12px !important; line-height: 1.5; letter-spacing: 2px !important }
+      .ctas { display: grid !important; grid-template-columns: 1fr; width: 100%; max-width: 310px; margin-inline: auto }
+      .ctas a { display: flex; justify-content: center; min-height: 50px; margin: 0 }
+      h2.big { font-size: clamp(34px, 10.5vw, 48px) !important; line-height: .96 }
+      .ssub, .wsub, .nap, .feat p, .pban span { font-size: 14px; line-height: 1.6 }
+      .fhead, .shead { align-items: flex-start }
+      .fctl { width: 100%; align-items: stretch }
+      .fctl .btn { min-height: 50px }
+      .fhint { font-size: 11px; line-height: 1.5 }
+      .wheel { width: min(100%, 250px); height: 390px }
+      .fcard { width: 164px; height: 220px }
+      .wheel::before, .wheel::after { height: 66px }
+      .coverProof { margin-bottom: 34px; padding: 18px 12px }
+      .coverProofHead { display: block }
+      .coverProofHead h3 { font-size: 42px }
+      .coverProofHead p { margin-top: 14px; font-size: 16px }
+      .compareBottom { align-items: flex-start; flex-direction: column; padding-inline: 4px }
+      .wgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px }
+      .witem img { height: 238px }
+      .wgrid:not(.expanded) .witem:nth-child(n+13) { display: none }
+      .workMore { display: flex; min-height: 52px; align-items: center; justify-content: center }
+      .prow { font-size: 15px }
+      .pcat h3 { font-size: 34px }
+      .feat h3 { font-size: 24px }
+      .nap b { font-size: 25px }
+      .bctas { display: grid; grid-template-columns: 1fr; gap: 10px }
+      .bctas .btn { display: flex; min-height: 52px; justify-content: center }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .compareTrack { transition: none }
+    }
   </style>
   <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TattooParlor","name":"Alley Cat Ink",
@@ -990,7 +1267,6 @@
 "telephone":"+1-320-699-1012",
 "address":{"@type":"PostalAddress","streetAddress":"146 Franklin St SW","addressLocality":"Hutchinson","addressRegion":"MN","postalCode":"55350","addressCountry":"US"},
 "openingHours":"Tu-Sa 12:00-19:30","priceRange":"$","image":"media/logo.jpg",
-"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","reviewCount":"87"},
 "sameAs":["https://www.instagram.com/karrotstattoos"]}
 </script>
 </head>
@@ -1053,12 +1329,12 @@
       <div class="fhead rv">
         <div>
           <div class="eyebrow">THE FLASH WALL</div>
-          <h2 class="big"><span class="nw">FLASH SHEETS — </span><span class="g ng">DRAG TO EXPLORE</span></h2>
-          <p class="ssub">FIRST COME · FIRST INKED</p>
+          <h2 class="big"><span class="nw">SPIN THE WHEEL </span><span class="g ng">FOR INSPIRATION</span></h2>
+          <p class="ssub">100 DIFFERENT DESIGNS · SWIPE UP OR DOWN</p>
         </div>
         <div class="fctl">
           <button class="btn line" id="spin">⟳ SPIN FOR RANDOM</button>
-          <span class="fhint">252 DESIGNS // DRAG // TAP TO CENTER</span>
+          <span class="fhint">SLOW AUTO-SPIN // DRAG UP OR DOWN</span>
         </div>
       </div>
       <div class="wheel" id="wheel" aria-label="Scrolling flash gallery"></div>
@@ -1071,7 +1347,40 @@
         <h2 class="big"><span class="nw">THE GALLERY — </span><span class="g ng">FRESH OFF THE TABLE.</span></h2>
         <p class="wsub">RICH VERRI</p>
       </div>
-      <div class="wgrid rv">
+      <div class="coverProof rv" aria-labelledby="coverProofTitle">
+        <div class="coverProofHead">
+          <div>
+            <div class="eyebrow">REAL COVER-UP PROOF</div>
+            <h3 id="coverProofTitle">OLD INK. <span>REWORKED.</span></h3>
+          </div>
+          <p>Slide from the complete before photo to the complete finished tattoo.</p>
+        </div>
+        <div class="compareViewport" aria-label="Tattoo cover-up transformation">
+          <div class="compareTrack" id="compareTrack">
+            <figure class="comparePanel">
+              <img src="media/coverup-before.jpeg" alt="Full tattoo before the Alley Cat Ink cover-up">
+              <figcaption>BEFORE</figcaption>
+            </figure>
+            <figure class="comparePanel">
+              <img src="media/coverup-after.jpeg" alt="Full tattoo after the Alley Cat Ink cover-up">
+              <figcaption>AFTER</figcaption>
+            </figure>
+          </div>
+        </div>
+        <label class="iosSlider">
+          <input class="iosRange" id="compareSlider" type="range" min="0" max="100" value="0" step="1" aria-label="Slide from the full tattoo before photo to the full tattoo after photo">
+          <span class="iosRail" aria-hidden="true">
+            <span class="iosProgress" id="compareProgress"></span>
+            <span class="iosThumb" id="compareThumb"></span>
+          </span>
+        </label>
+        <div class="compareBottom">
+          <span>BEFORE ← SLIDE → AFTER</span>
+          <button type="button" id="compareReset">BACK TO BEFORE ↻</button>
+          <a href="tel:+13206991012">START A COVER-UP CONSULT ↗</a>
+        </div>
+      </div>
+      <div class="wgrid rv" id="workGrid">
           <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w01.jpg" alt="Color rose tattoo"></figure>
         <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w02.jpg" alt="Healed butterfly tattoo"></figure>
         <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w03.jpg" alt="Butterfly tattoos on arm"></figure>
@@ -1145,6 +1454,7 @@
         <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w74.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
         <a class="witem wcta" href="tel:+13206991012"><b>+</b>YOUR SKIN NEXT</a>
       </div>
+      <button class="btn line workMore" id="workMore" type="button" aria-expanded="false" aria-controls="workGrid">SHOW MORE TATTOOS</button>
     </section>
 
     <!-- STORY / BEFORE-AFTER -->
@@ -1231,7 +1541,7 @@
         <div class="nap">
           146 FRANKLIN ST SW · HUTCHINSON, MN 55350<br>
           <b>(320) 699-1012</b> · TUE–SAT 12–7:30<br>
-          TATTOOS &amp; PIERCINGS · ★ 4.7 · 87 GOOGLE REVIEWS · JEWELRY INCLUDED
+          TATTOOS &amp; PIERCINGS · WALK-INS WELCOME · JEWELRY INCLUDED
         </div>
         <div class="bctas">
           <a class="btn solid" href="tel:+13206991012">Call (320) 699-1012</a>
@@ -1247,12 +1557,24 @@
     <div class="frow">
       <span class="fl2"><b>ALLEY CAT INK</b> — TATTOOS &amp; PIERCINGS</span>
       <span><a href="https://www.instagram.com/karrotstattoos" target="_blank" rel="noopener">INSTAGRAM</a> · <a href="https://www.facebook.com/AlleyCatInkTattoo/" target="_blank" rel="noopener">FACEBOOK</a> · <a href="https://www.tiktok.com/@alleycatink" target="_blank" rel="noopener">TIKTOK</a></span>
-      <span>146 FRANKLIN ST SW · HUTCHINSON MN · NOW BOOKING SEPT 2026</span>
+      <span>146 FRANKLIN ST SW · HUTCHINSON MN · CALL OR TEXT TO BOOK</span>
     </div>
     <div class="fv">© 2026 ALLEY CAT INK · SITE BY MLR STUDIO</div>
   </footer>
 
   <div id="lb"><img id="lbi" src="" alt="Enlarged tattoo work"></div>
+
+  <div class="contactChoices" id="contactChoices" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+    <div class="contactCard">
+      <button class="contactClose" id="contactClose" type="button" aria-label="Close contact choices">×</button>
+      <p>ALLEY CAT INK // HUTCHINSON, MN</p>
+      <h2 id="contactTitle">REACH RICH.</h2>
+      <strong>(320) 699-1012</strong>
+      <a class="btn solid" data-direct-phone href="tel:+13206991012">CALL RICH ↗</a>
+      <a class="btn line" data-direct-phone href="sms:+13206991012">TEXT RICH ↗</a>
+      <button class="btn line" id="copyPhone" type="button">COPY NUMBER</button>
+    </div>
+  </div>
 
   <svg class="grain" xmlns="http://www.w3.org/2000/svg">
     <filter id="gn">
@@ -1268,11 +1590,12 @@
     var PIECES = [['media/flash_sm/C001.jpg', 'FLASH 001', 'media/flash/C001.jpg'], ['media/flash_sm/C002.jpg', 'FLASH 002', 'media/flash/C002.jpg'], ['media/flash_sm/C003.jpg', 'FLASH 003', 'media/flash/C003.jpg'], ['media/flash_sm/C004.jpg', 'FLASH 004', 'media/flash/C004.jpg'], ['media/flash_sm/C006.jpg', 'FLASH 006', 'media/flash/C006.jpg'], ['media/flash_sm/C007.jpg', 'FLASH 007', 'media/flash/C007.jpg'], ['media/flash_sm/C008.jpg', 'FLASH 008', 'media/flash/C008.jpg'], ['media/flash_sm/C009.jpg', 'FLASH 009', 'media/flash/C009.jpg'], ['media/flash_sm/C010.jpg', 'FLASH 010', 'media/flash/C010.jpg'], ['media/flash_sm/C011.jpg', 'FLASH 011', 'media/flash/C011.jpg'], ['media/flash_sm/C012.jpg', 'FLASH 012', 'media/flash/C012.jpg'], ['media/flash_sm/C015.jpg', 'FLASH 015', 'media/flash/C015.jpg'], ['media/flash_sm/C016.jpg', 'FLASH 016', 'media/flash/C016.jpg'], ['media/flash_sm/C017.jpg', 'FLASH 017', 'media/flash/C017.jpg'], ['media/flash_sm/C018.jpg', 'FLASH 018', 'media/flash/C018.jpg'], ['media/flash_sm/C020.jpg', 'FLASH 020', 'media/flash/C020.jpg'], ['media/flash_sm/C021.jpg', 'FLASH 021', 'media/flash/C021.jpg'], ['media/flash_sm/C022.jpg', 'FLASH 022', 'media/flash/C022.jpg'], ['media/flash_sm/C023.jpg', 'FLASH 023', 'media/flash/C023.jpg'], ['media/flash_sm/C028.jpg', 'FLASH 028', 'media/flash/C028.jpg'], ['media/flash_sm/C029.jpg', 'FLASH 029', 'media/flash/C029.jpg'], ['media/flash_sm/C030.jpg', 'FLASH 030', 'media/flash/C030.jpg'], ['media/flash_sm/C031.jpg', 'FLASH 031', 'media/flash/C031.jpg'], ['media/flash_sm/C032.jpg', 'FLASH 032', 'media/flash/C032.jpg'], ['media/flash_sm/C034.jpg', 'FLASH 034', 'media/flash/C034.jpg'], ['media/flash_sm/C036.jpg', 'FLASH 036', 'media/flash/C036.jpg'], ['media/flash_sm/C039.jpg', 'FLASH 039', 'media/flash/C039.jpg'], ['media/flash_sm/C041.jpg', 'FLASH 041', 'media/flash/C041.jpg'], ['media/flash_sm/C046.jpg', 'FLASH 046', 'media/flash/C046.jpg'], ['media/flash_sm/C048.jpg', 'FLASH 048', 'media/flash/C048.jpg'], ['media/flash_sm/C049.jpg', 'FLASH 049', 'media/flash/C049.jpg'], ['media/flash_sm/C050.jpg', 'FLASH 050', 'media/flash/C050.jpg'], ['media/flash_sm/C051.jpg', 'FLASH 051', 'media/flash/C051.jpg'], ['media/flash_sm/C053.jpg', 'FLASH 053', 'media/flash/C053.jpg'], ['media/flash_sm/C054.jpg', 'FLASH 054', 'media/flash/C054.jpg'], ['media/flash_sm/C055.jpg', 'FLASH 055', 'media/flash/C055.jpg'], ['media/flash_sm/C056.jpg', 'FLASH 056', 'media/flash/C056.jpg'], ['media/flash_sm/C057.jpg', 'FLASH 057', 'media/flash/C057.jpg'], ['media/flash_sm/C059.jpg', 'FLASH 059', 'media/flash/C059.jpg'], ['media/flash_sm/C061.jpg', 'FLASH 061', 'media/flash/C061.jpg'], ['media/flash_sm/C063.jpg', 'FLASH 063', 'media/flash/C063.jpg'], ['media/flash_sm/C065.jpg', 'FLASH 065', 'media/flash/C065.jpg'], ['media/flash_sm/C066.jpg', 'FLASH 066', 'media/flash/C066.jpg'], ['media/flash_sm/C067.jpg', 'FLASH 067', 'media/flash/C067.jpg'], ['media/flash_sm/C068.jpg', 'FLASH 068', 'media/flash/C068.jpg'], ['media/flash_sm/C069.jpg', 'FLASH 069', 'media/flash/C069.jpg'], ['media/flash_sm/C072.jpg', 'FLASH 072', 'media/flash/C072.jpg'], ['media/flash_sm/C073.jpg', 'FLASH 073', 'media/flash/C073.jpg'], ['media/flash_sm/C076.jpg', 'FLASH 076', 'media/flash/C076.jpg'], ['media/flash_sm/C080.jpg', 'FLASH 080', 'media/flash/C080.jpg'], ['media/flash_sm/C081.jpg', 'FLASH 081', 'media/flash/C081.jpg'], ['media/flash_sm/C082.jpg', 'FLASH 082', 'media/flash/C082.jpg'], ['media/flash_sm/C083.jpg', 'FLASH 083', 'media/flash/C083.jpg'], ['media/flash_sm/C084.jpg', 'FLASH 084', 'media/flash/C084.jpg'], ['media/flash_sm/C086.jpg', 'FLASH 086', 'media/flash/C086.jpg'], ['media/flash_sm/C087.jpg', 'FLASH 087', 'media/flash/C087.jpg'], ['media/flash_sm/C088.jpg', 'FLASH 088', 'media/flash/C088.jpg'], ['media/flash_sm/C089.jpg', 'FLASH 089', 'media/flash/C089.jpg'], ['media/flash_sm/C090.jpg', 'FLASH 090', 'media/flash/C090.jpg'], ['media/flash_sm/C091.jpg', 'FLASH 091', 'media/flash/C091.jpg'], ['media/flash_sm/C092.jpg', 'FLASH 092', 'media/flash/C092.jpg'], ['media/flash_sm/C093.jpg', 'FLASH 093', 'media/flash/C093.jpg'], ['media/flash_sm/C094.jpg', 'FLASH 094', 'media/flash/C094.jpg'], ['media/flash_sm/C095.jpg', 'FLASH 095', 'media/flash/C095.jpg'], ['media/flash_sm/C096.jpg', 'FLASH 096', 'media/flash/C096.jpg'], ['media/flash_sm/C097.jpg', 'FLASH 097', 'media/flash/C097.jpg'], ['media/flash_sm/C098.jpg', 'FLASH 098', 'media/flash/C098.jpg'], ['media/flash_sm/C099.jpg', 'FLASH 099', 'media/flash/C099.jpg'], ['media/flash_sm/C100.jpg', 'FLASH 100', 'media/flash/C100.jpg'], ['media/flash_sm/C102.jpg', 'FLASH 102', 'media/flash/C102.jpg'], ['media/flash_sm/C103.jpg', 'FLASH 103', 'media/flash/C103.jpg'], ['media/flash_sm/C105.jpg', 'FLASH 105', 'media/flash/C105.jpg'], ['media/flash_sm/C106.jpg', 'FLASH 106', 'media/flash/C106.jpg'], ['media/flash_sm/C107.jpg', 'FLASH 107', 'media/flash/C107.jpg'], ['media/flash_sm/C108.jpg', 'FLASH 108', 'media/flash/C108.jpg'], ['media/flash_sm/C109.jpg', 'FLASH 109', 'media/flash/C109.jpg'], ['media/flash_sm/C110.jpg', 'FLASH 110', 'media/flash/C110.jpg'], ['media/flash_sm/C111.jpg', 'FLASH 111', 'media/flash/C111.jpg'], ['media/flash_sm/C112.jpg', 'FLASH 112', 'media/flash/C112.jpg'], ['media/flash_sm/C113.jpg', 'FLASH 113', 'media/flash/C113.jpg'], ['media/flash_sm/C114.jpg', 'FLASH 114', 'media/flash/C114.jpg'], ['media/flash_sm/C116.jpg', 'FLASH 116', 'media/flash/C116.jpg'], ['media/flash_sm/C117.jpg', 'FLASH 117', 'media/flash/C117.jpg'], ['media/flash_sm/C118.jpg', 'FLASH 118', 'media/flash/C118.jpg'], ['media/flash_sm/C119.jpg', 'FLASH 119', 'media/flash/C119.jpg'], ['media/flash_sm/C120.jpg', 'FLASH 120', 'media/flash/C120.jpg'], ['media/flash_sm/C121.jpg', 'FLASH 121', 'media/flash/C121.jpg'], ['media/flash_sm/C122.jpg', 'FLASH 122', 'media/flash/C122.jpg'], ['media/flash_sm/C123.jpg', 'FLASH 123', 'media/flash/C123.jpg'], ['media/flash_sm/C124.jpg', 'FLASH 124', 'media/flash/C124.jpg'], ['media/flash_sm/C126.jpg', 'FLASH 126', 'media/flash/C126.jpg'], ['media/flash_sm/C127.jpg', 'FLASH 127', 'media/flash/C127.jpg'], ['media/flash_sm/C128.jpg', 'FLASH 128', 'media/flash/C128.jpg'], ['media/flash_sm/C129.jpg', 'FLASH 129', 'media/flash/C129.jpg'], ['media/flash_sm/C130.jpg', 'FLASH 130', 'media/flash/C130.jpg'], ['media/flash_sm/C131.jpg', 'FLASH 131', 'media/flash/C131.jpg'], ['media/flash_sm/C132.jpg', 'FLASH 132', 'media/flash/C132.jpg'], ['media/flash_sm/C134.jpg', 'FLASH 134', 'media/flash/C134.jpg'], ['media/flash_sm/C139.jpg', 'FLASH 139', 'media/flash/C139.jpg'], ['media/flash_sm/C140.jpg', 'FLASH 140', 'media/flash/C140.jpg'], ['media/flash_sm/C141.jpg', 'FLASH 141', 'media/flash/C141.jpg'], ['media/flash_sm/C142.jpg', 'FLASH 142', 'media/flash/C142.jpg'], ['media/flash_sm/C143.jpg', 'FLASH 143', 'media/flash/C143.jpg'], ['media/flash_sm/C144.jpg', 'FLASH 144', 'media/flash/C144.jpg'], ['media/flash_sm/C145.jpg', 'FLASH 145', 'media/flash/C145.jpg'], ['media/flash_sm/C146.jpg', 'FLASH 146', 'media/flash/C146.jpg'], ['media/flash_sm/C147.jpg', 'FLASH 147', 'media/flash/C147.jpg'], ['media/flash_sm/C148.jpg', 'FLASH 148', 'media/flash/C148.jpg'], ['media/flash_sm/C150.jpg', 'FLASH 150', 'media/flash/C150.jpg'], ['media/flash_sm/C158.jpg', 'FLASH 158', 'media/flash/C158.jpg'], ['media/flash_sm/C159.jpg', 'FLASH 159', 'media/flash/C159.jpg'], ['media/flash_sm/C161.jpg', 'FLASH 161', 'media/flash/C161.jpg'], ['media/flash_sm/C162.jpg', 'FLASH 162', 'media/flash/C162.jpg'], ['media/flash_sm/C163.jpg', 'FLASH 163', 'media/flash/C163.jpg'], ['media/flash_sm/C164.jpg', 'FLASH 164', 'media/flash/C164.jpg'], ['media/flash_sm/C165.jpg', 'FLASH 165', 'media/flash/C165.jpg'], ['media/flash_sm/C166.jpg', 'FLASH 166', 'media/flash/C166.jpg'], ['media/flash_sm/C167.jpg', 'FLASH 167', 'media/flash/C167.jpg'], ['media/flash_sm/C169.jpg', 'FLASH 169', 'media/flash/C169.jpg'], ['media/flash_sm/C170.jpg', 'FLASH 170', 'media/flash/C170.jpg'], ['media/flash_sm/C172.jpg', 'FLASH 172', 'media/flash/C172.jpg'], ['media/flash_sm/C174.jpg', 'FLASH 174', 'media/flash/C174.jpg'], ['media/flash_sm/C175.jpg', 'FLASH 175', 'media/flash/C175.jpg'], ['media/flash_sm/C176.jpg', 'FLASH 176', 'media/flash/C176.jpg'], ['media/flash_sm/C177.jpg', 'FLASH 177', 'media/flash/C177.jpg'], ['media/flash_sm/C179.jpg', 'FLASH 179', 'media/flash/C179.jpg'], ['media/flash_sm/C180.jpg', 'FLASH 180', 'media/flash/C180.jpg'], ['media/flash_sm/C182.jpg', 'FLASH 182', 'media/flash/C182.jpg'], ['media/flash_sm/C183.jpg', 'FLASH 183', 'media/flash/C183.jpg'], ['media/flash_sm/C184.jpg', 'FLASH 184', 'media/flash/C184.jpg'], ['media/flash_sm/C185.jpg', 'FLASH 185', 'media/flash/C185.jpg'], ['media/flash_sm/C186.jpg', 'FLASH 186', 'media/flash/C186.jpg'], ['media/flash_sm/C187.jpg', 'FLASH 187', 'media/flash/C187.jpg'], ['media/flash_sm/C188.jpg', 'FLASH 188', 'media/flash/C188.jpg'], ['media/flash_sm/C189.jpg', 'FLASH 189', 'media/flash/C189.jpg'], ['media/flash_sm/C192.jpg', 'FLASH 192', 'media/flash/C192.jpg'], ['media/flash_sm/C193.jpg', 'FLASH 193', 'media/flash/C193.jpg'], ['media/flash_sm/C194.jpg', 'FLASH 194', 'media/flash/C194.jpg'], ['media/flash_sm/C195.jpg', 'FLASH 195', 'media/flash/C195.jpg'], ['media/flash_sm/C196.jpg', 'FLASH 196', 'media/flash/C196.jpg'], ['media/flash_sm/C197.jpg', 'FLASH 197', 'media/flash/C197.jpg'], ['media/flash_sm/C201.jpg', 'FLASH 201', 'media/flash/C201.jpg'], ['media/flash_sm/C202.jpg', 'FLASH 202', 'media/flash/C202.jpg'], ['media/flash_sm/C204.jpg', 'FLASH 204', 'media/flash/C204.jpg'], ['media/flash_sm/C205.jpg', 'FLASH 205', 'media/flash/C205.jpg'], ['media/flash_sm/C206.jpg', 'FLASH 206', 'media/flash/C206.jpg'], ['media/flash_sm/C207.jpg', 'FLASH 207', 'media/flash/C207.jpg'], ['media/flash_sm/C208.jpg', 'FLASH 208', 'media/flash/C208.jpg'], ['media/flash_sm/C209.jpg', 'FLASH 209', 'media/flash/C209.jpg'], ['media/flash_sm/C210.jpg', 'FLASH 210', 'media/flash/C210.jpg'], ['media/flash_sm/C211.jpg', 'FLASH 211', 'media/flash/C211.jpg'], ['media/flash_sm/C212.jpg', 'FLASH 212', 'media/flash/C212.jpg'], ['media/flash_sm/C213.jpg', 'FLASH 213', 'media/flash/C213.jpg'], ['media/flash_sm/C214.jpg', 'FLASH 214', 'media/flash/C214.jpg'], ['media/flash_sm/C215.jpg', 'FLASH 215', 'media/flash/C215.jpg'], ['media/flash_sm/C216.jpg', 'FLASH 216', 'media/flash/C216.jpg'], ['media/flash_sm/C217.jpg', 'FLASH 217', 'media/flash/C217.jpg'], ['media/flash_sm/C218.jpg', 'FLASH 218', 'media/flash/C218.jpg'], ['media/flash_sm/C219.jpg', 'FLASH 219', 'media/flash/C219.jpg'], ['media/flash_sm/C220.jpg', 'FLASH 220', 'media/flash/C220.jpg'], ['media/flash_sm/C221.jpg', 'FLASH 221', 'media/flash/C221.jpg'], ['media/flash_sm/C222.jpg', 'FLASH 222', 'media/flash/C222.jpg'], ['media/flash_sm/C225.jpg', 'FLASH 225', 'media/flash/C225.jpg'], ['media/flash_sm/C234.jpg', 'FLASH 234', 'media/flash/C234.jpg'], ['media/flash_sm/C235.jpg', 'FLASH 235', 'media/flash/C235.jpg'], ['media/flash_sm/C236.jpg', 'FLASH 236', 'media/flash/C236.jpg'], ['media/flash_sm/C237.jpg', 'FLASH 237', 'media/flash/C237.jpg'], ['media/flash_sm/C238.jpg', 'FLASH 238', 'media/flash/C238.jpg'], ['media/flash_sm/C239.jpg', 'FLASH 239', 'media/flash/C239.jpg'], ['media/flash_sm/C240.jpg', 'FLASH 240', 'media/flash/C240.jpg'], ['media/flash_sm/C241.jpg', 'FLASH 241', 'media/flash/C241.jpg'], ['media/flash_sm/C242.jpg', 'FLASH 242', 'media/flash/C242.jpg'], ['media/flash_sm/C253.jpg', 'FLASH 253', 'media/flash/C253.jpg'], ['media/flash_sm/C254.jpg', 'FLASH 254', 'media/flash/C254.jpg'], ['media/flash_sm/C255.jpg', 'FLASH 255', 'media/flash/C255.jpg'], ['media/flash_sm/C256.jpg', 'FLASH 256', 'media/flash/C256.jpg'], ['media/flash_sm/C257.jpg', 'FLASH 257', 'media/flash/C257.jpg'], ['media/flash_sm/C258.jpg', 'FLASH 258', 'media/flash/C258.jpg'], ['media/flash_sm/C259.jpg', 'FLASH 259', 'media/flash/C259.jpg'], ['media/flash_sm/C272.jpg', 'FLASH 272', 'media/flash/C272.jpg'], ['media/flash_sm/C273.jpg', 'FLASH 273', 'media/flash/C273.jpg'], ['media/flash_sm/C274.jpg', 'FLASH 274', 'media/flash/C274.jpg'], ['media/flash_sm/C275.jpg', 'FLASH 275', 'media/flash/C275.jpg'], ['media/flash_sm/C277.jpg', 'FLASH 277', 'media/flash/C277.jpg'], ['media/flash_sm/C278.jpg', 'FLASH 278', 'media/flash/C278.jpg'], ['media/flash_sm/C279.jpg', 'FLASH 279', 'media/flash/C279.jpg'], ['media/flash_sm/C281.jpg', 'FLASH 281', 'media/flash/C281.jpg'], ['media/flash_sm/C282.jpg', 'FLASH 282', 'media/flash/C282.jpg'], ['media/flash_sm/C284.jpg', 'FLASH 284', 'media/flash/C284.jpg'], ['media/flash_sm/C285.jpg', 'FLASH 285', 'media/flash/C285.jpg'], ['media/flash_sm/C287.jpg', 'FLASH 287', 'media/flash/C287.jpg'], ['media/flash_sm/C288.jpg', 'FLASH 288', 'media/flash/C288.jpg'], ['media/flash_sm/C290.jpg', 'FLASH 290', 'media/flash/C290.jpg'], ['media/flash_sm/C293.jpg', 'FLASH 293', 'media/flash/C293.jpg'], ['media/flash_sm/C294.jpg', 'FLASH 294', 'media/flash/C294.jpg'], ['media/flash_sm/C295.jpg', 'FLASH 295', 'media/flash/C295.jpg'], ['media/flash_sm/C296.jpg', 'FLASH 296', 'media/flash/C296.jpg'], ['media/flash_sm/C298.jpg', 'FLASH 298', 'media/flash/C298.jpg'], ['media/flash_sm/C299.jpg', 'FLASH 299', 'media/flash/C299.jpg'], ['media/flash_sm/C300.jpg', 'FLASH 300', 'media/flash/C300.jpg'], ['media/flash_sm/C301.jpg', 'FLASH 301', 'media/flash/C301.jpg'], ['media/flash_sm/C302.jpg', 'FLASH 302', 'media/flash/C302.jpg'], ['media/flash_sm/C303.jpg', 'FLASH 303', 'media/flash/C303.jpg'], ['media/flash_sm/C304.jpg', 'FLASH 304', 'media/flash/C304.jpg'], ['media/flash_sm/C305.jpg', 'FLASH 305', 'media/flash/C305.jpg'], ['media/flash_sm/C306.jpg', 'FLASH 306', 'media/flash/C306.jpg'], ['media/flash_sm/C307.jpg', 'FLASH 307', 'media/flash/C307.jpg'], ['media/flash_sm/C308.jpg', 'FLASH 308', 'media/flash/C308.jpg'], ['media/flash_sm/C310.jpg', 'FLASH 310', 'media/flash/C310.jpg'], ['media/flash_sm/C311.jpg', 'FLASH 311', 'media/flash/C311.jpg'], ['media/flash_sm/C312.jpg', 'FLASH 312', 'media/flash/C312.jpg'], ['media/flash_sm/C313.jpg', 'FLASH 313', 'media/flash/C313.jpg'], ['media/flash_sm/C314.jpg', 'FLASH 314', 'media/flash/C314.jpg'], ['media/flash_sm/C315.jpg', 'FLASH 315', 'media/flash/C315.jpg'], ['media/flash_sm/C316.jpg', 'FLASH 316', 'media/flash/C316.jpg'], ['media/flash_sm/C318.jpg', 'FLASH 318', 'media/flash/C318.jpg'], ['media/flash_sm/C320.jpg', 'FLASH 320', 'media/flash/C320.jpg'], ['media/flash_sm/C322.jpg', 'FLASH 322', 'media/flash/C322.jpg'], ['media/flash_sm/C323.jpg', 'FLASH 323', 'media/flash/C323.jpg'], ['media/flash_sm/C324.jpg', 'FLASH 324', 'media/flash/C324.jpg'], ['media/flash_sm/C325.jpg', 'FLASH 325', 'media/flash/C325.jpg'], ['media/flash_sm/C326.jpg', 'FLASH 326', 'media/flash/C326.jpg'], ['media/flash_sm/C327.jpg', 'FLASH 327', 'media/flash/C327.jpg'], ['media/flash_sm/C328.jpg', 'FLASH 328', 'media/flash/C328.jpg'], ['media/flash_sm/C329.jpg', 'FLASH 329', 'media/flash/C329.jpg'], ['media/flash_sm/C330.jpg', 'FLASH 330', 'media/flash/C330.jpg'], ['media/flash_sm/C331.jpg', 'FLASH 331', 'media/flash/C331.jpg'], ['media/flash_sm/C332.jpg', 'FLASH 332', 'media/flash/C332.jpg'], ['media/flash_sm/C333.jpg', 'FLASH 333', 'media/flash/C333.jpg'], ['media/flash_sm/C334.jpg', 'FLASH 334', 'media/flash/C334.jpg'], ['media/flash_sm/C335.jpg', 'FLASH 335', 'media/flash/C335.jpg'], ['media/flash_sm/C336.jpg', 'FLASH 336', 'media/flash/C336.jpg'], ['media/flash_sm/C337.jpg', 'FLASH 337', 'media/flash/C337.jpg'], ['media/flash_sm/C338.jpg', 'FLASH 338', 'media/flash/C338.jpg'], ['media/flash_sm/C339.jpg', 'FLASH 339', 'media/flash/C339.jpg'], ['media/flash_sm/C340.jpg', 'FLASH 340', 'media/flash/C340.jpg'], ['media/flash_sm/C341.jpg', 'FLASH 341', 'media/flash/C341.jpg'], ['media/flash_sm/C342.jpg', 'FLASH 342', 'media/flash/C342.jpg'], ['media/flash_sm/C343.jpg', 'FLASH 343', 'media/flash/C343.jpg'], ['media/flash_sm/C344.jpg', 'FLASH 344', 'media/flash/C344.jpg'], ['media/flash_sm/C345.jpg', 'FLASH 345', 'media/flash/C345.jpg'], ['media/flash_sm/C346.jpg', 'FLASH 346', 'media/flash/C346.jpg'], ['media/flash_sm/C347.jpg', 'FLASH 347', 'media/flash/C347.jpg'], ['media/flash_sm/C348.jpg', 'FLASH 348', 'media/flash/C348.jpg'], ['media/flash_sm/C349.jpg', 'FLASH 349', 'media/flash/C349.jpg'], ['media/flash_sm/C350.jpg', 'FLASH 350', 'media/flash/C350.jpg'], ['media/flash_sm/C351.jpg', 'FLASH 351', 'media/flash/C351.jpg'], ['media/flash_sm/C352.jpg', 'FLASH 352', 'media/flash/C352.jpg'], ['media/flash_sm/C353.jpg', 'FLASH 353', 'media/flash/C353.jpg'], ['media/flash_sm/C354.jpg', 'FLASH 354', 'media/flash/C354.jpg'], ['media/flash_sm/C355.jpg', 'FLASH 355', 'media/flash/C355.jpg']  , ['media/flash_sm/C357.jpg', 'FLASH 357', 'media/flash/C357.jpg'] ];
     var POS = ['50% 50%', '28% 35%', '72% 60%', '35% 70%', '65% 25%', '50% 82%', '20% 55%', '78% 45%'];
     var wheel = document.getElementById('wheel');
-    PIECES.slice(0, 4).forEach(function (p) { var im = new Image(); im.src = p[0]; });
-    for (var fi = 0; fi < PIECES.length; fi++) {
-      var p = PIECES[fi], d = document.createElement('div');
+    var WHEEL_PIECES = PIECES.slice(0, 100);
+    WHEEL_PIECES.slice(0, 4).forEach(function (p) { var im = new Image(); im.src = p[0]; });
+    for (var fi = 0; fi < WHEEL_PIECES.length; fi++) {
+      var p = WHEEL_PIECES[fi], d = document.createElement('article');
       d.className = 'fcard';
-      d.innerHTML = '<span class="fh">DRAG · HOLD</span>' +
+      d.innerHTML = '<span class="fh">SWIPE UP / DOWN</span>' +
         '<img draggable="false" decoding="async" data-s="' + p[0] + '" style="object-position:' + POS[fi % 8] + '" alt="' + p[1].replace(/&amp;/g, '&') + ' flash">' +
         '<div class="fl">№&nbsp;' + p[1] + '</div>';
       wheel.appendChild(d);
@@ -1281,9 +1604,9 @@
     var n = cards.length;
     var IMGS = cards.map(function (c) { return c.querySelector('img'); });
     var mqs = window.matchMedia('(max-width: 640px)');
-    var HORZ = mqs.matches;              /* phone = NATIVE horizontal scroller, desktop = vertical wheel */
-    var SP = 240, total = SP * n, off = 0, target = 0, vel = 0, drag = false, moved = 0, lastP = 0;
-    var curOn = -1, mobRAF = 0, wi = 0;
+    var HORZ = false;
+    var SP = 92, total = SP * n, off = 0, target = 0, vel = 0, drag = false, moved = 0, lastP = 0;
+    var curOn = -1, mobRAF = 0;
     function shortest(dd) { return ((dd % total) + total + total / 2) % total - total / 2; }
     function setOn(i) {
       if (i === curOn) return;
@@ -1297,15 +1620,15 @@
       for (var i = 0; i < n; i++) {
         var y = ((i * SP + off) % total + total + total / 2) % total - total / 2;
         var c = cards[i], L = c._l || (c._l = { d: 2, t: null, os: '', z: -1, on: -1 });
-        if (y > 2000 || y < -2000) { if (L.d !== 1) { c.style.display = 'none'; L.d = 1; } continue; }
+        if (y > 420 || y < -420) { if (L.d !== 1) { c.style.display = 'none'; L.d = 1; } continue; }
         var f = force;
         if (L.d !== 0) { c.style.display = ''; L.d = 0; f = 1; }
         var im = IMGS[i];
         if (im && !im.src) im.src = im.getAttribute('data-s');
         if (im && !c._dd) { c._dd = 1; im.decode().catch(function () { }); }
-        var dd = Math.min(Math.abs(y) / SP, 1);
-        var tf = 'translate(-50%,-50%) translateY(' + y + 'px) scale(' + (1.15 - 0.15 * dd).toFixed(3) + ') translateZ(0)';
-        var os = (1 - 0.15 * dd).toFixed(3);
+        var dd = Math.min(Math.abs(y) / SP, 3);
+        var tf = 'translate(-50%,-50%) translateY(' + y + 'px) scale(' + Math.max(.72, 1.06 - .13 * dd).toFixed(3) + ') translateZ(0)';
+        var os = Math.max(.16, 1 - .31 * dd).toFixed(3);
         var z = Math.max(1, 80 - Math.round(Math.abs(y) / 24));
         if (f || L.t !== tf) { c.style.transform = tf; L.t = tf; }
         if (f || L.os !== os) { c.style.opacity = os; L.os = os; }
@@ -1318,7 +1641,7 @@
       if (!HORZ) {
         if (!drag) {
           if (Math.abs(vel) > 0.15) { target += vel; vel *= 0.93; }
-          else { var s = Math.round(target / SP) * SP; target += (s - target) * 0.14; }
+          else { target -= 0.42; }
         }
         var d = target - off;
         if (d > 0.05 || d < -0.05) { off = drag ? target : off + d * 0.22; render(); }
@@ -1330,6 +1653,7 @@
       if (HORZ) return;
       if (e.pointerType === 'mouse' && e.button !== 0) return;
       drag = true; moved = 0; lastP = e.clientY; vel = 0;
+      wheel.classList.add('is-dragging');
       wheel.setPointerCapture(e.pointerId);
     });
     wheel.addEventListener('pointermove', function (e) {
@@ -1341,13 +1665,18 @@
     wheel.addEventListener('pointerup', function (e) {
       if (HORZ) return;
       drag = false;
+      wheel.classList.remove('is-dragging');
+      if (wheel.hasPointerCapture(e.pointerId)) wheel.releasePointerCapture(e.pointerId);
       if (moved > 8) return;
       var r = wheel.getBoundingClientRect();
       var p = e.clientY - (r.top + r.height / 2);
       var i = ((Math.round((p - off) / SP)) % n + n) % n;
       target += shortest(-i * SP - target);
     });
-    wheel.addEventListener('pointercancel', function () { drag = false; });
+    function releaseWheel() { drag = false; wheel.classList.remove('is-dragging'); }
+    wheel.addEventListener('pointercancel', releaseWheel);
+    wheel.addEventListener('lostpointercapture', releaseWheel);
+    window.addEventListener('pointerup', releaseWheel, { passive: true });
     /* ===== phone: native horizontal scroller - browser owns momentum + snap, zero jank ===== */
     function mobCenter(el, smooth) {
       wheel.scrollTo({ left: el.offsetLeft - (wheel.clientWidth - el.offsetWidth) / 2, behavior: smooth ? 'smooth' : 'auto' });
@@ -1373,38 +1702,82 @@
       if (HORZ) { mobCenter(cards[r], true); }
       else { vel = 0; target += shortest(-r * SP - target) + (Math.random() < 0.5 ? -1 : 1) * total * (2 + Math.floor(Math.random() * 3)); }
     });
-    /* idle warm-load: every card gets its src over time - hard spins never black */
-    function warmStep() {
-      var t0 = performance.now();
-      while (wi < n && performance.now() - t0 < 5) {
-        var im = IMGS[wi], c = cards[wi++];
-        if (im && !im.src) { if (HORZ) im.loading = 'lazy'; im.src = im.getAttribute('data-s'); }
-        if (!HORZ && im && im.src && !c._dd) { c._dd = 1; im.decode().catch(function () { }); }
-      }
-      if (wi < n) setTimeout(warmStep, 16);
-    }
-    setTimeout(warmStep, 600);
+    /* Images load only when their cards enter the visible wheel window. */
     /* breakpoint switch: strip desktop inline styles before native layout takes over */
-    function layout() {
-      var h = mqs.matches;
-      if (h === HORZ) return;
-      HORZ = h;
-      if (h) {
-        for (var k = 0; k < n; k++) {
-          var c = cards[k];
-          c.style.transform = ''; c.style.opacity = ''; c.style.zIndex = ''; c.style.display = '';
-          c._l = null;
-        }
-        curOn = -1;
-        mobUpdate();
-      } else {
-        off = target = vel = 0;
-        render(true);
-      }
-    }
+    function layout() { HORZ = false; render(true); }
     if (mqs.addEventListener) mqs.addEventListener('change', layout);
     else if (mqs.addListener) mqs.addListener(layout);
-    if (HORZ) { mobUpdate(); } else { render(true); }
+    render(true);
+
+    /* ================= BEFORE / AFTER ================= */
+    var compareSlider = document.getElementById('compareSlider');
+    var compareTrack = document.getElementById('compareTrack');
+    var compareProgress = document.getElementById('compareProgress');
+    var compareThumb = document.getElementById('compareThumb');
+    var compareValue = 0;
+    function setCompare(value) {
+      compareValue = Math.max(0, Math.min(100, value));
+      compareSlider.value = String(compareValue);
+      compareTrack.style.transform = 'translate3d(-' + (compareValue / 2) + '%,0,0)';
+      compareProgress.style.width = compareValue >= 99.5 ? '100%' : 'calc(' + compareValue + '% - ' + (compareValue * .44) + 'px)';
+      compareThumb.style.left = 'calc(22px + ' + compareValue + '% - ' + (compareValue * .44) + 'px)';
+      compareSlider.setAttribute('aria-valuetext', compareValue === 0 ? 'Full before photo' : compareValue === 100 ? 'Full after photo' : Math.round(compareValue) + ' percent toward the after photo');
+    }
+    compareSlider.addEventListener('input', function () { setCompare(Number(compareSlider.value)); });
+    var compareDragging = false;
+    function setCompareFromPointer(e) {
+      var r = compareSlider.getBoundingClientRect();
+      setCompare(((e.clientX - r.left - 22) / Math.max(1, r.width - 44)) * 100);
+    }
+    compareSlider.addEventListener('pointerdown', function (e) {
+      compareDragging = true;
+      setCompareFromPointer(e);
+      compareSlider.setPointerCapture(e.pointerId);
+    });
+    compareSlider.addEventListener('pointermove', function (e) {
+      if (compareDragging) setCompareFromPointer(e);
+    });
+    function releaseCompare(e) {
+      compareDragging = false;
+      if (e.pointerId !== undefined && compareSlider.hasPointerCapture(e.pointerId)) compareSlider.releasePointerCapture(e.pointerId);
+    }
+    compareSlider.addEventListener('pointerup', releaseCompare);
+    compareSlider.addEventListener('pointercancel', releaseCompare);
+    compareSlider.addEventListener('lostpointercapture', function () { compareDragging = false; });
+    compareSlider.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); setCompare(compareValue - 5); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); setCompare(compareValue + 5); }
+      if (e.key === 'Home') { e.preventDefault(); setCompare(0); }
+      if (e.key === 'End') { e.preventDefault(); setCompare(100); }
+    });
+    document.getElementById('compareReset').addEventListener('click', function () { setCompare(0); });
+    setCompare(0);
+
+    /* ================= MOBILE PORTFOLIO LENGTH ================= */
+    var workGrid = document.getElementById('workGrid');
+    var workMore = document.getElementById('workMore');
+    workMore.addEventListener('click', function () {
+      var expanded = workGrid.classList.toggle('expanded');
+      workMore.setAttribute('aria-expanded', String(expanded));
+      workMore.textContent = expanded ? 'SHOW FEWER TATTOOS' : 'SHOW MORE TATTOOS';
+    });
+
+    /* ================= CALL / TEXT FALLBACK ================= */
+    var contactChoices = document.getElementById('contactChoices');
+    function closeContact() { contactChoices.classList.remove('open'); }
+    document.addEventListener('click', function (e) {
+      var phone = e.target.closest && e.target.closest('a[href^="tel:"],a[href^="sms:"]');
+      if (phone && !phone.hasAttribute('data-direct-phone')) {
+        e.preventDefault();
+        contactChoices.classList.add('open');
+      }
+    });
+    document.getElementById('contactClose').addEventListener('click', closeContact);
+    contactChoices.addEventListener('click', function (e) { if (e.target === contactChoices) closeContact(); });
+    document.getElementById('copyPhone').addEventListener('click', function () {
+      var button = this;
+      navigator.clipboard.writeText('(320) 699-1012').then(function () { button.textContent = 'NUMBER COPIED'; });
+    });
 
 
 
