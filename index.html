@@ -888,14 +888,32 @@
         grid-column: auto
       }
 
-      .fcard {
-        width: 224px;
-        height: 304px
+      .wheel {
+        height: auto;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 20px calc(50% - 112px);
+        scroll-snap-type: x mandatory;
+        touch-action: pan-x pan-y;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch
       }
 
-      .wheel {
-        height: 430px;
-        touch-action: pan-y
+      .wheel::-webkit-scrollbar {
+        display: none
+      }
+
+      .fcard {
+        position: static;
+        width: 224px;
+        height: 304px;
+        flex: 0 0 auto;
+        scroll-snap-align: center;
+        content-visibility: auto;
+        contain-intrinsic-size: 224px 304px
       }
     }
 
@@ -1263,20 +1281,17 @@
     var n = cards.length;
     var IMGS = cards.map(function (c) { return c.querySelector('img'); });
     var mqs = window.matchMedia('(max-width: 640px)');
-    var HORZ = mqs.matches;                    /* phone = horizontal wheel, desktop = vertical */
-    var SP = HORZ ? 200 : 240;                 /* slot spacing px */
-    var total = SP * n, off = 0, target = 0, vel = 0, drag = false, moved = 0, lastP = 0;
+    var HORZ = mqs.matches;              /* phone = NATIVE horizontal scroller, desktop = vertical wheel */
+    var SP = 240, total = SP * n, off = 0, target = 0, vel = 0, drag = false, moved = 0, lastP = 0;
+    var curOn = -1, mobRAF = 0, wi = 0;
     function shortest(dd) { return ((dd % total) + total + total / 2) % total - total / 2; }
-    function layout() {                        /* swap axis at the phone breakpoint, keep same card centered */
-      var h = mqs.matches, sp = h ? 200 : 240;
-      if (h === HORZ && sp === SP) return;
-      var act = ((Math.round(-off / SP)) % n + n) % n;
-      HORZ = h; SP = sp; total = SP * n;
-      off = target = -act * SP; vel = 0;
-      render(true);
+    function setOn(i) {
+      if (i === curOn) return;
+      if (curOn >= 0) cards[curOn].classList.remove('on');
+      cards[i].classList.add('on');
+      curOn = i;
     }
-    if (mqs.addEventListener) mqs.addEventListener('change', layout);
-    else if (mqs.addListener) mqs.addListener(layout);
+    /* ===== desktop: absolute vertical wheel, rAF physics ===== */
     function render(force) {
       var act = ((Math.round(-off / SP)) % n + n) % n;
       for (var i = 0; i < n; i++) {
@@ -1289,7 +1304,7 @@
         if (im && !im.src) im.src = im.getAttribute('data-s');
         if (im && !c._dd) { c._dd = 1; im.decode().catch(function () { }); }
         var dd = Math.min(Math.abs(y) / SP, 1);
-        var tf = 'translate(-50%,-50%) ' + (HORZ ? 'translateX(' : 'translateY(') + y + 'px) scale(' + (1.15 - 0.15 * dd).toFixed(3) + ') translateZ(0)';
+        var tf = 'translate(-50%,-50%) translateY(' + y + 'px) scale(' + (1.15 - 0.15 * dd).toFixed(3) + ') translateZ(0)';
         var os = (1 - 0.15 * dd).toFixed(3);
         var z = Math.max(1, 80 - Math.round(Math.abs(y) / 24));
         if (f || L.t !== tf) { c.style.transform = tf; L.t = tf; }
@@ -1299,56 +1314,97 @@
         if (L.on !== on) { c.classList.toggle('on', on === 1); L.on = on; }
       }
     }
-    (function tick() {
-      if (!drag) {
-        if (Math.abs(vel) > 0.15) { target += vel; vel *= 0.93; }
-        else { var s = Math.round(target / SP) * SP; target += (s - target) * 0.14; }
+    (function tickFrame() {
+      if (!HORZ) {
+        if (!drag) {
+          if (Math.abs(vel) > 0.15) { target += vel; vel *= 0.93; }
+          else { var s = Math.round(target / SP) * SP; target += (s - target) * 0.14; }
+        }
+        var d = target - off;
+        if (d > 0.05 || d < -0.05) { off = drag ? target : off + d * 0.22; render(); }
       }
-      var d = target - off;
-      if (d > 0.05 || d < -0.05) { off += d * (drag ? 0.6 : 0.22); render(); }
-      requestAnimationFrame(tick);
+      requestAnimationFrame(tickFrame);
     })();
     wheel.addEventListener('dragstart', function (e) { e.preventDefault(); });
     wheel.addEventListener('pointerdown', function (e) {
+      if (HORZ) return;
       if (e.pointerType === 'mouse' && e.button !== 0) return;
-      drag = true; moved = 0; lastP = HORZ ? e.clientX : e.clientY; vel = 0;
+      drag = true; moved = 0; lastP = e.clientY; vel = 0;
       wheel.setPointerCapture(e.pointerId);
     });
     wheel.addEventListener('pointermove', function (e) {
-      if (!drag) return;
-      var p = HORZ ? e.clientX : e.clientY;
-      var dp = p - lastP; lastP = p;
+      if (!drag || HORZ) return;
+      var dp = e.clientY - lastP; lastP = e.clientY;
       target += dp; moved += Math.abs(dp);
       vel = Math.max(-100, Math.min(100, vel * 0.7 + dp * 0.3));
     });
-    /* pointer capture retargets clicks to the wheel - tap-to-center lives here */
     wheel.addEventListener('pointerup', function (e) {
+      if (HORZ) return;
       drag = false;
       if (moved > 8) return;
       var r = wheel.getBoundingClientRect();
-      var p = HORZ ? e.clientX - (r.left + r.width / 2) : e.clientY - (r.top + r.height / 2);
+      var p = e.clientY - (r.top + r.height / 2);
       var i = ((Math.round((p - off) / SP)) % n + n) % n;
       target += shortest(-i * SP - target);
     });
     wheel.addEventListener('pointercancel', function () { drag = false; });
+    /* ===== phone: native horizontal scroller - browser owns momentum + snap, zero jank ===== */
+    function mobCenter(el, smooth) {
+      wheel.scrollTo({ left: el.offsetLeft - (wheel.clientWidth - el.offsetWidth) / 2, behavior: smooth ? 'smooth' : 'auto' });
+    }
+    function mobUpdate() {
+      var c0 = cards[0];
+      var stride = c0.offsetWidth + 14;
+      var i = Math.round((wheel.scrollLeft + wheel.clientWidth / 2 - c0.offsetLeft - c0.offsetWidth / 2) / stride);
+      setOn(((i % n) + n) % n);
+    }
+    wheel.addEventListener('scroll', function () {
+      if (!HORZ || mobRAF) return;
+      mobRAF = requestAnimationFrame(function () { mobRAF = 0; mobUpdate(); });
+    }, { passive: true });
+    wheel.addEventListener('click', function (e) {
+      if (!HORZ) return;
+      var el = e.target && e.target.closest ? e.target.closest('.fcard') : null;
+      if (el) mobCenter(el, true);
+    });
     /* spin for random */
     document.getElementById('spin').addEventListener('click', function () {
-      var r = Math.floor(Math.random() * n); vel = 0;
-      target += shortest(-r * SP - target) + (Math.random() < 0.5 ? -1 : 1) * total * (2 + Math.floor(Math.random() * 3));
+      var r = Math.floor(Math.random() * n);
+      if (HORZ) { mobCenter(cards[r], true); }
+      else { vel = 0; target += shortest(-r * SP - target) + (Math.random() < 0.5 ? -1 : 1) * total * (2 + Math.floor(Math.random() * 3)); }
     });
     /* idle warm-load: every card gets its src over time - hard spins never black */
-    var wi = 0;
     function warmStep() {
       var t0 = performance.now();
       while (wi < n && performance.now() - t0 < 5) {
         var im = IMGS[wi], c = cards[wi++];
-        if (im && !im.src) im.src = im.getAttribute('data-s');
-        if (im && im.src && !c._dd) { c._dd = 1; im.decode().catch(function () { }); }
+        if (im && !im.src) { if (HORZ) im.loading = 'lazy'; im.src = im.getAttribute('data-s'); }
+        if (!HORZ && im && im.src && !c._dd) { c._dd = 1; im.decode().catch(function () { }); }
       }
       if (wi < n) setTimeout(warmStep, 16);
     }
     setTimeout(warmStep, 600);
-    render(true);
+    /* breakpoint switch: strip desktop inline styles before native layout takes over */
+    function layout() {
+      var h = mqs.matches;
+      if (h === HORZ) return;
+      HORZ = h;
+      if (h) {
+        for (var k = 0; k < n; k++) {
+          var c = cards[k];
+          c.style.transform = ''; c.style.opacity = ''; c.style.zIndex = ''; c.style.display = '';
+          c._l = null;
+        }
+        curOn = -1;
+        mobUpdate();
+      } else {
+        off = target = vel = 0;
+        render(true);
+      }
+    }
+    if (mqs.addEventListener) mqs.addEventListener('change', layout);
+    else if (mqs.addListener) mqs.addListener(layout);
+    if (HORZ) { mobUpdate(); } else { render(true); }
 
 
 
