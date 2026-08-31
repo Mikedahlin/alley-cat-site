@@ -889,12 +889,13 @@
       }
 
       .fcard {
-        width: 280px;
-        height: 380px
+        width: 224px;
+        height: 304px
       }
 
       .wheel {
-        height: 560px
+        height: 430px;
+        touch-action: pan-y
       }
     }
 
@@ -1259,64 +1260,95 @@
       wheel.appendChild(d);
     }
     var cards = [].slice.call(wheel.querySelectorAll('.fcard'));
-    var n = cards.length, total = 240 * n, off = 0, target = 0, drag = false, lastY = 0, vel = 0, moved = 0, wAcc = 0;
+    var n = cards.length;
+    var IMGS = cards.map(function (c) { return c.querySelector('img'); });
+    var mqs = window.matchMedia('(max-width: 640px)');
+    var HORZ = mqs.matches;                    /* phone = horizontal wheel, desktop = vertical */
+    var SP = HORZ ? 200 : 240;                 /* slot spacing px */
+    var total = SP * n, off = 0, target = 0, vel = 0, drag = false, moved = 0, lastP = 0;
     function shortest(dd) { return ((dd % total) + total + total / 2) % total - total / 2; }
-    function render() {
-      var act = ((Math.round(-off / 240)) % n + n) % n;
+    function layout() {                        /* swap axis at the phone breakpoint, keep same card centered */
+      var h = mqs.matches, sp = h ? 200 : 240;
+      if (h === HORZ && sp === SP) return;
+      var act = ((Math.round(-off / SP)) % n + n) % n;
+      HORZ = h; SP = sp; total = SP * n;
+      off = target = -act * SP; vel = 0;
+      render(true);
+    }
+    if (mqs.addEventListener) mqs.addEventListener('change', layout);
+    else if (mqs.addListener) mqs.addListener(layout);
+    function render(force) {
+      var act = ((Math.round(-off / SP)) % n + n) % n;
       for (var i = 0; i < n; i++) {
-        var y = ((i * 240 + off) % total + total + total / 2) % total - total / 2;
-        var c = cards[i];
-        if (y > 2000 || y < -2000) { if (c.style.display !== 'none') c.style.display = 'none'; continue; }
-        if (c.style.display === 'none') c.style.display = '';
-        var im = c.querySelector('img'); if (im && !im.src) im.src = im.getAttribute('data-s');
+        var y = ((i * SP + off) % total + total + total / 2) % total - total / 2;
+        var c = cards[i], L = c._l || (c._l = { d: 2, t: null, os: '', z: -1, on: -1 });
+        if (y > 2000 || y < -2000) { if (L.d !== 1) { c.style.display = 'none'; L.d = 1; } continue; }
+        var f = force;
+        if (L.d !== 0) { c.style.display = ''; L.d = 0; f = 1; }
+        var im = IMGS[i];
+        if (im && !im.src) im.src = im.getAttribute('data-s');
         if (im && !c._dd) { c._dd = 1; im.decode().catch(function () { }); }
-        var dd = Math.min(Math.abs(y) / 240, 1);
-        c.style.transform = 'translate(-50%,-50%) translateY(' + y + 'px) scale(' + (1.15 - 0.15 * dd) + ')';
-        c.style.opacity = (1 - 0.15 * dd).toFixed(3);
-        c.style.zIndex = String(Math.max(1, 80 - Math.round(Math.abs(y) / 24)));
-        c.classList.toggle('on', i === act);
+        var dd = Math.min(Math.abs(y) / SP, 1);
+        var tf = 'translate(-50%,-50%) ' + (HORZ ? 'translateX(' : 'translateY(') + y + 'px) scale(' + (1.15 - 0.15 * dd).toFixed(3) + ') translateZ(0)';
+        var os = (1 - 0.15 * dd).toFixed(3);
+        var z = Math.max(1, 80 - Math.round(Math.abs(y) / 24));
+        if (f || L.t !== tf) { c.style.transform = tf; L.t = tf; }
+        if (f || L.os !== os) { c.style.opacity = os; L.os = os; }
+        if (f || L.z !== z) { c.style.zIndex = z; L.z = z; }
+        var on = i === act ? 1 : 0;
+        if (L.on !== on) { c.classList.toggle('on', on === 1); L.on = on; }
       }
     }
     (function tick() {
       if (!drag) {
-        if (Math.abs(vel) > 0.15) { target += vel; vel *= 0.94; }
-        else { wAcc *= 0.92; var s = Math.round(target / 240) * 240; target += (s - target) * 0.12; }
+        if (Math.abs(vel) > 0.15) { target += vel; vel *= 0.93; }
+        else { var s = Math.round(target / SP) * SP; target += (s - target) * 0.14; }
       }
-      off += (target - off) * 0.16; render(); requestAnimationFrame(tick);
+      var d = target - off;
+      if (d > 0.05 || d < -0.05) { off += d * (drag ? 0.6 : 0.22); render(); }
+      requestAnimationFrame(tick);
     })();
-    /* mouse wheel = one card per notch, accumulated so snap never fights it */
-
     wheel.addEventListener('dragstart', function (e) { e.preventDefault(); });
     wheel.addEventListener('pointerdown', function (e) {
       if (e.pointerType === 'mouse' && e.button !== 0) return;
-      drag = true; moved = 0; lastY = e.clientY; vel = 0; wheel.setPointerCapture(e.pointerId);
+      drag = true; moved = 0; lastP = HORZ ? e.clientX : e.clientY; vel = 0;
+      wheel.setPointerCapture(e.pointerId);
     });
     wheel.addEventListener('pointermove', function (e) {
       if (!drag) return;
-      var dy = e.clientY - lastY; lastY = e.clientY; target += dy; moved += Math.abs(dy);
-      vel = Math.max(-70, Math.min(70, vel * 0.65 + dy * 0.35));
+      var p = HORZ ? e.clientX : e.clientY;
+      var dp = p - lastP; lastP = p;
+      target += dp; moved += Math.abs(dp);
+      vel = Math.max(-100, Math.min(100, vel * 0.7 + dp * 0.3));
     });
-    /* pointer capture retargets clicks to the wheel — tap-to-center lives here */
+    /* pointer capture retargets clicks to the wheel - tap-to-center lives here */
     wheel.addEventListener('pointerup', function (e) {
-      drag = false; if (moved > 8) return;
-      var r = wheel.getBoundingClientRect(); var ry = e.clientY - (r.top + r.height / 2);
-      var i = ((Math.round((ry - off) / 240)) % n + n) % n;
-      target += shortest(-i * 240 - target);
+      drag = false;
+      if (moved > 8) return;
+      var r = wheel.getBoundingClientRect();
+      var p = HORZ ? e.clientX - (r.left + r.width / 2) : e.clientY - (r.top + r.height / 2);
+      var i = ((Math.round((p - off) / SP)) % n + n) % n;
+      target += shortest(-i * SP - target);
     });
     wheel.addEventListener('pointercancel', function () { drag = false; });
     /* spin for random */
     document.getElementById('spin').addEventListener('click', function () {
       var r = Math.floor(Math.random() * n); vel = 0;
-      target += shortest(-r * 240 - target) + (Math.random() < 0.5 ? -1 : 1) * total * (2 + Math.floor(Math.random() * 3));
+      target += shortest(-r * SP - target) + (Math.random() < 0.5 ? -1 : 1) * total * (2 + Math.floor(Math.random() * 3));
     });
     /* idle warm-load: every card gets its src over time - hard spins never black */
     var wi = 0;
     function warmStep() {
       var t0 = performance.now();
-      while (wi < n && performance.now() - t0 < 5) { var c = cards[wi++], im = c && c.querySelector('img'); if (im && !im.src) im.src = im.getAttribute('data-s'); if (im && im.src && !c._dd) { c._dd = 1; im.decode().catch(function () { }); } }
+      while (wi < n && performance.now() - t0 < 5) {
+        var im = IMGS[wi], c = cards[wi++];
+        if (im && !im.src) im.src = im.getAttribute('data-s');
+        if (im && im.src && !c._dd) { c._dd = 1; im.decode().catch(function () { }); }
+      }
       if (wi < n) setTimeout(warmStep, 16);
     }
     setTimeout(warmStep, 600);
+    render(true);
 
 
 
