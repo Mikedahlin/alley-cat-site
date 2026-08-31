@@ -984,7 +984,7 @@
       html, body { overflow-x: hidden }
     }
 
-    /* ---------- approved cover-up comparison ---------- */
+    /* ---------- compact cover-up comparison ---------- */
     .coverProof {
       max-width: 1240px;
       margin: 0 auto 52px;
@@ -1019,8 +1019,9 @@
     }
 
     .compareViewport {
-      width: min(88vw, 36.5svh, 360px);
-      aspect-ratio: 890 / 2014;
+      width: min(100%, 420px);
+      height: min(66svh, 620px);
+      min-height: 360px;
       margin: 0 auto;
       overflow: hidden;
       border: 1px solid var(--green);
@@ -1028,18 +1029,19 @@
       box-shadow: 0 0 34px rgba(63, 233, 255, .12)
     }
 
-    .compareTrack {
-      display: flex;
-      width: 200%;
+    .compareStage {
+      position: relative;
+      width: 100%;
       height: 100%;
-      will-change: transform;
-      transition: transform 120ms cubic-bezier(.2, .8, .2, 1)
+      overflow: hidden;
+      background: #000;
+      isolation: isolate
     }
 
     .comparePanel {
-      position: relative;
-      flex: 0 0 50%;
-      width: 50%;
+      position: absolute;
+      inset: 0;
+      width: 100%;
       height: 100%;
       margin: 0;
       overflow: hidden;
@@ -1051,7 +1053,21 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      object-position: center
+      object-position: center;
+      background: #000
+    }
+
+    .compareBefore { z-index: 1 }
+
+    .compareAfter {
+      z-index: 3;
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 120ms cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .compareAfter figcaption {
+      left: auto;
+      right: 14px
     }
 
     .comparePanel figcaption {
@@ -1065,6 +1081,34 @@
       color: #fff;
       font: 700 10px/1 var(--mono);
       letter-spacing: .12em
+    }
+
+    .compareBlackWipe {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -10px;
+      z-index: 5;
+      width: 20px;
+      background: rgba(0, 0, 0, .92);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .9), 0 0 20px rgba(0, 0, 0, .95), 0 0 42px rgba(0, 0, 0, .7);
+      pointer-events: none;
+      transform: translateX(-50%);
+      transition: left 120ms cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .compareDivider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 6;
+      width: 2px;
+      background: #fff;
+      box-shadow: 0 0 0 1px #000, 0 0 12px #000, 0 0 30px rgba(63, 233, 255, .85);
+      pointer-events: none;
+      transform: translateX(-50%);
+      transition: left 120ms cubic-bezier(.2, .8, .2, 1)
     }
 
     .iosSlider {
@@ -1156,6 +1200,7 @@
     .compareBottom a { color: #bbff39 }
 
     /* ---------- compact vertical flash wheel ---------- */
+
     .wheel {
       width: min(100%, 330px);
       height: 500px;
@@ -1193,6 +1238,32 @@
     .fcard img { object-position: center !important }
 
     .workMore { display: none; margin: 18px auto 0 }
+
+    /* ---------- editorial masonry gallery ---------- */
+    .wgrid {
+      display: block;
+      columns: 3 280px;
+      column-gap: 14px
+    }
+
+    .wgrid .witem {
+      display: block;
+      width: 100%;
+      margin: 0 0 14px;
+      break-inside: avoid
+    }
+
+    .wgrid .witem img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: auto;
+      object-fit: contain
+    }
+
+    .wgrid .wcta {
+      display: flex;
+      min-height: 240px
+    }
 
     .contactChoices {
       position: fixed;
@@ -1244,9 +1315,13 @@
       .coverProofHead { display: block }
       .coverProofHead h3 { font-size: 42px }
       .coverProofHead p { margin-top: 14px; font-size: 16px }
+      .compareViewport { width: min(100%, 320px); height: min(62svh, 480px); min-height: 300px }
+      .comparePanel img { object-fit: contain }
+      .compareBlackWipe { width: 16px }
+      .compareDivider { width: 2px }
       .compareBottom { align-items: flex-start; flex-direction: column; padding-inline: 4px }
-      .wgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px }
-      .witem img { height: 238px }
+      .wgrid { columns: 2 150px; column-gap: 8px }
+      .wgrid .witem img { height: auto }
       .wgrid:not(.expanded) .witem:nth-child(n+13) { display: none }
       .workMore { display: flex; min-height: 52px; align-items: center; justify-content: center }
       .prow { font-size: 15px }
@@ -1330,7 +1405,7 @@
         <div>
           <div class="eyebrow">THE FLASH WALL</div>
           <h2 class="big"><span class="nw">SPIN THE WHEEL </span><span class="g ng">FOR INSPIRATION</span></h2>
-          <p class="ssub">100 DIFFERENT DESIGNS · SWIPE UP OR DOWN</p>
+          <p class="ssub">SWIPE UP OR DOWN TO EXPLORE</p>
         </div>
         <div class="fctl">
           <button class="btn line" id="spin">⟳ SPIN FOR RANDOM</button>
@@ -1356,15 +1431,17 @@
           <p>Slide from the complete before photo to the complete finished tattoo.</p>
         </div>
         <div class="compareViewport" aria-label="Tattoo cover-up transformation">
-          <div class="compareTrack" id="compareTrack">
-            <figure class="comparePanel">
+          <div class="compareStage" id="compareStage">
+            <figure class="comparePanel compareBefore">
               <img src="media/coverup-before.jpeg" alt="Full tattoo before the Alley Cat Ink cover-up">
               <figcaption>BEFORE</figcaption>
             </figure>
-            <figure class="comparePanel">
+            <figure class="comparePanel compareAfter" id="compareAfter">
               <img src="media/coverup-after.jpeg" alt="Full tattoo after the Alley Cat Ink cover-up">
               <figcaption>AFTER</figcaption>
             </figure>
+            <span class="compareBlackWipe" id="compareBlackWipe" aria-hidden="true"></span>
+            <span class="compareDivider" id="compareDivider" aria-hidden="true"></span>
           </div>
         </div>
         <label class="iosSlider">
@@ -1454,7 +1531,7 @@
         <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w74.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
         <a class="witem wcta" href="tel:+13206991012"><b>+</b>YOUR SKIN NEXT</a>
       </div>
-      <button class="btn line workMore" id="workMore" type="button" aria-expanded="false" aria-controls="workGrid">SHOW MORE TATTOOS</button>
+      <button class="btn line workMore" id="workMore" type="button" aria-expanded="false" aria-controls="workGrid">SHOW MORE WORK</button>
     </section>
 
     <!-- STORY / BEFORE-AFTER -->
@@ -1596,8 +1673,7 @@
       var p = WHEEL_PIECES[fi], d = document.createElement('article');
       d.className = 'fcard';
       d.innerHTML = '<span class="fh">SWIPE UP / DOWN</span>' +
-        '<img draggable="false" decoding="async" data-s="' + p[0] + '" style="object-position:' + POS[fi % 8] + '" alt="' + p[1].replace(/&amp;/g, '&') + ' flash">' +
-        '<div class="fl">№&nbsp;' + p[1] + '</div>';
+        '<img draggable="false" decoding="async" data-s="' + p[0] + '" style="object-position:' + POS[fi % 8] + '" alt="Alley Cat Ink flash design">';
       wheel.appendChild(d);
     }
     var cards = [].slice.call(wheel.querySelectorAll('.fcard'));
@@ -1711,14 +1787,18 @@
 
     /* ================= BEFORE / AFTER ================= */
     var compareSlider = document.getElementById('compareSlider');
-    var compareTrack = document.getElementById('compareTrack');
+    var compareAfter = document.getElementById('compareAfter');
+    var compareBlackWipe = document.getElementById('compareBlackWipe');
+    var compareDivider = document.getElementById('compareDivider');
     var compareProgress = document.getElementById('compareProgress');
     var compareThumb = document.getElementById('compareThumb');
     var compareValue = 0;
     function setCompare(value) {
       compareValue = Math.max(0, Math.min(100, value));
       compareSlider.value = String(compareValue);
-      compareTrack.style.transform = 'translate3d(-' + (compareValue / 2) + '%,0,0)';
+      compareAfter.style.clipPath = 'inset(0 ' + (100 - compareValue) + '% 0 0)';
+      compareBlackWipe.style.left = 'calc(' + compareValue + '% - 10px)';
+      compareDivider.style.left = compareValue + '%';
       compareProgress.style.width = compareValue >= 99.5 ? '100%' : 'calc(' + compareValue + '% - ' + (compareValue * .44) + 'px)';
       compareThumb.style.left = 'calc(22px + ' + compareValue + '% - ' + (compareValue * .44) + 'px)';
       compareSlider.setAttribute('aria-valuetext', compareValue === 0 ? 'Full before photo' : compareValue === 100 ? 'Full after photo' : Math.round(compareValue) + ' percent toward the after photo');
@@ -1759,7 +1839,7 @@
     workMore.addEventListener('click', function () {
       var expanded = workGrid.classList.toggle('expanded');
       workMore.setAttribute('aria-expanded', String(expanded));
-      workMore.textContent = expanded ? 'SHOW FEWER TATTOOS' : 'SHOW MORE TATTOOS';
+      workMore.textContent = expanded ? 'SHOW LESS WORK' : 'SHOW MORE WORK';
     });
 
     /* ================= CALL / TEXT FALLBACK ================= */
