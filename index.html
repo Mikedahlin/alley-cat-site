@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050805">
+  <meta name="description"
+    content="Alley Cat Ink — tattoos & piercings in Hutchinson, MN. Custom work, cover-ups, flash, and piercing with jewelry included. Walk-ins welcome.">
+  <title>Alley Cat Ink — Tattoos &amp; Piercings · Hutchinson, MN</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈‍⬛</text></svg>">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+      -webkit-tap-highlight-color: transparent;
+}
+
+    :root {
+      --bg: #050805;
+      --panel: #0a0f0a;
+      --txt: #eefff0;
+      --dim: #c9d7cb;
+      --line: rgba(255, 255, 255, .14);
+      --green: #3fe9ff;
+      --cyan: #3fe9ff;
+      --gold: #d8a94e;
+      --disp: 'Arial Black', 'Segoe UI Black', Arial, sans-serif;
+      --mono: 'Cascadia Mono', 'JetBrains Mono', ui-monospace, Consolas, monospace;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: transparent;
+      color: var(--txt);
+      font-family: 'Segoe UI', system-ui, Arial, sans-serif;
+      overflow-x: hidden
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 60;
+      background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(0, 0, 0, .55) 100%)
+    }
+
+    a {
+      color: inherit
+    }
+
+    img {
+      display: block
+    }
+
+    section {
+      scroll-margin-top: 76px
+    }
+
+    .wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    /* ---------- header ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(4, 7, 4, .84);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(63, 233, 255, .18)
+    }
+
+    .hbar {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      height: 66px
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none
+    }
+
+    .brand img {
+      width: 36px;
+      height: 36px;
+      object-fit: cover;
+      border: 1px solid var(--line)
+    }
+
+    .bt {
+      font-family: var(--disp);
+      font-size: 16px;
+      letter-spacing: .5px;
+      color: #fff;
+      line-height: 1
+    }
+
+    .bt b {
+      color: var(--green)
+    }
+
+    .bts {
+      display: block;
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 2.4px;
+      color: var(--dim);
+      margin-top: 4px
+    }
+
+    nav {
+      margin-left: auto;
+      display: flex;
+      gap: 24px
+    }
+
+    nav a {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #fff;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-shadow: 0 0 1px #fff, 0 0 7px rgba(255, 255, 255, .55), 0 0 18px rgba(255, 255, 255, .28);
+      transition: .2s
+    }
+
+    nav a:hover {
+      color: var(--green);
+      text-shadow: 0 0 1px var(--green), 0 0 10px rgba(63, 233, 255, .9), 0 0 30px rgba(63, 233, 255, .5)
+    }
+
+    .hbtns {
+      display: flex;
+      gap: 10px;
+      align-items: center
+    }
+
+    .btn {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      padding: 11px 18px;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      border: 0;
+      cursor: pointer;
+      transition: .2s
+    }
+
+    .btn.solid {
+      background: var(--green);
+      color: #031018;
+      font-weight: 700;
+      box-shadow: 0 0 22px rgba(63, 233, 255, .35)
+    }
+
+    .btn.solid:hover {
+      background: #7defff;
+      box-shadow: 0 0 36px rgba(63, 233, 255, .6)
+    }
+
+    .btn.line {
+      border: 1px solid rgba(63, 233, 255, .6);
+      color: var(--green);
+      background: transparent
+    }
+
+    .btn.line:hover {
+      background: rgba(63, 233, 255, .09);
+      box-shadow: 0 0 24px rgba(63, 233, 255, .25)
+    }
+
+    /* ---------- hero ---------- */
+    .hero {
+      position: relative;
+      display: block;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 150px 24px 110px;
+      text-align: center
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      color: var(--green);
+      font-size: 12px;
+      letter-spacing: 3px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 2px;
+      background: var(--green);
+      box-shadow: 0 0 10px rgba(63, 233, 255, .8)
+    }
+
+    h1 {
+      font-family: var(--disp);
+      font-size: clamp(44px, 6.4vw, 86px);
+      line-height: .96;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      color: #fff
+    }
+
+    .g {
+      color: var(--green)
+    }
+
+    .ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap
+    }
+
+    /* ---------- ink strip ---------- */
+    .inkline {
+      border-top: 1px solid rgba(63, 233, 255, .22);
+      border-bottom: 1px solid rgba(63, 233, 255, .22);
+      background: rgba(2, 4, 2, .78);
+      padding: 48px 20px;
+      text-align: center
+    }
+
+    .inkin {
+      font-family: var(--mono);
+      font-size: clamp(18px, 3.4vw, 40px);
+      letter-spacing: 3px;
+      color: #fff;
+      text-shadow: 0 0 1px #fff, 0 0 8px rgba(255, 255, 255, .7), 0 0 28px rgba(255, 255, 255, .4), 0 0 80px rgba(255, 255, 255, .18)
+    }
+
+    .inkin .g {
+      text-shadow: 0 0 1px #e8fbff, 0 0 12px rgba(63, 233, 255, .9), 0 0 34px rgba(63, 233, 255, .55), 0 0 90px rgba(63, 233, 255, .28)
+    }
+
+    /* ---------- section shell ---------- */
+    section {
+      padding: 92px 24px
+    }
+
+    .shead {
+      max-width: 1240px;
+      margin: 0 auto 42px
+    }
+
+    h2.big {
+      font-family: var(--disp);
+      font-size: clamp(30px, 4.4vw, 54px);
+      text-transform: uppercase;
+      letter-spacing: -.5px;
+      color: #fff;
+      line-height: 1.02
+    }
+
+    .wsub {
+      margin-top: 16px;
+      font-family: var(--mono);
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: #fff;
+      text-shadow: 0 0 1px #fff, 0 0 8px rgba(255, 255, 255, .6), 0 0 26px rgba(255, 255, 255, .3)
+    }
+
+    .ssub {
+      margin-top: 12px;
+      color: var(--dim);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 2px
+    }
+
+    /* ---------- flash ---------- */
+    #flash {
+      position: relative;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: radial-gradient(1100px 480px at 50% 0, rgba(63, 233, 255, .05), transparent 60%),
+        linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+      background-size: auto, 48px 48px, 48px 48px
+    }
+
+    .fhead {
+      max-width: 1240px;
+      margin: 0 auto 34px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap
+    }
+
+    .fctl {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px
+    }
+
+    .fhint {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--dim)
+    }
+
+    .wheel {
+      position: relative;
+      height: 640px;
+      overflow: hidden;
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      isolation: isolate
+    }
+
+    .wheel:active {
+      cursor: grabbing
+    }
+
+    .wheel::before,
+    .wheel::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 110px;
+      z-index: 80;
+      pointer-events: none
+    }
+
+    .wheel::before {
+      top: 0;
+      background: linear-gradient(180deg, rgba(5, 8, 5, .96), transparent)
+    }
+
+    .wheel::after {
+      bottom: 0;
+      background: linear-gradient(0deg, rgba(5, 8, 5, .96), transparent)
+    }
+
+    html {
+      background: #050805
+    }
+
+    .bgvid {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      pointer-events: none
+    }
+
+    .bgshade {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(4, 7, 4, .55), rgba(4, 7, 4, .66) 45%, rgba(4, 7, 4, .76))
+    }
+
+    .heroName {
+      font-family: var(--disp);
+      font-size: clamp(58px, 10.5vw, 150px);
+      line-height: .92;
+      letter-spacing: 2px;
+      margin: 0;
+      text-shadow: 0 0 60px rgba(63, 233, 255, .25)
+    }
+
+    .hero .ctas {
+      justify-content: center;
+      margin-top: 8px
+    }
+
+    .heroSub {
+      margin-top: 20px;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 5px;
+      color: #dce8de
+    }
+
+    .fcard {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 320px;
+      height: 430px;
+      border: 1px solid var(--line);
+      background: #0a0d0a;
+      overflow: hidden;
+      contain: strict;
+      backface-visibility: hidden
+    }
+
+    .fcard img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none
+    }
+
+    .fl {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      background: rgba(0, 0, 0, .78);
+      border: 1px solid var(--line);
+      padding: 6px 10px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: #fff
+    }
+
+    .fh {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, .72);
+      border: 1px solid rgba(63, 233, 255, .4);
+      color: var(--green);
+      padding: 4px 8px;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 1.5px
+    }
+
+    .fcard.on {
+      border-color: var(--green);
+      box-shadow: 0 0 0 1px rgba(63, 233, 255, .4), 0 0 46px rgba(63, 233, 255, .28)
+    }
+
+    /* ---------- work ---------- */
+    .wgrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 1240px;
+      margin: 0 auto
+    }
+
+    .witem {
+      position: relative;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      cursor: pointer;
+      background: #000;
+      text-decoration: none
+    }
+
+    .witem img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      transition: transform .35s ease
+    }
+
+    .witem:hover img {
+      transform: scale(1.045)
+    }
+
+.wcta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 1px dashed rgba(63, 233, 255, .55);
+      color: var(--green);
+      font-family: var(--disp);
+      font-size: 19px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      padding: 20px
+    }
+
+    .wcta:hover {
+      background: rgba(63, 233, 255, .06);
+      box-shadow: 0 0 34px rgba(63, 233, 255, .2) inset
+    }
+
+    .wcta b {
+      font-size: 34px;
+      font-weight: 400;
+      text-shadow: 0 0 18px rgba(63, 233, 255, .8)
+    }
+
+    .witem::after {
+      content: "VIEW";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #f4d488;
+      font-family: var(--mono);
+      font-size: 15px;
+      letter-spacing: 2px;
+      pointer-events: none;
+      background: rgba(0, 0, 0, .35);
+      opacity: 0;
+      transition: opacity .3s ease
+    }
+
+    .witem:hover::after {
+      opacity: 1
+    }
+
+    /* ---------- piercing ---------- */
+    #piercing {
+      background: linear-gradient(180deg, rgba(63, 233, 255, .035), transparent 32%)
+    }
+
+    .pcols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 1240px;
+      margin: 0 auto
+    }
+
+    .pcat {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 26px
+    }
+
+    .pcat h3 {
+      font-family: var(--disp);
+      font-size: 19px;
+      color: var(--green);
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      text-shadow: 0 0 14px rgba(63, 233, 255, .45)
+    }
+
+    .prow {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 7px 0;
+      font-size: 14px;
+      color: #fff
+    }
+
+    .prow i {
+      flex: 1;
+      border-bottom: 1px dotted rgba(255, 255, 255, .25);
+      transform: translateY(-3px)
+    }
+
+    .prow b {
+      font-family: var(--mono);
+      color: var(--green);
+      font-weight: 400;
+      white-space: nowrap
+    }
+
+    .prow small {
+      color: var(--dim);
+      font-size: 11px;
+      white-space: nowrap
+    }
+
+    .pban {
+      max-width: 1240px;
+      margin: 22px auto 0;
+      border: 1px solid rgba(63, 233, 255, .4);
+      background: rgba(63, 233, 255, .06);
+      padding: 24px;
+      text-align: center
+    }
+
+    .pban b {
+      display: block;
+      font-family: var(--disp);
+      font-size: clamp(18px, 2.6vw, 28px);
+      color: var(--green);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-shadow: 0 0 18px rgba(63, 233, 255, .5)
+    }
+
+    .pban span {
+      display: block;
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      color: #fff;
+      line-height: 1.7
+    }
+
+    /* ---------- feature cards ---------- */
+    .feats {
+      padding-top: 0
+    }
+
+    .fgrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 1240px;
+      margin: 0 auto
+    }
+
+    .feat {
+      position: relative;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 28px 26px
+    }
+
+    .feat::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 46px;
+      height: 3px;
+      background: var(--green);
+      box-shadow: 0 0 12px rgba(63, 233, 255, .7)
+    }
+
+    .feat.c::before {
+      background: var(--cyan);
+      box-shadow: 0 0 12px rgba(63, 233, 255, .7)
+    }
+
+    .fico {
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      color: var(--green)
+    }
+
+    .feat.c .fico {
+      color: var(--cyan)
+    }
+
+    .feat h3 {
+      font-family: var(--disp);
+      font-size: 15px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 10px
+    }
+
+    .feat p {
+      color: var(--dim);
+      font-size: 13px;
+      line-height: 1.65
+    }
+
+    /* ---------- book ---------- */
+    #book {
+      background: radial-gradient(900px 420px at 50% 100%, rgba(63, 233, 255, .08), transparent 65%);
+      text-align: center
+    }
+
+    .nap {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 1.6px;
+      color: #fff;
+      line-height: 2.1;
+      margin: 26px 0 34px
+    }
+
+    .nap b {
+      color: var(--green);
+      font-weight: 400
+    }
+
+    .bctas {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap
+    }
+
+    /* ---------- footer ---------- */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 24px 34px
+    }
+
+    .frow {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 1.8px;
+      color: var(--dim)
+    }
+
+    .frow a {
+      color: var(--dim);
+      text-decoration: none
+    }
+
+    .frow a:hover {
+      color: var(--green)
+    }
+
+    .frow .fl2 b {
+      color: #fff;
+      font-weight: 400
+    }
+
+    .fv {
+      max-width: 1240px;
+      margin: 14px auto 0;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, .28)
+    }
+
+    /* ---------- lightbox ---------- */
+    #lb {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .93);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      cursor: zoom-out
+    }
+
+    #lb.show {
+      display: flex
+    }
+
+    #lbi {
+      max-width: 92vw;
+      max-height: 90vh;
+      border: 1px solid var(--line);
+      box-shadow: 0 0 80px rgba(63, 233, 255, .12)
+    }
+
+    /* ---------- grain ---------- */
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 59;
+      pointer-events: none;
+      opacity: .05
+    }
+
+    /* ---------- reveal ---------- */
+    .js .rv {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .js .rv.in {
+      opacity: 1;
+      transform: none
+    }
+
+    /* ---------- neon pulse ---------- */
+    .ng {
+      animation: neonG 7.7s -1.9s infinite
+    }
+
+    .nw {
+      animation: neonW 9.6s -3.4s infinite
+    }
+
+    @keyframes neonG {
+
+      0%,
+      59%,
+      61%,
+      100% {
+        text-shadow: 0 0 1px #e8fbff, 0 0 12px rgba(63, 233, 255, .9), 0 0 34px rgba(63, 233, 255, .55), 0 0 90px rgba(63, 233, 255, .28)
+      }
+
+      30% {
+        text-shadow: 0 0 1px #e8fbff, 0 0 16px rgba(63, 233, 255, 1), 0 0 46px rgba(63, 233, 255, .72), 0 0 110px rgba(63, 233, 255, .36)
+      }
+
+      60.6% {
+        text-shadow: 0 0 1px #e8fbff, 0 0 3px rgba(63, 233, 255, .4), 0 0 8px rgba(63, 233, 255, .14)
+      }
+    }
+
+    @keyframes neonW {
+
+      0%,
+      59%,
+      61%,
+      100% {
+        text-shadow: 0 0 1px #fff, 0 0 10px rgba(255, 255, 255, .8), 0 0 30px rgba(255, 255, 255, .45), 0 0 80px rgba(255, 255, 255, .2)
+      }
+
+      30% {
+        text-shadow: 0 0 1px #fff, 0 0 14px rgba(255, 255, 255, .95), 0 0 40px rgba(255, 255, 255, .6), 0 0 100px rgba(255, 255, 255, .28)
+      }
+
+      60.6% {
+        text-shadow: 0 0 1px #fff, 0 0 3px rgba(255, 255, 255, .35), 0 0 8px rgba(255, 255, 255, .12)
+      }
+    }
+
+    /* ---------- responsive ---------- */
+    @media (max-width:1020px) {
+      nav {
+        display: none
+      }
+
+      .hero {
+        padding-top: 92px
+      }
+
+      .wgrid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .pcols {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .pcat.b {
+        grid-column: 1/-1
+      }
+
+      .fgrid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media (max-width:640px) {
+      .hbtns .line {
+        display: none
+      }
+
+      .wgrid {
+        grid-template-columns: 1fr
+      }
+
+      .pcols {
+        grid-template-columns: 1fr
+      }
+
+      .pcat.b {
+        grid-column: auto
+      }
+
+      .fcard {
+        width: 280px;
+        height: 380px
+      }
+
+      .wheel {
+        height: 560px
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important
+      }
+
+      html {
+        scroll-behavior: auto
+      }
+
+      .js .rv {
+        opacity: 1;
+        transform: none
+      }
+    }
+  
+    /* ---------- mobile menu ---------- */
+    .mwrap { position: relative; display: none }
+    .mbtn { width: 46px; height: 46px; border: 1px solid var(--line); background: rgba(0,0,0,.35);
+      display: flex; flex-direction: column; gap: 6px; align-items: center; justify-content: center; cursor: pointer }
+    .mbtn span { display: block; width: 22px; height: 2px; background: var(--green);
+      transition: transform .24s cubic-bezier(.22,1,.36,1), opacity .16s ease }
+    .mbtn:hover { box-shadow: 0 0 22px rgba(63,233,255,.18) inset }
+    .mbtn.x span:nth-child(1) { transform: translateY(8px) rotate(45deg) }
+    .mbtn.x span:nth-child(2) { opacity: 0 }
+    .mbtn.x span:nth-child(3) { transform: translateY(-8px) rotate(-45deg) }
+    .mnav { position: absolute; top: calc(100% + 10px); right: 0; min-width: 250px; z-index: 400;
+      display: flex; flex-direction: column; overflow: hidden; pointer-events: none;
+      background: rgba(5,8,5,.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      border: 1px solid var(--line); box-shadow: 0 26px 70px rgba(0,0,0,.65);
+      clip-path: inset(-2px 0 100% 0); opacity: 0; transform: translateY(-10px);
+      transition: clip-path .2s cubic-bezier(.22,1,.36,1), opacity .16s ease, transform .2s cubic-bezier(.22,1,.36,1) }
+    .mnav.open { clip-path: inset(-2px 0 -2px 0); opacity: 1; transform: none; pointer-events: auto;
+      transition: clip-path .32s cubic-bezier(.22,1,.36,1), opacity .24s ease, transform .32s cubic-bezier(.22,1,.36,1) }
+    .mnav a { padding: 17px 22px; border-top: 1px solid var(--line); color: var(--ink); text-decoration: none;
+      letter-spacing: .16em; font-size: 13px; opacity: 0; transform: translateY(-6px);
+      transition: opacity .18s ease, transform .18s cubic-bezier(.22,1,.36,1) }
+    .mnav a:first-child { border-top: 0 }
+    .mnav a:active { background: rgba(63,233,255,.09); color: var(--green) }
+    .mnav.open a { opacity: 1; transform: none }
+    .mnav.open a:nth-child(1) { transition-delay: .04s } .mnav.open a:nth-child(2) { transition-delay: .08s }
+    .mnav.open a:nth-child(3) { transition-delay: .12s } .mnav.open a:nth-child(4) { transition-delay: .16s }
+    @media (max-width: 1020px) { .mwrap { display: block } }
+  
+    /* ---------- phone header fit ---------- */
+    @media (max-width: 640px) {
+      .brand .bts { display: none }
+      .brand img { width: 36px; height: 36px }
+      .hbar { gap: 10px }
+      .btn.solid { padding: 12px 16px; font-size: 12px }
+      .ctas { flex-wrap: wrap; justify-content: center; row-gap: 10px }
+      h1.heroName { font-size: 34px !important; letter-spacing: 1px !important; line-height: 1.05 }
+      .heroSub { font-size: 10px !important; letter-spacing: 2px !important }
+      .ctas { display: flex; flex-wrap: wrap; justify-content: center; row-gap: 10px }
+      h2.big { font-size: 26px !important }
+      h2.big span { white-space: normal !important }
+      .inkline .inkin { font-size: 13px !important; letter-spacing: 2px !important; display: block !important; text-align: center }
+      .wrap { padding-left: 18px; padding-right: 18px }
+      h1.heroName { font-size: 28px !important; letter-spacing: 0 !important }
+      .big { white-space: normal !important }
+      h2.big { font-size: 24px !important }
+      .ctas { display: block !important; text-align: center }
+      .ctas a { display: inline-block; margin: 6px 8px }
+      .btn { padding: 11px 13px; font-size: 11px !important; letter-spacing: 1px }
+      html, body { overflow-x: hidden }
+    }
+  </style>
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TattooParlor","name":"Alley Cat Ink",
+"description":"Tattoos & piercings in Hutchinson, MN. Custom work, cover-ups, flash, and piercing with jewelry included. Walk-ins welcome.",
+"telephone":"+1-320-699-1012",
+"address":{"@type":"PostalAddress","streetAddress":"146 Franklin St SW","addressLocality":"Hutchinson","addressRegion":"MN","postalCode":"55350","addressCountry":"US"},
+"openingHours":"Tu-Sa 12:00-19:30","priceRange":"$","image":"media/logo.jpg",
+"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","reviewCount":"87"},
+"sameAs":["https://www.instagram.com/karrotstattoos"]}
+</script>
+</head>
+
+<body>
+  <video class="bgvid" src="media/hero.mp4" autoplay muted loop playsinline></video>
+  <div class="bgshade"></div>
+
+  <header>
+    <div class="wrap hbar">
+      <a class="brand" href="#home">
+        <img src="media/logo.jpg" alt="Alley Cat Ink logo">
+        <span class="bt">ALLEY CAT <b>INK</b><span class="bts">TATTOOS &amp; PIERCINGS · HUTCHINSON MN</span></span>
+      </a>
+      <nav>
+        <a href="#flash">Flash</a>
+        <a href="#work">Work</a>
+        <a href="#piercing">Piercing</a>
+        <a href="tel:+13206991012">Book</a>
+      </nav>
+      <div class="hbtns">
+        <a class="btn line" href="tel:+13206991012">(320) 699-1012</a>
+        <a class="btn solid" href="tel:+13206991012">Book Now</a>
+      </div>
+    
+      <div class="mwrap">
+        <button class="mbtn" id="mbtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <div class="mnav" id="mnav">
+          <a href="#flash">FLASH</a>
+          <a href="#work">WORK</a>
+          <a href="#piercing">PIERCING</a>
+          <a href="tel:+13206991012">CALL TO BOOK &nbsp;//&nbsp; (320) 699-1012</a>
+        </div>
+      </div>
+    </div>
+  
+      </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div>
+        <h1 class="heroName">ALLEY CAT <span class="ng">INK</span></h1>
+        <div class="heroSub">TATTOOS &amp; PIERCINGS · HUTCHINSON MN</div>
+        <div class="ctas">
+          <a class="btn solid" href="tel:+13206991012">Book a Chair →</a>
+          <a class="btn line" href="#flash">Explore Flash →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- INK STRIP -->
+    <section class="inkline" aria-label="Good ink. Straight-up pricing.">
+      <div class="inkin">GOOD INK. <span class="g">STRAIGHT UP PRICING.</span></div>
+    </section>
+
+    <!-- FLASH -->
+    <section id="flash">
+      <div class="fhead rv">
+        <div>
+          <div class="eyebrow">THE FLASH WALL</div>
+          <h2 class="big"><span class="nw">FLASH SHEETS — </span><span class="g ng">DRAG TO EXPLORE</span></h2>
+          <p class="ssub">FIRST COME · FIRST INKED</p>
+        </div>
+        <div class="fctl">
+          <button class="btn line" id="spin">⟳ SPIN FOR RANDOM</button>
+          <span class="fhint">252 DESIGNS // DRAG // TAP TO CENTER</span>
+        </div>
+      </div>
+      <div class="wheel" id="wheel" aria-label="Scrolling flash gallery"></div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work">
+      <div class="shead rv">
+        <div class="eyebrow">PORTFOLIO</div>
+        <h2 class="big"><span class="nw">THE GALLERY — </span><span class="g ng">FRESH OFF THE TABLE.</span></h2>
+        <p class="wsub">RICH VERRI</p>
+      </div>
+      <div class="wgrid rv">
+          <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w01.jpg" alt="Color rose tattoo"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w02.jpg" alt="Healed butterfly tattoo"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w03.jpg" alt="Butterfly tattoos on arm"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w05.jpg" alt="Mountain fine-line tattoo"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w06.jpg" alt="Portrait tattoo"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w07.jpg" alt="Let Them script tattoo"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w08.jpg" alt="Cheshire cat tattoo"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w09.jpg" alt="Butterfly tattoo"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w10.jpg" alt="Marlin tattoo in progress"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w11.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w12.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w13.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w14.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w17.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w18.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w19.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w20.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w21.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w22.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w23.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w24.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w25.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w26.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w27.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w28.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w29.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w30.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w31.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w32.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w33.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w34.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w35.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w36.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w37.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w38.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w39.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w40.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w41.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w42.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w43.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w44.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w45.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w46.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w47.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w48.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w49.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w50.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w51.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w52.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w53.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w54.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w55.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w56.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w57.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w58.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w59.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w60.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w61.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w62.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w63.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w64.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w65.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w66.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w67.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w68.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w69.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w70.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w71.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w72.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w73.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w74.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <a class="witem wcta" href="tel:+13206991012"><b>+</b>YOUR SKIN NEXT</a>
+      </div>
+    </section>
+
+    <!-- STORY / BEFORE-AFTER -->
+
+    <!-- PIERCING -->
+    <section id="piercing">
+      <div class="shead rv">
+        <div class="eyebrow">PIERCING · WALK-INS WELCOME</div>
+        <h2 class="big"><span class="nw">STRAIGHT-UP </span><span class="g ng">PIERCING PRICES</span></h2>
+        <p class="ssub">EVERY PRICE BELOW IS POSTED. NO GAMES.</p>
+      </div>
+      <div class="pcols rv">
+        <div class="pcat">
+          <h3>Ears</h3>
+          <div class="prow"><span>Lobe</span><i></i><b>$35</b><small>two for $60</small></div>
+          <div class="prow"><span>Helix / Forward</span><i></i><b>$60</b></div>
+          <div class="prow"><span>Rook</span><i></i><b>$60</b></div>
+          <div class="prow"><span>Tragus / Anti</span><i></i><b>$60</b></div>
+          <div class="prow"><span>Conch</span><i></i><b>$60</b></div>
+          <div class="prow"><span>Daith</span><i></i><b>$60</b></div>
+          <div class="prow"><span>Industrial</span><i></i><b>$90</b></div>
+        </div>
+        <div class="pcat">
+          <h3>Facial</h3>
+          <div class="prow"><span>Eyebrow</span><i></i><b>$60</b></div>
+          <div class="prow"><span>Nostril</span><i></i><b>$60</b></div>
+          <div class="prow"><span>Bridge</span><i></i><b>$80</b></div>
+          <div class="prow"><span>Lip</span><i></i><b>$60</b></div>
+          <div class="prow"><span>Labret</span><i></i><b>$65</b></div>
+          <div class="prow"><span>Monroe</span><i></i><b>$60</b></div>
+          <div class="prow"><span>Medusa</span><i></i><b>$65</b></div>
+          <div class="prow"><span>Septum</span><i></i><b>$70</b></div>
+        </div>
+        <div class="pcat b">
+          <h3>Body</h3>
+          <div class="prow"><span>Navel</span><i></i><b>$60</b></div>
+          <div class="prow"><span>Nipple</span><i></i><b>$60</b><small>two for $100</small></div>
+        </div>
+      </div>
+      <div class="pban rv">
+        <b>ALL POSTED PRICES INCLUDE JEWELRY!</b>
+        <span>FREE JEWELRY EXCHANGE SERVICE — WE INSTALL NEW PROVIDED JEWELRY FOR YOUR SAFETY AND CONVENIENCE</span>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="feats">
+      <div class="fgrid rv">
+        <div class="feat">
+          <div class="fico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.6">
+              <path d="M5 19C5 9 13 4 20 4c0 8-5 15-15 15z" />
+              <path d="M5 19c3-5 7-8 11-10" />
+            </svg></div>
+          <h3>Aftercare</h3>
+          <p>Wash gentle, moisturize light, stay out of the sun. Full walkthrough in the chair — healed-care sheet on
+            request.</p>
+        </div>
+        <div class="feat c">
+          <div class="fico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.6">
+              <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" />
+            </svg></div>
+          <h3>Hygiene &amp; Safety</h3>
+          <p>Hospital-grade sterilization. Single-use needles. Licensed studio.</p>
+        </div>
+        <div class="feat c">
+          <div class="fico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.6">
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+            </svg></div>
+          <h3>Custom Pieces</h3>
+          <p>We draw it with you. Book a consult, bring the idea, we bring the ink.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOK -->
+    <section id="book">
+      <div class="shead rv" style="margin-bottom:0">
+        <div class="eyebrow" style="justify-content:center">NOW BOOKING · WALK-INS WELCOME</div>
+        <h2 class="big"><span class="nw">BOOK A </span><span class="g ng">CHAIR.</span></h2>
+        <div class="nap">
+          146 FRANKLIN ST SW · HUTCHINSON, MN 55350<br>
+          <b>(320) 699-1012</b> · TUE–SAT 12–7:30<br>
+          TATTOOS &amp; PIERCINGS · ★ 4.7 · 87 GOOGLE REVIEWS · JEWELRY INCLUDED
+        </div>
+        <div class="bctas">
+          <a class="btn solid" href="tel:+13206991012">Call (320) 699-1012</a>
+          <a class="btn line" href="https://www.instagram.com/karrotstattoos" target="_blank" rel="noopener">DM the
+            Shop</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="frow">
+      <span class="fl2"><b>ALLEY CAT INK</b> — TATTOOS &amp; PIERCINGS</span>
+      <span><a href="https://www.instagram.com/karrotstattoos" target="_blank" rel="noopener">INSTAGRAM</a> · <a href="https://www.facebook.com/AlleyCatInkTattoo/" target="_blank" rel="noopener">FACEBOOK</a> · <a href="https://www.tiktok.com/@alleycatink" target="_blank" rel="noopener">TIKTOK</a></span>
+      <span>146 FRANKLIN ST SW · HUTCHINSON MN · NOW BOOKING SEPT 2026</span>
+    </div>
+    <div class="fv">© 2026 ALLEY CAT INK · SITE BY MLR STUDIO</div>
+  </footer>
+
+  <div id="lb"><img id="lbi" src="" alt="Enlarged tattoo work"></div>
+
+  <svg class="grain" xmlns="http://www.w3.org/2000/svg">
+    <filter id="gn">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#gn)" />
+  </svg>
+
+  <script>
+    document.documentElement.classList.add('js');
+
+    /* ================= FLASH WHEEL ================= */
+    var PIECES = [['media/flash_sm/C001.jpg', 'FLASH 001', 'media/flash/C001.jpg'], ['media/flash_sm/C002.jpg', 'FLASH 002', 'media/flash/C002.jpg'], ['media/flash_sm/C003.jpg', 'FLASH 003', 'media/flash/C003.jpg'], ['media/flash_sm/C004.jpg', 'FLASH 004', 'media/flash/C004.jpg'], ['media/flash_sm/C006.jpg', 'FLASH 006', 'media/flash/C006.jpg'], ['media/flash_sm/C007.jpg', 'FLASH 007', 'media/flash/C007.jpg'], ['media/flash_sm/C008.jpg', 'FLASH 008', 'media/flash/C008.jpg'], ['media/flash_sm/C009.jpg', 'FLASH 009', 'media/flash/C009.jpg'], ['media/flash_sm/C010.jpg', 'FLASH 010', 'media/flash/C010.jpg'], ['media/flash_sm/C011.jpg', 'FLASH 011', 'media/flash/C011.jpg'], ['media/flash_sm/C012.jpg', 'FLASH 012', 'media/flash/C012.jpg'], ['media/flash_sm/C015.jpg', 'FLASH 015', 'media/flash/C015.jpg'], ['media/flash_sm/C016.jpg', 'FLASH 016', 'media/flash/C016.jpg'], ['media/flash_sm/C017.jpg', 'FLASH 017', 'media/flash/C017.jpg'], ['media/flash_sm/C018.jpg', 'FLASH 018', 'media/flash/C018.jpg'], ['media/flash_sm/C020.jpg', 'FLASH 020', 'media/flash/C020.jpg'], ['media/flash_sm/C021.jpg', 'FLASH 021', 'media/flash/C021.jpg'], ['media/flash_sm/C022.jpg', 'FLASH 022', 'media/flash/C022.jpg'], ['media/flash_sm/C023.jpg', 'FLASH 023', 'media/flash/C023.jpg'], ['media/flash_sm/C028.jpg', 'FLASH 028', 'media/flash/C028.jpg'], ['media/flash_sm/C029.jpg', 'FLASH 029', 'media/flash/C029.jpg'], ['media/flash_sm/C030.jpg', 'FLASH 030', 'media/flash/C030.jpg'], ['media/flash_sm/C031.jpg', 'FLASH 031', 'media/flash/C031.jpg'], ['media/flash_sm/C032.jpg', 'FLASH 032', 'media/flash/C032.jpg'], ['media/flash_sm/C034.jpg', 'FLASH 034', 'media/flash/C034.jpg'], ['media/flash_sm/C036.jpg', 'FLASH 036', 'media/flash/C036.jpg'], ['media/flash_sm/C039.jpg', 'FLASH 039', 'media/flash/C039.jpg'], ['media/flash_sm/C041.jpg', 'FLASH 041', 'media/flash/C041.jpg'], ['media/flash_sm/C046.jpg', 'FLASH 046', 'media/flash/C046.jpg'], ['media/flash_sm/C048.jpg', 'FLASH 048', 'media/flash/C048.jpg'], ['media/flash_sm/C049.jpg', 'FLASH 049', 'media/flash/C049.jpg'], ['media/flash_sm/C050.jpg', 'FLASH 050', 'media/flash/C050.jpg'], ['media/flash_sm/C051.jpg', 'FLASH 051', 'media/flash/C051.jpg'], ['media/flash_sm/C053.jpg', 'FLASH 053', 'media/flash/C053.jpg'], ['media/flash_sm/C054.jpg', 'FLASH 054', 'media/flash/C054.jpg'], ['media/flash_sm/C055.jpg', 'FLASH 055', 'media/flash/C055.jpg'], ['media/flash_sm/C056.jpg', 'FLASH 056', 'media/flash/C056.jpg'], ['media/flash_sm/C057.jpg', 'FLASH 057', 'media/flash/C057.jpg'], ['media/flash_sm/C059.jpg', 'FLASH 059', 'media/flash/C059.jpg'], ['media/flash_sm/C061.jpg', 'FLASH 061', 'media/flash/C061.jpg'], ['media/flash_sm/C063.jpg', 'FLASH 063', 'media/flash/C063.jpg'], ['media/flash_sm/C065.jpg', 'FLASH 065', 'media/flash/C065.jpg'], ['media/flash_sm/C066.jpg', 'FLASH 066', 'media/flash/C066.jpg'], ['media/flash_sm/C067.jpg', 'FLASH 067', 'media/flash/C067.jpg'], ['media/flash_sm/C068.jpg', 'FLASH 068', 'media/flash/C068.jpg'], ['media/flash_sm/C069.jpg', 'FLASH 069', 'media/flash/C069.jpg'], ['media/flash_sm/C072.jpg', 'FLASH 072', 'media/flash/C072.jpg'], ['media/flash_sm/C073.jpg', 'FLASH 073', 'media/flash/C073.jpg'], ['media/flash_sm/C076.jpg', 'FLASH 076', 'media/flash/C076.jpg'], ['media/flash_sm/C080.jpg', 'FLASH 080', 'media/flash/C080.jpg'], ['media/flash_sm/C081.jpg', 'FLASH 081', 'media/flash/C081.jpg'], ['media/flash_sm/C082.jpg', 'FLASH 082', 'media/flash/C082.jpg'], ['media/flash_sm/C083.jpg', 'FLASH 083', 'media/flash/C083.jpg'], ['media/flash_sm/C084.jpg', 'FLASH 084', 'media/flash/C084.jpg'], ['media/flash_sm/C086.jpg', 'FLASH 086', 'media/flash/C086.jpg'], ['media/flash_sm/C087.jpg', 'FLASH 087', 'media/flash/C087.jpg'], ['media/flash_sm/C088.jpg', 'FLASH 088', 'media/flash/C088.jpg'], ['media/flash_sm/C089.jpg', 'FLASH 089', 'media/flash/C089.jpg'], ['media/flash_sm/C090.jpg', 'FLASH 090', 'media/flash/C090.jpg'], ['media/flash_sm/C091.jpg', 'FLASH 091', 'media/flash/C091.jpg'], ['media/flash_sm/C092.jpg', 'FLASH 092', 'media/flash/C092.jpg'], ['media/flash_sm/C093.jpg', 'FLASH 093', 'media/flash/C093.jpg'], ['media/flash_sm/C094.jpg', 'FLASH 094', 'media/flash/C094.jpg'], ['media/flash_sm/C095.jpg', 'FLASH 095', 'media/flash/C095.jpg'], ['media/flash_sm/C096.jpg', 'FLASH 096', 'media/flash/C096.jpg'], ['media/flash_sm/C097.jpg', 'FLASH 097', 'media/flash/C097.jpg'], ['media/flash_sm/C098.jpg', 'FLASH 098', 'media/flash/C098.jpg'], ['media/flash_sm/C099.jpg', 'FLASH 099', 'media/flash/C099.jpg'], ['media/flash_sm/C100.jpg', 'FLASH 100', 'media/flash/C100.jpg'], ['media/flash_sm/C102.jpg', 'FLASH 102', 'media/flash/C102.jpg'], ['media/flash_sm/C103.jpg', 'FLASH 103', 'media/flash/C103.jpg'], ['media/flash_sm/C105.jpg', 'FLASH 105', 'media/flash/C105.jpg'], ['media/flash_sm/C106.jpg', 'FLASH 106', 'media/flash/C106.jpg'], ['media/flash_sm/C107.jpg', 'FLASH 107', 'media/flash/C107.jpg'], ['media/flash_sm/C108.jpg', 'FLASH 108', 'media/flash/C108.jpg'], ['media/flash_sm/C109.jpg', 'FLASH 109', 'media/flash/C109.jpg'], ['media/flash_sm/C110.jpg', 'FLASH 110', 'media/flash/C110.jpg'], ['media/flash_sm/C111.jpg', 'FLASH 111', 'media/flash/C111.jpg'], ['media/flash_sm/C112.jpg', 'FLASH 112', 'media/flash/C112.jpg'], ['media/flash_sm/C113.jpg', 'FLASH 113', 'media/flash/C113.jpg'], ['media/flash_sm/C114.jpg', 'FLASH 114', 'media/flash/C114.jpg'], ['media/flash_sm/C116.jpg', 'FLASH 116', 'media/flash/C116.jpg'], ['media/flash_sm/C117.jpg', 'FLASH 117', 'media/flash/C117.jpg'], ['media/flash_sm/C118.jpg', 'FLASH 118', 'media/flash/C118.jpg'], ['media/flash_sm/C119.jpg', 'FLASH 119', 'media/flash/C119.jpg'], ['media/flash_sm/C120.jpg', 'FLASH 120', 'media/flash/C120.jpg'], ['media/flash_sm/C121.jpg', 'FLASH 121', 'media/flash/C121.jpg'], ['media/flash_sm/C122.jpg', 'FLASH 122', 'media/flash/C122.jpg'], ['media/flash_sm/C123.jpg', 'FLASH 123', 'media/flash/C123.jpg'], ['media/flash_sm/C124.jpg', 'FLASH 124', 'media/flash/C124.jpg'], ['media/flash_sm/C126.jpg', 'FLASH 126', 'media/flash/C126.jpg'], ['media/flash_sm/C127.jpg', 'FLASH 127', 'media/flash/C127.jpg'], ['media/flash_sm/C128.jpg', 'FLASH 128', 'media/flash/C128.jpg'], ['media/flash_sm/C129.jpg', 'FLASH 129', 'media/flash/C129.jpg'], ['media/flash_sm/C130.jpg', 'FLASH 130', 'media/flash/C130.jpg'], ['media/flash_sm/C131.jpg', 'FLASH 131', 'media/flash/C131.jpg'], ['media/flash_sm/C132.jpg', 'FLASH 132', 'media/flash/C132.jpg'], ['media/flash_sm/C134.jpg', 'FLASH 134', 'media/flash/C134.jpg'], ['media/flash_sm/C139.jpg', 'FLASH 139', 'media/flash/C139.jpg'], ['media/flash_sm/C140.jpg', 'FLASH 140', 'media/flash/C140.jpg'], ['media/flash_sm/C141.jpg', 'FLASH 141', 'media/flash/C141.jpg'], ['media/flash_sm/C142.jpg', 'FLASH 142', 'media/flash/C142.jpg'], ['media/flash_sm/C143.jpg', 'FLASH 143', 'media/flash/C143.jpg'], ['media/flash_sm/C144.jpg', 'FLASH 144', 'media/flash/C144.jpg'], ['media/flash_sm/C145.jpg', 'FLASH 145', 'media/flash/C145.jpg'], ['media/flash_sm/C146.jpg', 'FLASH 146', 'media/flash/C146.jpg'], ['media/flash_sm/C147.jpg', 'FLASH 147', 'media/flash/C147.jpg'], ['media/flash_sm/C148.jpg', 'FLASH 148', 'media/flash/C148.jpg'], ['media/flash_sm/C150.jpg', 'FLASH 150', 'media/flash/C150.jpg'], ['media/flash_sm/C158.jpg', 'FLASH 158', 'media/flash/C158.jpg'], ['media/flash_sm/C159.jpg', 'FLASH 159', 'media/flash/C159.jpg'], ['media/flash_sm/C161.jpg', 'FLASH 161', 'media/flash/C161.jpg'], ['media/flash_sm/C162.jpg', 'FLASH 162', 'media/flash/C162.jpg'], ['media/flash_sm/C163.jpg', 'FLASH 163', 'media/flash/C163.jpg'], ['media/flash_sm/C164.jpg', 'FLASH 164', 'media/flash/C164.jpg'], ['media/flash_sm/C165.jpg', 'FLASH 165', 'media/flash/C165.jpg'], ['media/flash_sm/C166.jpg', 'FLASH 166', 'media/flash/C166.jpg'], ['media/flash_sm/C167.jpg', 'FLASH 167', 'media/flash/C167.jpg'], ['media/flash_sm/C169.jpg', 'FLASH 169', 'media/flash/C169.jpg'], ['media/flash_sm/C170.jpg', 'FLASH 170', 'media/flash/C170.jpg'], ['media/flash_sm/C172.jpg', 'FLASH 172', 'media/flash/C172.jpg'], ['media/flash_sm/C174.jpg', 'FLASH 174', 'media/flash/C174.jpg'], ['media/flash_sm/C175.jpg', 'FLASH 175', 'media/flash/C175.jpg'], ['media/flash_sm/C176.jpg', 'FLASH 176', 'media/flash/C176.jpg'], ['media/flash_sm/C177.jpg', 'FLASH 177', 'media/flash/C177.jpg'], ['media/flash_sm/C179.jpg', 'FLASH 179', 'media/flash/C179.jpg'], ['media/flash_sm/C180.jpg', 'FLASH 180', 'media/flash/C180.jpg'], ['media/flash_sm/C182.jpg', 'FLASH 182', 'media/flash/C182.jpg'], ['media/flash_sm/C183.jpg', 'FLASH 183', 'media/flash/C183.jpg'], ['media/flash_sm/C184.jpg', 'FLASH 184', 'media/flash/C184.jpg'], ['media/flash_sm/C185.jpg', 'FLASH 185', 'media/flash/C185.jpg'], ['media/flash_sm/C186.jpg', 'FLASH 186', 'media/flash/C186.jpg'], ['media/flash_sm/C187.jpg', 'FLASH 187', 'media/flash/C187.jpg'], ['media/flash_sm/C188.jpg', 'FLASH 188', 'media/flash/C188.jpg'], ['media/flash_sm/C189.jpg', 'FLASH 189', 'media/flash/C189.jpg'], ['media/flash_sm/C192.jpg', 'FLASH 192', 'media/flash/C192.jpg'], ['media/flash_sm/C193.jpg', 'FLASH 193', 'media/flash/C193.jpg'], ['media/flash_sm/C194.jpg', 'FLASH 194', 'media/flash/C194.jpg'], ['media/flash_sm/C195.jpg', 'FLASH 195', 'media/flash/C195.jpg'], ['media/flash_sm/C196.jpg', 'FLASH 196', 'media/flash/C196.jpg'], ['media/flash_sm/C197.jpg', 'FLASH 197', 'media/flash/C197.jpg'], ['media/flash_sm/C201.jpg', 'FLASH 201', 'media/flash/C201.jpg'], ['media/flash_sm/C202.jpg', 'FLASH 202', 'media/flash/C202.jpg'], ['media/flash_sm/C204.jpg', 'FLASH 204', 'media/flash/C204.jpg'], ['media/flash_sm/C205.jpg', 'FLASH 205', 'media/flash/C205.jpg'], ['media/flash_sm/C206.jpg', 'FLASH 206', 'media/flash/C206.jpg'], ['media/flash_sm/C207.jpg', 'FLASH 207', 'media/flash/C207.jpg'], ['media/flash_sm/C208.jpg', 'FLASH 208', 'media/flash/C208.jpg'], ['media/flash_sm/C209.jpg', 'FLASH 209', 'media/flash/C209.jpg'], ['media/flash_sm/C210.jpg', 'FLASH 210', 'media/flash/C210.jpg'], ['media/flash_sm/C211.jpg', 'FLASH 211', 'media/flash/C211.jpg'], ['media/flash_sm/C212.jpg', 'FLASH 212', 'media/flash/C212.jpg'], ['media/flash_sm/C213.jpg', 'FLASH 213', 'media/flash/C213.jpg'], ['media/flash_sm/C214.jpg', 'FLASH 214', 'media/flash/C214.jpg'], ['media/flash_sm/C215.jpg', 'FLASH 215', 'media/flash/C215.jpg'], ['media/flash_sm/C216.jpg', 'FLASH 216', 'media/flash/C216.jpg'], ['media/flash_sm/C217.jpg', 'FLASH 217', 'media/flash/C217.jpg'], ['media/flash_sm/C218.jpg', 'FLASH 218', 'media/flash/C218.jpg'], ['media/flash_sm/C219.jpg', 'FLASH 219', 'media/flash/C219.jpg'], ['media/flash_sm/C220.jpg', 'FLASH 220', 'media/flash/C220.jpg'], ['media/flash_sm/C221.jpg', 'FLASH 221', 'media/flash/C221.jpg'], ['media/flash_sm/C222.jpg', 'FLASH 222', 'media/flash/C222.jpg'], ['media/flash_sm/C225.jpg', 'FLASH 225', 'media/flash/C225.jpg'], ['media/flash_sm/C234.jpg', 'FLASH 234', 'media/flash/C234.jpg'], ['media/flash_sm/C235.jpg', 'FLASH 235', 'media/flash/C235.jpg'], ['media/flash_sm/C236.jpg', 'FLASH 236', 'media/flash/C236.jpg'], ['media/flash_sm/C237.jpg', 'FLASH 237', 'media/flash/C237.jpg'], ['media/flash_sm/C238.jpg', 'FLASH 238', 'media/flash/C238.jpg'], ['media/flash_sm/C239.jpg', 'FLASH 239', 'media/flash/C239.jpg'], ['media/flash_sm/C240.jpg', 'FLASH 240', 'media/flash/C240.jpg'], ['media/flash_sm/C241.jpg', 'FLASH 241', 'media/flash/C241.jpg'], ['media/flash_sm/C242.jpg', 'FLASH 242', 'media/flash/C242.jpg'], ['media/flash_sm/C253.jpg', 'FLASH 253', 'media/flash/C253.jpg'], ['media/flash_sm/C254.jpg', 'FLASH 254', 'media/flash/C254.jpg'], ['media/flash_sm/C255.jpg', 'FLASH 255', 'media/flash/C255.jpg'], ['media/flash_sm/C256.jpg', 'FLASH 256', 'media/flash/C256.jpg'], ['media/flash_sm/C257.jpg', 'FLASH 257', 'media/flash/C257.jpg'], ['media/flash_sm/C258.jpg', 'FLASH 258', 'media/flash/C258.jpg'], ['media/flash_sm/C259.jpg', 'FLASH 259', 'media/flash/C259.jpg'], ['media/flash_sm/C272.jpg', 'FLASH 272', 'media/flash/C272.jpg'], ['media/flash_sm/C273.jpg', 'FLASH 273', 'media/flash/C273.jpg'], ['media/flash_sm/C274.jpg', 'FLASH 274', 'media/flash/C274.jpg'], ['media/flash_sm/C275.jpg', 'FLASH 275', 'media/flash/C275.jpg'], ['media/flash_sm/C277.jpg', 'FLASH 277', 'media/flash/C277.jpg'], ['media/flash_sm/C278.jpg', 'FLASH 278', 'media/flash/C278.jpg'], ['media/flash_sm/C279.jpg', 'FLASH 279', 'media/flash/C279.jpg'], ['media/flash_sm/C281.jpg', 'FLASH 281', 'media/flash/C281.jpg'], ['media/flash_sm/C282.jpg', 'FLASH 282', 'media/flash/C282.jpg'], ['media/flash_sm/C284.jpg', 'FLASH 284', 'media/flash/C284.jpg'], ['media/flash_sm/C285.jpg', 'FLASH 285', 'media/flash/C285.jpg'], ['media/flash_sm/C287.jpg', 'FLASH 287', 'media/flash/C287.jpg'], ['media/flash_sm/C288.jpg', 'FLASH 288', 'media/flash/C288.jpg'], ['media/flash_sm/C290.jpg', 'FLASH 290', 'media/flash/C290.jpg'], ['media/flash_sm/C293.jpg', 'FLASH 293', 'media/flash/C293.jpg'], ['media/flash_sm/C294.jpg', 'FLASH 294', 'media/flash/C294.jpg'], ['media/flash_sm/C295.jpg', 'FLASH 295', 'media/flash/C295.jpg'], ['media/flash_sm/C296.jpg', 'FLASH 296', 'media/flash/C296.jpg'], ['media/flash_sm/C298.jpg', 'FLASH 298', 'media/flash/C298.jpg'], ['media/flash_sm/C299.jpg', 'FLASH 299', 'media/flash/C299.jpg'], ['media/flash_sm/C300.jpg', 'FLASH 300', 'media/flash/C300.jpg'], ['media/flash_sm/C301.jpg', 'FLASH 301', 'media/flash/C301.jpg'], ['media/flash_sm/C302.jpg', 'FLASH 302', 'media/flash/C302.jpg'], ['media/flash_sm/C303.jpg', 'FLASH 303', 'media/flash/C303.jpg'], ['media/flash_sm/C304.jpg', 'FLASH 304', 'media/flash/C304.jpg'], ['media/flash_sm/C305.jpg', 'FLASH 305', 'media/flash/C305.jpg'], ['media/flash_sm/C306.jpg', 'FLASH 306', 'media/flash/C306.jpg'], ['media/flash_sm/C307.jpg', 'FLASH 307', 'media/flash/C307.jpg'], ['media/flash_sm/C308.jpg', 'FLASH 308', 'media/flash/C308.jpg'], ['media/flash_sm/C310.jpg', 'FLASH 310', 'media/flash/C310.jpg'], ['media/flash_sm/C311.jpg', 'FLASH 311', 'media/flash/C311.jpg'], ['media/flash_sm/C312.jpg', 'FLASH 312', 'media/flash/C312.jpg'], ['media/flash_sm/C313.jpg', 'FLASH 313', 'media/flash/C313.jpg'], ['media/flash_sm/C314.jpg', 'FLASH 314', 'media/flash/C314.jpg'], ['media/flash_sm/C315.jpg', 'FLASH 315', 'media/flash/C315.jpg'], ['media/flash_sm/C316.jpg', 'FLASH 316', 'media/flash/C316.jpg'], ['media/flash_sm/C318.jpg', 'FLASH 318', 'media/flash/C318.jpg'], ['media/flash_sm/C320.jpg', 'FLASH 320', 'media/flash/C320.jpg'], ['media/flash_sm/C322.jpg', 'FLASH 322', 'media/flash/C322.jpg'], ['media/flash_sm/C323.jpg', 'FLASH 323', 'media/flash/C323.jpg'], ['media/flash_sm/C324.jpg', 'FLASH 324', 'media/flash/C324.jpg'], ['media/flash_sm/C325.jpg', 'FLASH 325', 'media/flash/C325.jpg'], ['media/flash_sm/C326.jpg', 'FLASH 326', 'media/flash/C326.jpg'], ['media/flash_sm/C327.jpg', 'FLASH 327', 'media/flash/C327.jpg'], ['media/flash_sm/C328.jpg', 'FLASH 328', 'media/flash/C328.jpg'], ['media/flash_sm/C329.jpg', 'FLASH 329', 'media/flash/C329.jpg'], ['media/flash_sm/C330.jpg', 'FLASH 330', 'media/flash/C330.jpg'], ['media/flash_sm/C331.jpg', 'FLASH 331', 'media/flash/C331.jpg'], ['media/flash_sm/C332.jpg', 'FLASH 332', 'media/flash/C332.jpg'], ['media/flash_sm/C333.jpg', 'FLASH 333', 'media/flash/C333.jpg'], ['media/flash_sm/C334.jpg', 'FLASH 334', 'media/flash/C334.jpg'], ['media/flash_sm/C335.jpg', 'FLASH 335', 'media/flash/C335.jpg'], ['media/flash_sm/C336.jpg', 'FLASH 336', 'media/flash/C336.jpg'], ['media/flash_sm/C337.jpg', 'FLASH 337', 'media/flash/C337.jpg'], ['media/flash_sm/C338.jpg', 'FLASH 338', 'media/flash/C338.jpg'], ['media/flash_sm/C339.jpg', 'FLASH 339', 'media/flash/C339.jpg'], ['media/flash_sm/C340.jpg', 'FLASH 340', 'media/flash/C340.jpg'], ['media/flash_sm/C341.jpg', 'FLASH 341', 'media/flash/C341.jpg'], ['media/flash_sm/C342.jpg', 'FLASH 342', 'media/flash/C342.jpg'], ['media/flash_sm/C343.jpg', 'FLASH 343', 'media/flash/C343.jpg'], ['media/flash_sm/C344.jpg', 'FLASH 344', 'media/flash/C344.jpg'], ['media/flash_sm/C345.jpg', 'FLASH 345', 'media/flash/C345.jpg'], ['media/flash_sm/C346.jpg', 'FLASH 346', 'media/flash/C346.jpg'], ['media/flash_sm/C347.jpg', 'FLASH 347', 'media/flash/C347.jpg'], ['media/flash_sm/C348.jpg', 'FLASH 348', 'media/flash/C348.jpg'], ['media/flash_sm/C349.jpg', 'FLASH 349', 'media/flash/C349.jpg'], ['media/flash_sm/C350.jpg', 'FLASH 350', 'media/flash/C350.jpg'], ['media/flash_sm/C351.jpg', 'FLASH 351', 'media/flash/C351.jpg'], ['media/flash_sm/C352.jpg', 'FLASH 352', 'media/flash/C352.jpg'], ['media/flash_sm/C353.jpg', 'FLASH 353', 'media/flash/C353.jpg'], ['media/flash_sm/C354.jpg', 'FLASH 354', 'media/flash/C354.jpg'], ['media/flash_sm/C355.jpg', 'FLASH 355', 'media/flash/C355.jpg']  , ['media/flash_sm/C357.jpg', 'FLASH 357', 'media/flash/C357.jpg'] ];
+    var POS = ['50% 50%', '28% 35%', '72% 60%', '35% 70%', '65% 25%', '50% 82%', '20% 55%', '78% 45%'];
+    var wheel = document.getElementById('wheel');
+    PIECES.slice(0, 4).forEach(function (p) { var im = new Image(); im.src = p[0]; });
+    for (var fi = 0; fi < PIECES.length; fi++) {
+      var p = PIECES[fi], d = document.createElement('div');
+      d.className = 'fcard';
+      d.innerHTML = '<span class="fh">DRAG · HOLD</span>' +
+        '<img draggable="false" decoding="async" data-s="' + p[0] + '" style="object-position:' + POS[fi % 8] + '" alt="' + p[1].replace(/&amp;/g, '&') + ' flash">' +
+        '<div class="fl">№&nbsp;' + p[1] + '</div>';
+      wheel.appendChild(d);
+    }
+    var cards = [].slice.call(wheel.querySelectorAll('.fcard'));
+    var n = cards.length, total = 240 * n, off = 0, target = 0, drag = false, lastY = 0, vel = 0, moved = 0, wAcc = 0;
+    function shortest(dd) { return ((dd % total) + total + total / 2) % total - total / 2; }
+    function render() {
+      var act = ((Math.round(-off / 240)) % n + n) % n;
+      for (var i = 0; i < n; i++) {
+        var y = ((i * 240 + off) % total + total + total / 2) % total - total / 2;
+        var c = cards[i];
+        if (y > 2000 || y < -2000) { if (c.style.display !== 'none') c.style.display = 'none'; continue; }
+        if (c.style.display === 'none') c.style.display = '';
+        var im = c.querySelector('img'); if (im && !im.src) im.src = im.getAttribute('data-s');
+        if (im && !c._dd) { c._dd = 1; im.decode().catch(function () { }); }
+        var dd = Math.min(Math.abs(y) / 240, 1);
+        c.style.transform = 'translate(-50%,-50%) translateY(' + y + 'px) scale(' + (1.15 - 0.15 * dd) + ')';
+        c.style.opacity = (1 - 0.15 * dd).toFixed(3);
+        c.style.zIndex = String(Math.max(1, 80 - Math.round(Math.abs(y) / 24)));
+        c.classList.toggle('on', i === act);
+      }
+    }
+    (function tick() {
+      if (!drag) {
+        if (Math.abs(vel) > 0.15) { target += vel; vel *= 0.94; }
+        else { wAcc *= 0.92; var s = Math.round(target / 240) * 240; target += (s - target) * 0.12; }
+      }
+      off += (target - off) * 0.16; render(); requestAnimationFrame(tick);
+    })();
+    /* mouse wheel = one card per notch, accumulated so snap never fights it */
+
+    wheel.addEventListener('dragstart', function (e) { e.preventDefault(); });
+    wheel.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      drag = true; moved = 0; lastY = e.clientY; vel = 0; wheel.setPointerCapture(e.pointerId);
+    });
+    wheel.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var dy = e.clientY - lastY; lastY = e.clientY; target += dy; moved += Math.abs(dy);
+      vel = Math.max(-70, Math.min(70, vel * 0.65 + dy * 0.35));
+    });
+    /* pointer capture retargets clicks to the wheel — tap-to-center lives here */
+    wheel.addEventListener('pointerup', function (e) {
+      drag = false; if (moved > 8) return;
+      var r = wheel.getBoundingClientRect(); var ry = e.clientY - (r.top + r.height / 2);
+      var i = ((Math.round((ry - off) / 240)) % n + n) % n;
+      target += shortest(-i * 240 - target);
+    });
+    wheel.addEventListener('pointercancel', function () { drag = false; });
+    /* spin for random */
+    document.getElementById('spin').addEventListener('click', function () {
+      var r = Math.floor(Math.random() * n); vel = 0;
+      target += shortest(-r * 240 - target) + (Math.random() < 0.5 ? -1 : 1) * total * (2 + Math.floor(Math.random() * 3));
+    });
+    /* idle warm-load: every card gets its src over time - hard spins never black */
+    var wi = 0;
+    function warmStep() {
+      var t0 = performance.now();
+      while (wi < n && performance.now() - t0 < 5) { var c = cards[wi++], im = c && c.querySelector('img'); if (im && !im.src) im.src = im.getAttribute('data-s'); if (im && im.src && !c._dd) { c._dd = 1; im.decode().catch(function () { }); } }
+      if (wi < n) setTimeout(warmStep, 16);
+    }
+    setTimeout(warmStep, 600);
+
+
+
+    /* ================= LIGHTBOX ================= */
+    var lb = document.getElementById('lb'), lbi = document.getElementById('lbi');
+    document.querySelectorAll('.witem').forEach(function (w) {
+      w.addEventListener('click', function () {
+        var im = w.querySelector('img'); if (!im) return;
+        lbi.src = im.src; lb.classList.add('show');
+      });
+    });
+    lb.addEventListener('click', function () { lb.classList.remove('show'); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('show'); });
+
+    
+    /* ================= MOBILE MENU ================= */
+    var mbtn = document.getElementById('mbtn'), mnav = document.getElementById('mnav');
+    function mclose() { mnav.classList.remove('open'); mbtn.classList.remove('x'); mbtn.setAttribute('aria-expanded', 'false'); }
+    mbtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var o = mnav.classList.toggle('open');
+      mbtn.classList.toggle('x', o); mbtn.setAttribute('aria-expanded', o);
+    });
+    document.addEventListener('click', function (e) { if (mnav.classList.contains('open') && !mnav.contains(e.target)) mclose(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') mclose(); });
+    mnav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var href = a.getAttribute('href');
+        mclose();                                   /* folds up fast */
+        if (href.charAt(0) === '#') {               /* then it scrolls */
+          e.preventDefault();
+          var t = document.querySelector(href);
+          if (t) setTimeout(function () { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
+        }
+      });
+    });
+
+    /* ================= REVEAL ================= */
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
+      document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.rv').forEach(function (el) { el.classList.add('in'); });
+    }
+  </script>
+</body>
+
+</html>
