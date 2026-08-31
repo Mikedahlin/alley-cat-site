@@ -16,7 +16,6 @@ Single-page static site for Alley Cat Ink (Hutchinson, MN). No build step, no de
 ## Editing
 - **Add a flash design:** drop the full image in `media/flash/`, a ~320px-wide copy
   in `media/flash_sm/`, and add one entry to the `PIECES` array in `index.html`.
-  Keep the `### DESIGNS` count label in sync.
 - **Add a work photo:** drop an optimized (~1400px q85) image in `media/work/` as `wNN.jpg`
   and add one `<figure class="witem">` line in the grid.
 - **Remove either:** delete its figure line / `PIECES` entry, then the files.
