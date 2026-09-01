@@ -620,6 +620,185 @@
       line-height: 1.7
     }
 
+    /* ---------- faq ---------- */
+    .faqList {
+      max-width: 880px;
+      margin: 0 auto;
+      display: grid;
+      gap: 10px;
+    }
+
+    .faqList details {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 18px 22px;
+      transition: border-color .2s;
+    }
+
+    .faqList details[open] {
+      border-color: var(--green);
+    }
+
+    .faqList summary {
+      cursor: pointer;
+      font-family: var(--disp);
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .faqList summary::-webkit-details-marker { display: none }
+
+    .faqList summary::after {
+      content: '+';
+      color: var(--green);
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1;
+      transition: transform .2s ease;
+    }
+
+    .faqList details[open] summary::after {
+      content: '−';
+    }
+
+    .faqList p {
+      margin-top: 12px;
+      color: var(--dim);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .faqList p b { color: #fff; font-weight: 600 }
+
+    /* ---------- tattoo pricing ---------- */
+    #pricing {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .tgrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .tcard {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 32px 26px;
+      position: relative;
+    }
+
+    .tcard::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 46px;
+      height: 3px;
+      background: var(--green);
+      box-shadow: 0 0 12px rgba(63, 233, 255, .7);
+    }
+
+    .tnum {
+      font-family: var(--disp);
+      font-size: clamp(38px, 5vw, 56px);
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -.5px;
+    }
+
+    .tnum .thr {
+      font-size: .5em;
+      color: var(--green);
+      margin-left: 6px;
+    }
+
+    .tlabel {
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      color: var(--green);
+      text-transform: uppercase;
+    }
+
+    .tdesc {
+      margin-top: 14px;
+      color: var(--dim);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 1020px) {
+      .tgrid { grid-template-columns: 1fr; }
+    }
+
+    /* ---------- artist bio ---------- */
+    .about {
+      max-width: 880px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 28px;
+      align-items: center;
+      padding: 4px 0;
+    }
+
+    .aboutPhoto {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 1px solid var(--green);
+      object-fit: cover;
+      background: #0a0d0a;
+      box-shadow: 0 0 30px rgba(63, 233, 255, .18);
+    }
+
+    .aboutBody h3 {
+      font-family: var(--disp);
+      font-size: clamp(22px, 3vw, 30px);
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 10px
+    }
+
+    .aboutBody h3 span { color: var(--green) }
+
+    .aboutBody p {
+      color: var(--dim);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 12px
+    }
+
+    .aboutBody a {
+      color: var(--green);
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(63, 233, 255, .45);
+    }
+
+    .aboutBody a:hover { border-bottom-color: var(--green) }
+
+    @media (max-width: 640px) {
+      .about {
+        grid-template-columns: 96px 1fr;
+        gap: 18px;
+      }
+      .aboutPhoto { width: 96px; height: 96px }
+    }
+
     /* ---------- feature cards ---------- */
     .feats {
       padding-top: 0
@@ -704,6 +883,17 @@
     .nap b {
       color: var(--green);
       font-weight: 400
+    }
+
+    .nap a {
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(255, 255, 255, .35);
+    }
+
+    .nap a:hover {
+      color: var(--green);
+      border-bottom-color: var(--green)
     }
 
     .bctas {
@@ -894,9 +1084,7 @@
         width: 224px;
         height: 304px;
         flex: 0 0 auto;
-        scroll-snap-align: center;
-        content-visibility: auto;
-        contain-intrinsic-size: 224px 304px
+        scroll-snap-align: center
       }
     }
 
@@ -1895,6 +2083,45 @@
       </div>
     </section>
 
+    <!-- TATTOO PRICING -->
+    <section id="pricing" aria-labelledby="pricingTitle">
+      <div class="shead rv">
+        <div class="eyebrow">TATTOO PRICING · STRAIGHT UP</div>
+        <h2 id="pricingTitle" class="big"><span class="nw">NO </span><span class="g ng">SURPRISES.</span></h2>
+        <p class="ssub">SHOP MINIMUM · HOURLY · DEPOSIT</p>
+      </div>
+      <div class="tgrid rv">
+        <div class="tcard">
+          <div class="tnum">$100</div>
+          <div class="tlabel">SHOP MINIMUM</div>
+          <p class="tdesc">Small flash pieces, single-color line work, and quick tattoos start at the shop minimum. Covers chair, setup, and aftercare sheet.</p>
+        </div>
+        <div class="tcard">
+          <div class="tnum">$150<span class="thr">/HR</span></div>
+          <div class="tlabel">RICH'S HOURLY</div>
+          <p class="tdesc">Custom work is billed by the hour. Most pieces finish in one session; larger scale or full sleeves are scheduled in blocks.</p>
+        </div>
+        <div class="tcard">
+          <div class="tnum">$50</div>
+          <div class="tlabel">DEPOSIT</div>
+          <p class="tdesc">Applies to any custom consult and books your appointment. Comes off the final total. Reschedule with 48 hours notice — no fee.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTIST -->
+    <section class="feats" id="artist" aria-labelledby="artistTitle">
+      <div class="about rv">
+        <img class="aboutPhoto" src="media/logo.jpg" alt="Alley Cat Ink shop logo">
+        <div class="aboutBody">
+          <div class="eyebrow">YOUR ARTIST</div>
+          <h3 id="artistTitle">RICH <span>VERRI</span></h3>
+          <p>Owner and lead artist at Alley Cat Ink. Custom work, cover-ups, and flash — drawn with you, inked on the spot. Book a consult, bring the idea, we'll size it and place it together.</p>
+          <p>Follow along on <a href="https://www.instagram.com/karrotstattoos" target="_blank" rel="noopener">@karrotstattoos</a> for fresh pieces and walk-in availability.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- FEATURES -->
     <section class="feats">
       <div class="fgrid rv">
@@ -1928,14 +2155,49 @@
       </div>
     </section>
 
+    <!-- FAQ -->
+    <section id="faq" aria-labelledby="faqTitle">
+      <div class="shead rv">
+        <div class="eyebrow">FAQ · BEFORE YOU BOOK</div>
+        <h2 id="faqTitle" class="big"><span class="nw">QUICK </span><span class="g ng">ANSWERS.</span></h2>
+        <p class="ssub">THE STUFF PEOPLE ASK US MOST</p>
+      </div>
+      <div class="faqList rv">
+        <details>
+          <summary>Do you take walk-ins?</summary>
+          <p>Yes — walk-ins are welcome for piercing every day we're open. Tattoo walk-ins depend on Rich's chair that day; call ahead and we'll tell you if there's a slot.</p>
+        </details>
+        <details>
+          <summary>How do I book a custom tattoo?</summary>
+          <p>Call or text <b>(320) 699-1012</b> with your idea, size, and placement. We'll set up a free consult in the shop, draw it with you, and book the session. A $50 deposit holds your appointment.</p>
+        </details>
+        <details>
+          <summary>What's the deposit and is it refundable?</summary>
+          <p>$50 deposit on any custom piece, applied to your final total. Reschedule with 48 hours notice and we roll it forward. No-shows forfeit the deposit.</p>
+        </details>
+        <details>
+          <summary>Do you do cover-ups?</summary>
+          <p>Yes — that's a big part of the shop. The cover-up slider above shows a real before/after. Bring a clear photo of the existing piece (or come in person) and we'll evaluate what's possible in a free consult.</p>
+        </details>
+        <details>
+          <summary>Can I bring my own design?</summary>
+          <p>Absolutely. We'll size it, place it on your body, and clean up the linework so it heals well. Reference photos help; final files should be clear and uncropped.</p>
+        </details>
+        <details>
+          <summary>Does it hurt and how do I prepare?</summary>
+          <p>Pain is real but short — most pieces finish faster than people expect. Get a good night's sleep, eat a real meal an hour before, and stay hydrated. No alcohol for 24 hours before your session.</p>
+        </details>
+      </div>
+    </section>
+
     <!-- BOOK -->
     <section id="book">
       <div class="shead rv" style="margin-bottom:0">
         <div class="eyebrow" style="justify-content:center">NOW BOOKING · WALK-INS WELCOME</div>
         <h2 class="big"><span class="nw">BOOK A </span><span class="g ng">CHAIR.</span></h2>
         <div class="nap">
-          146 FRANKLIN ST SW · HUTCHINSON, MN 55350<br>
-          <b>(320) 699-1012</b> · TUE–SAT 12–7:30<br>
+          <a href="https://maps.google.com/?q=146+Franklin+St+SW+Hutchinson+MN+55350" target="_blank" rel="noopener">146 FRANKLIN ST SW · HUTCHINSON, MN 55350</a><br>
+          <b>(320) 699-1012</b> · TUE–SAT 12 PM – 7:30 PM<br>
           TATTOOS &amp; PIERCINGS · WALK-INS WELCOME · JEWELRY INCLUDED
         </div>
         <div class="bctas">
@@ -2017,7 +2279,7 @@
       d.setAttribute('aria-label', 'Open flash design');
       d.setAttribute('tabindex', fi === 0 ? '0' : '-1');
       d.innerHTML = '<span class="fh">TAP TO VIEW</span>' +
-        '<img draggable="false" decoding="async" loading="lazy" data-s="' + p[0] + '" data-full="' + p[2] + '" alt="Alley Cat Ink flash design">';
+        '<img draggable="false" decoding="async" data-s="' + p[0] + '" data-full="' + p[2] + '" alt="Alley Cat Ink flash design">';
       wheel.appendChild(d);
     }
 
@@ -2070,6 +2332,29 @@
     }
 
     function isMobileWheel() { return window.innerWidth <= 640; }
+    /* Native loading="lazy" is unreliable inside horizontal scrollers on
+       mobile WebKit — cards can scroll into view and stay blank forever.
+       We therefore control loading ourselves: an IntersectionObserver (which
+       is geometry-based and works in horizontal scrollers on every browser)
+       assigns src as a card approaches the viewport. */
+    function loadWheelImage(image) {
+      if (!image || image.getAttribute('src')) return;
+      image.setAttribute('src', image.getAttribute('data-s'));
+      if (image.decode) image.decode().catch(function () { });
+    }
+
+    var mobileWheelLoader = null;
+    function ensureMobileWheelLoader() {
+      if (mobileWheelLoader || !('IntersectionObserver' in window)) return;
+      mobileWheelLoader = new IntersectionObserver(function (entries) {
+        for (var e = 0; e < entries.length; e++) {
+          if (!entries[e].isIntersecting) continue;
+          loadWheelImage(entries[e].target.querySelector('img'));
+        }
+      }, { rootMargin: '240px 240px 240px 240px' });
+      for (var c = 0; c < cards.length; c++) mobileWheelLoader.observe(cards[c]);
+    }
+
     function applyMobileWheel() {
       for (var i = 0; i < cards.length; i++) {
         var card = cards[i];
@@ -2081,11 +2366,16 @@
         card.style.top = '';
         card.style.willChange = '';
         card.setAttribute('aria-hidden', 'false');
-        var image = IMGS[i];
-        if (image && !image.getAttribute('src')) {
-          image.setAttribute('src', image.getAttribute('data-s'));
-          if (i < 6 && image.decode) image.decode().catch(function () { });
+      }
+      ensureMobileWheelLoader();
+      if (mobileWheelLoader) {
+        /* Load whatever is on-screen right now without waiting for the first IO tick. */
+        for (var v = 0; v < cards.length; v++) {
+          var r = cards[v].getBoundingClientRect();
+          if (r.right > -240 && r.left < window.innerWidth + 240) loadWheelImage(IMGS[v]);
         }
+      } else {
+        for (var j = 0; j < cards.length; j++) loadWheelImage(IMGS[j]);
       }
       setFlashActive(0);
       wheelNeedsRender = false;
