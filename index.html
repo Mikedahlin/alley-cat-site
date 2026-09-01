@@ -2042,7 +2042,6 @@
     var wheelDragging = false;
     var wheelPointerId = null;
     var wheelDownCard = null;
-    var wheelCaptured = false;
     var wheelMoved = 0;
     var wheelAxis = null;
     var wheelStartX = 0;
@@ -2190,6 +2189,19 @@
       return element && element.closest ? element.closest('.fcard') : null;
     }
 
+    function cancelWheelGesture(e) {
+      if (!wheelDragging && wheelPointerId === null) return;
+      if (e && e.pointerId !== undefined && wheelPointerId !== null && e.pointerId !== wheelPointerId) return;
+      wheelDragging = false;
+      wheelPointerId = null;
+      wheelDownCard = null;
+      wheelAxis = null;
+      wheelVelocity = 0;
+      wheelSnapTarget = Math.round(wheelPos);
+      wheelQuietAt = performance.now();
+      wheel.classList.remove('is-dragging');
+    }
+
     function finishWheelPointer(e) {
       if (!wheelDragging) return;
       if (e && e.pointerId !== undefined && wheelPointerId !== null && e.pointerId !== wheelPointerId) return;
@@ -2199,11 +2211,7 @@
       wheel.classList.remove('is-dragging');
       wheelPointerId = null;
       wheelDownCard = null;
-      var captured = wheelCaptured;
-      wheelCaptured = false;
-      if (captured && e && e.pointerId !== undefined && wheel.hasPointerCapture(e.pointerId)) {
-        try { wheel.releasePointerCapture(e.pointerId); } catch (err) { }
-      }
+      wheelAxis = null;
       if (wasMoved) {
         wheelVelocity = Math.max(-.72, Math.min(.72, wheelVelocity * 1.75));
         wheelSnapTarget = Math.abs(wheelVelocity) < .035 ? Math.round(wheelPos) : null;
@@ -2221,10 +2229,10 @@
 
     wheel.addEventListener('pointerdown', function (e) {
       if (e.pointerType === 'mouse' && e.button !== 0) return;
+      cancelWheelGesture();
       wheelDragging = true;
       wheelPointerId = e.pointerId;
       wheelDownCard = e.target && e.target.closest ? e.target.closest('.fcard') : null;
-      wheelCaptured = false;
       wheelMoved = 0;
       wheelAxis = null;
       wheelStartX = wheelLastX = e.clientX;
@@ -2245,20 +2253,12 @@
         if (wheelMoved < 7) return;
         if (Math.abs(totalY) > Math.abs(totalX) * 1.1) {
           wheelAxis = 'scroll';
-          wheelDragging = false;
-          wheelPointerId = null;
-          wheelDownCard = null;
-          wheelVelocity = 0;
-          wheelSnapTarget = Math.round(wheelPos);
-          wheel.classList.remove('is-dragging');
+          cancelWheelGesture(e);
           return;
         }
         if (Math.abs(totalX) <= Math.abs(totalY)) return;
         wheelAxis = 'x';
         wheel.classList.add('is-dragging');
-        if (!wheelCaptured) {
-          try { wheel.setPointerCapture(e.pointerId); wheelCaptured = true; } catch (err) { }
-        }
       }
 
       if (wheelAxis !== 'x') return;
@@ -2279,21 +2279,14 @@
     });
 
     wheel.addEventListener('pointerup', finishWheelPointer);
-    wheel.addEventListener('pointercancel', function (e) {
-      if (!wheelDragging) return;
-      wheelDragging = false;
-      wheel.classList.remove('is-dragging');
-      wheelPointerId = null;
-      wheelDownCard = null;
-      wheelCaptured = false;
-      wheelVelocity = 0;
-      wheelSnapTarget = Math.round(wheelPos);
-      wheelQuietAt = performance.now();
-      if (e.pointerId !== undefined && wheel.hasPointerCapture(e.pointerId)) {
-        try { wheel.releasePointerCapture(e.pointerId); } catch (err) { }
-      }
-    });
+    wheel.addEventListener('pointercancel', cancelWheelGesture);
+    wheel.addEventListener('lostpointercapture', cancelWheelGesture);
     window.addEventListener('pointerup', finishWheelPointer, { passive: true });
+    window.addEventListener('pointercancel', cancelWheelGesture, { passive: true });
+    window.addEventListener('blur', cancelWheelGesture);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) cancelWheelGesture();
+    });
 
     wheel.addEventListener('click', function (e) {
       var card = e.target && e.target.closest ? e.target.closest('.fcard') : null;
@@ -2310,8 +2303,8 @@
     });
 
     document.getElementById('spin').addEventListener('click', function () {
-      var direction = Math.random() < .5 ? -1 : 1;
-      wheelVelocity = direction * (.62 + Math.random() * .20);
+      cancelWheelGesture();
+      wheelVelocity = .68 + Math.random() * .12;
       wheelSnapTarget = null;
       wheelQuietAt = performance.now();
     });
