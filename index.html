@@ -2039,7 +2039,7 @@
     var wheelLastX = 0;
     var wheelLastY = 0;
     var wheelQuietAt = performance.now();
-    var wheelSuppressClick = false;
+    var wheelIgnoreClickUntil = 0;
     var wheelNeedsRender = true;
     var wheelLastFrame = 0;
     var curOn = -1;
@@ -2201,16 +2201,14 @@
         try { wheel.releasePointerCapture(e.pointerId); } catch (err) { }
       }
       if (wasMoved) {
-        wheelSuppressClick = true;
+        wheelIgnoreClickUntil = performance.now() + 450;
         wheelVelocity = Math.max(-.16, Math.min(.16, wheelVelocity * 1.8));
         wheelSnapTarget = Math.round(wheelPos + wheelVelocity * 7);
-        window.setTimeout(function () { wheelSuppressClick = false; }, 450);
       } else {
         finishWheelMotion();
         if (tapCard) {
-          wheelSuppressClick = true;
+          wheelIgnoreClickUntil = performance.now() + 180;
           activateFlashCard(tapCard);
-          window.setTimeout(function () { wheelSuppressClick = false; }, 120);
         }
       }
       wheelQuietAt = performance.now();
@@ -2221,6 +2219,7 @@
 
     wheel.addEventListener('pointerdown', function (e) {
       if (e.pointerType === 'mouse' && e.button !== 0) return;
+      wheelIgnoreClickUntil = 0;
       wheelDragging = true;
       wheelPointerId = e.pointerId;
       wheelDownCard = e.target && e.target.closest ? e.target.closest('.fcard') : null;
@@ -2280,10 +2279,7 @@
     wheel.addEventListener('click', function (e) {
       var card = e.target && e.target.closest ? e.target.closest('.fcard') : null;
       if (!card) return;
-      if (wheelSuppressClick) {
-        wheelSuppressClick = false;
-        return;
-      }
+      if (performance.now() < wheelIgnoreClickUntil) return;
       activateFlashCard(card);
     });
 
