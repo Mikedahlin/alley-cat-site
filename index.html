@@ -1035,8 +1035,14 @@
       height: 100%;
       overflow: hidden;
       background: #000;
-      isolation: isolate
+      isolation: isolate;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      cursor: ew-resize
     }
+
+    .compareStage:active { cursor: grabbing }
 
     .comparePanel {
       position: absolute;
@@ -1787,12 +1793,14 @@
 
     /* ================= BEFORE / AFTER ================= */
     var compareSlider = document.getElementById('compareSlider');
+    var compareStage = document.getElementById('compareStage');
     var compareAfter = document.getElementById('compareAfter');
     var compareBlackWipe = document.getElementById('compareBlackWipe');
     var compareDivider = document.getElementById('compareDivider');
     var compareProgress = document.getElementById('compareProgress');
     var compareThumb = document.getElementById('compareThumb');
     var compareValue = 0;
+
     function setCompare(value) {
       compareValue = Math.max(0, Math.min(100, value));
       compareSlider.value = String(compareValue);
@@ -1803,27 +1811,40 @@
       compareThumb.style.left = 'calc(22px + ' + compareValue + '% - ' + (compareValue * .44) + 'px)';
       compareSlider.setAttribute('aria-valuetext', compareValue === 0 ? 'Full before photo' : compareValue === 100 ? 'Full after photo' : Math.round(compareValue) + ' percent toward the after photo');
     }
+
+    function setCompareFromX(clientX, rect) {
+      setCompare(((clientX - rect.left) / Math.max(1, rect.width)) * 100);
+    }
+
     compareSlider.addEventListener('input', function () { setCompare(Number(compareSlider.value)); });
-    var compareDragging = false;
-    function setCompareFromPointer(e) {
-      var r = compareSlider.getBoundingClientRect();
-      setCompare(((e.clientX - r.left - 22) / Math.max(1, r.width - 44)) * 100);
+    compareSlider.addEventListener('change', function () { setCompare(Number(compareSlider.value)); });
+
+    /* The image itself is a touch-friendly comparison control on phones. */
+    var compareStageDragging = false;
+    function setCompareFromStagePointer(e) {
+      setCompareFromX(e.clientX, compareStage.getBoundingClientRect());
     }
-    compareSlider.addEventListener('pointerdown', function (e) {
-      compareDragging = true;
-      setCompareFromPointer(e);
-      compareSlider.setPointerCapture(e.pointerId);
+    compareStage.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      compareStageDragging = true;
+      setCompareFromStagePointer(e);
+      compareStage.setPointerCapture(e.pointerId);
+      e.preventDefault();
     });
-    compareSlider.addEventListener('pointermove', function (e) {
-      if (compareDragging) setCompareFromPointer(e);
+    compareStage.addEventListener('pointermove', function (e) {
+      if (compareStageDragging) {
+        setCompareFromStagePointer(e);
+        e.preventDefault();
+      }
     });
-    function releaseCompare(e) {
-      compareDragging = false;
-      if (e.pointerId !== undefined && compareSlider.hasPointerCapture(e.pointerId)) compareSlider.releasePointerCapture(e.pointerId);
+    function releaseCompareStage(e) {
+      compareStageDragging = false;
+      if (e.pointerId !== undefined && compareStage.hasPointerCapture(e.pointerId)) compareStage.releasePointerCapture(e.pointerId);
     }
-    compareSlider.addEventListener('pointerup', releaseCompare);
-    compareSlider.addEventListener('pointercancel', releaseCompare);
-    compareSlider.addEventListener('lostpointercapture', function () { compareDragging = false; });
+    compareStage.addEventListener('pointerup', releaseCompareStage);
+    compareStage.addEventListener('pointercancel', releaseCompareStage);
+    compareStage.addEventListener('lostpointercapture', function () { compareStageDragging = false; });
+
     compareSlider.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowLeft') { e.preventDefault(); setCompare(compareValue - 5); }
       if (e.key === 'ArrowRight') { e.preventDefault(); setCompare(compareValue + 5); }
