@@ -2166,10 +2166,29 @@
       requestAnimationFrame(flashWheelFrame);
     }
 
+    function activateFlashCard(card) {
+      if (!card) return;
+      var index = Number(card.getAttribute('data-index'));
+      var active = modWheel(Math.round(wheelPos), n);
+      if (index !== active) {
+        wheelDestination(index, 0);
+        return;
+      }
+      var image = card.querySelector('img');
+      if (image) openImageViewer(image.getAttribute('data-full'), 'Alley Cat Ink flash design', 'FLASH DESIGN');
+    }
+
+    function cardAtPoint(x, y) {
+      if (x === undefined || y === undefined) return null;
+      var element = document.elementFromPoint(x, y);
+      return element && element.closest ? element.closest('.fcard') : null;
+    }
+
     function finishWheelPointer(e) {
       if (!wheelDragging) return;
       if (e && e.pointerId !== undefined && wheelPointerId !== null && e.pointerId !== wheelPointerId) return;
       var wasMoved = wheelMoved > 10;
+      var tapCard = !wasMoved && e ? cardAtPoint(e.clientX, e.clientY) : null;
       wheelDragging = false;
       wheel.classList.remove('is-dragging');
       wheelPointerId = null;
@@ -2183,6 +2202,11 @@
         window.setTimeout(function () { wheelSuppressClick = false; }, 450);
       } else {
         finishWheelMotion();
+        if (tapCard) {
+          wheelSuppressClick = true;
+          activateFlashCard(tapCard);
+          window.setTimeout(function () { wheelSuppressClick = false; }, 120);
+        }
       }
       wheelQuietAt = performance.now();
     }
@@ -2249,14 +2273,7 @@
         wheelSuppressClick = false;
         return;
       }
-      var index = Number(card.getAttribute('data-index'));
-      var active = modWheel(Math.round(wheelPos), n);
-      if (index !== active) {
-        wheelDestination(index, 0);
-        return;
-      }
-      var image = card.querySelector('img');
-      if (image) openImageViewer(image.getAttribute('data-full'), 'Alley Cat Ink flash design', 'FLASH DESIGN');
+      activateFlashCard(card);
     });
 
     wheel.addEventListener('keydown', function (e) {
