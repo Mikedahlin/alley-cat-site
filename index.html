@@ -2084,22 +2084,32 @@
       var active = modWheel(Math.round(wheelPos), n);
       setFlashActive(active);
 
-      /* Only the nine cards around the current position can be seen. Updating all
-         300+ cards every animation frame was the main source of mobile stutter. */
-      for (var hidden = 0; hidden < visibleCards.length; hidden++) {
-        visibleCards[hidden].style.display = 'none';
-        visibleCards[hidden].setAttribute('aria-hidden', 'true');
-      }
-      visibleCards = [];
-
       var center = Math.round(wheelPos);
+      var nextVisibleCards = [];
+      var nextVisibleIndexes = {};
       for (var offset = -4; offset <= 4; offset++) {
         var i = modWheel(center + offset, n);
-        var card = cards[i];
+        nextVisibleCards.push(cards[i]);
+        nextVisibleIndexes[i] = true;
+      }
+
+      /* Never hide and immediately re-show the card under the user's finger.
+         Doing that on every frame cancels an active touch in mobile Safari and
+         also forces its image layer to be rebuilt, which looks like flashing. */
+      for (var hidden = 0; hidden < visibleCards.length; hidden++) {
+        var hiddenCard = visibleCards[hidden];
+        var hiddenIndex = Number(hiddenCard.getAttribute('data-index'));
+        if (nextVisibleIndexes[hiddenIndex]) continue;
+        hiddenCard.style.display = 'none';
+        hiddenCard.setAttribute('aria-hidden', 'true');
+      }
+
+      for (var visible = 0; visible < nextVisibleCards.length; visible++) {
+        var card = nextVisibleCards[visible];
+        var i = modWheel(center + visible - 4, n);
         var distance = wheelDistance(i, wheelPos);
-        card.style.display = '';
+        if (card.style.display === 'none') card.style.display = '';
         card.setAttribute('aria-hidden', i === active ? 'false' : 'true');
-        visibleCards.push(card);
 
         var angle = distance * angleStep;
         var depth = (Math.cos(angle) + 1) / 2;
@@ -2124,6 +2134,7 @@
           if (image.decode) image.decode().catch(function () { });
         }
       }
+      visibleCards = nextVisibleCards;
       wheelNeedsRender = false;
     }
 
