@@ -2021,6 +2021,11 @@
       d.setAttribute('tabindex', fi === 0 ? '0' : '-1');
       d.innerHTML = '<span class="fh">TAP TO VIEW</span>' +
         '<img draggable="false" decoding="async" loading="lazy" data-s="' + p[0] + '" data-full="' + p[2] + '" alt="Alley Cat Ink flash design">';
+      d.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (performance.now() < wheelIgnoreClickUntil) return;
+        activateFlashCard(d);
+      });
       wheel.appendChild(d);
     }
 
