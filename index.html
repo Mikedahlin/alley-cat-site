@@ -1767,7 +1767,7 @@
         </div>
         <div class="fctl">
           <button class="btn line" id="spin">⟳ SPIN FOR RANDOM</button>
-          <span class="fhint">SLOW AUTO-SPIN // DRAG UP OR DOWN</span>
+          <span class="fhint">DRAG TO EXPLORE // TAP A CARD TO VIEW</span>
         </div>
       </div>
       <div class="wheel" id="wheel" aria-label="Scrolling flash gallery"></div>
@@ -2021,9 +2021,12 @@
       d.setAttribute('tabindex', fi === 0 ? '0' : '-1');
       d.innerHTML = '<span class="fh">TAP TO VIEW</span>' +
         '<img draggable="false" decoding="async" loading="lazy" data-s="' + p[0] + '" data-full="' + p[2] + '" alt="Alley Cat Ink flash design">';
+      d.addEventListener('pointerup', function () {
+        if (wheelMoved <= 10) activateFlashCard(d);
+      });
       d.addEventListener('click', function (e) {
         e.stopPropagation();
-          activateFlashCard(d);
+        activateFlashCard(d);
       });
       wheel.appendChild(d);
     }
@@ -2157,12 +2160,6 @@
           }
         }
 
-        if (wheelSnapTarget === null && Math.abs(wheelVelocity) < .001 &&
-          now - wheelQuietAt > 6500 && !document.hidden &&
-          !(document.body.classList.contains('image-viewer-open'))) {
-          wheelSnapTarget = Math.round(wheelPos) - 1;
-          wheelQuietAt = now;
-        }
       }
 
       if (wheelNeedsRender || wheelDragging || wheelSnapTarget !== null || Math.abs(wheelVelocity) > .0005) {
