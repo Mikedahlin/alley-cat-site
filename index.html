@@ -2276,6 +2276,7 @@
         if (Math.abs(totalX) <= Math.abs(totalY)) return;
         wheelAxis = 'x';
         wheel.classList.add('is-dragging');
+        if (wheel.setPointerCapture) wheel.setPointerCapture(e.pointerId);
       }
 
       if (wheelAxis !== 'x') return;
