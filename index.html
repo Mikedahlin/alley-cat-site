@@ -2038,6 +2038,7 @@
     var wheelLastY = 0;
     var wheelQuietAt = performance.now();
     var wheelSuppressClick = false;
+    var wheelNeedsRender = true;
     var wheelLastFrame = 0;
     var curOn = -1;
 
@@ -2077,12 +2078,18 @@
         var card = cards[i];
         var distance = wheelDistance(i, wheelPos);
         if (Math.abs(distance) > 4) {
-          if (card.style.display !== 'none') card.style.display = 'none';
-          card.setAttribute('aria-hidden', 'true');
+          if (card.style.display !== 'none') {
+            card.style.display = 'none';
+            card.setAttribute('aria-hidden', 'true');
+          }
           continue;
         }
 
-        card.style.display = '';
+        if (card.style.display === 'none') {
+          card.style.display = '';
+          card.setAttribute('aria-hidden', i === active ? 'false' : 'true');
+        }
+
         var angle = distance * angleStep;
         var depth = (Math.cos(angle) + 1) / 2;
         var x = Math.sin(angle) * reach;
@@ -2106,6 +2113,7 @@
           if (image.decode) image.decode().catch(function () { });
         }
       }
+      wheelNeedsRender = false;
     }
 
     function wheelDestination(index, extraTurns) {
@@ -2152,7 +2160,9 @@
         }
       }
 
-      renderFlashWheel();
+      if (wheelNeedsRender || wheelDragging || wheelSnapTarget !== null || Math.abs(wheelVelocity) > .0005) {
+        renderFlashWheel();
+      }
       requestAnimationFrame(flashWheelFrame);
     }
 
@@ -2213,7 +2223,7 @@
       wheelPos += delta;
       wheelVelocity = delta;
       wheelMoved += Math.hypot(dx, dy);
-      renderFlashWheel();
+      wheelNeedsRender = true;
       e.preventDefault();
     });
 
@@ -2266,7 +2276,7 @@
       wheelQuietAt = performance.now();
     });
 
-    window.addEventListener('resize', renderFlashWheel);
+    window.addEventListener('resize', function () { wheelNeedsRender = true; });
     renderFlashWheel();
     requestAnimationFrame(flashWheelFrame);
 
