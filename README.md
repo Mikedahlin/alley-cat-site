@@ -21,4 +21,4 @@ Single-page static site for Alley Cat Ink (Hutchinson, MN). No build step, no de
 - **Remove either:** delete its figure line / `PIECES` entry, then the files.
 
 ## Site map
-`#home` hero → `#flash` flash wheel → `#work` gallery → `#piercing` → `#book` contact
+`#home` hero → `#flash` flash wheel → `#work` gallery → `#coverup` cover-up slider → `#piercing` → `#book` contact
