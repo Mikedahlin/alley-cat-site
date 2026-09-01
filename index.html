@@ -1353,6 +1353,304 @@
       .compareBlackWipe,
       .compareDivider { transition: none }
     }
+
+
+    /* ---------- interaction and viewer hardening ---------- */
+    body.image-viewer-open { overflow: hidden }
+
+    .compareViewport {
+      position: relative;
+      width: min(100%, 420px);
+      aspect-ratio: 4 / 5;
+      height: auto;
+      min-height: 0;
+      max-height: none;
+    }
+
+    .compareStage {
+      contain: layout paint;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .compareStage.is-dragging { cursor: grabbing }
+
+    .compareAfter {
+      transition: none !important;
+      will-change: clip-path;
+    }
+
+    .compareBlackWipe,
+    .compareDivider {
+      transition: none !important;
+      will-change: left;
+    }
+
+    .wheel {
+      position: relative;
+      width: min(100%, 1180px);
+      height: clamp(390px, 48vw, 620px);
+      margin: 0 auto;
+      overflow: hidden;
+      perspective: 1600px;
+      perspective-origin: 50% 50%;
+      transform-style: preserve-3d;
+      touch-action: none;
+      cursor: grab;
+      overscroll-behavior: contain;
+      isolation: isolate;
+    }
+
+    .wheel.is-dragging { cursor: grabbing }
+
+    .wheel::before,
+    .wheel::after {
+      top: 0;
+      bottom: 0;
+      width: 150px;
+      height: auto;
+      z-index: 80;
+    }
+
+    .wheel::before {
+      left: 0;
+      right: auto;
+      background: linear-gradient(90deg, rgba(5, 8, 5, .98), transparent);
+    }
+
+    .wheel::after {
+      left: auto;
+      right: 0;
+      background: linear-gradient(270deg, rgba(5, 8, 5, .98), transparent);
+    }
+
+    .fcard {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 300px;
+      height: 420px;
+      margin: 0;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: #0a0d0a;
+      overflow: hidden;
+      appearance: none;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      will-change: transform, opacity;
+      transition: none !important;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .fcard img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .fcard .fh {
+      z-index: 2;
+      pointer-events: none;
+      text-align: center;
+    }
+
+    .fcard.on {
+      border-color: var(--green);
+      box-shadow: 0 0 0 1px rgba(63, 233, 255, .48), 0 18px 56px rgba(63, 233, 255, .24);
+    }
+
+    .fcard:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 5px;
+    }
+
+    .imageViewer {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(12px, 3vw, 36px);
+      background: rgba(0, 0, 0, .94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      overscroll-behavior: contain;
+    }
+
+    .imageViewer.open { display: flex }
+
+    .imageViewerPanel {
+      width: min(100%, 1040px);
+      height: min(100%, 900px);
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      overflow: hidden;
+      border: 1px solid rgba(63, 233, 255, .55);
+      background: #030503;
+      box-shadow: 0 0 80px rgba(63, 233, 255, .16);
+    }
+
+    .imageViewerBar,
+    .imageViewerControls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      color: #fff;
+      font: 700 11px/1 var(--mono);
+      letter-spacing: .12em;
+    }
+
+    .imageViewerBar {
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .imageViewerTitle { color: var(--green) }
+
+    .imageViewerClose,
+    .imageViewerControls button {
+      border: 1px solid rgba(255, 255, 255, .28);
+      background: transparent;
+      color: inherit;
+      min-height: 42px;
+      padding: 10px 14px;
+      font: inherit;
+      letter-spacing: inherit;
+      cursor: pointer;
+    }
+
+    .imageViewerClose:hover,
+    .imageViewerControls button:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .imageViewerStage {
+      position: relative;
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #000;
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .imageViewerStage.is-panning { cursor: grabbing }
+
+    .imageViewerImage {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      transform-origin: center center;
+      will-change: transform;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .imageViewerHint {
+      position: absolute;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      padding: 8px 11px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      background: rgba(0, 0, 0, .72);
+      color: rgba(255, 255, 255, .86);
+      font: 10px/1 var(--mono);
+      letter-spacing: .1em;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .imageViewerControls {
+      justify-content: center;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+    }
+
+    #imageViewerZoomValue {
+      min-width: 48px;
+      color: var(--green);
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      #coverup { padding-top: 54px; padding-bottom: 54px }
+
+      #coverup .coverProof {
+        padding: 18px 12px;
+      }
+
+      #coverup .coverProofHead h3 {
+        font-size: clamp(38px, 12vw, 54px);
+      }
+
+      .compareViewport {
+        width: min(100%, 360px);
+        aspect-ratio: 4 / 5;
+        height: auto;
+        min-height: 0;
+      }
+
+      .compareBottom {
+        align-items: center;
+        text-align: center;
+      }
+
+      .wheel {
+        width: 100%;
+        height: 400px;
+        perspective: 1200px;
+      }
+
+      .wheel::before,
+      .wheel::after {
+        width: 46px;
+      }
+
+      .fcard {
+        width: 230px;
+        height: 310px;
+      }
+
+      .imageViewer {
+        padding: 10px;
+      }
+
+      .imageViewerPanel {
+        width: 100%;
+        height: min(100%, 760px);
+      }
+
+      .imageViewerBar,
+      .imageViewerControls {
+        padding: 11px 12px;
+        gap: 8px;
+      }
+
+      .imageViewerHint {
+        max-width: calc(100% - 24px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
   </style>
   <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TattooParlor","name":"Alley Cat Ink",
@@ -1375,9 +1673,9 @@
         <span class="bt">ALLEY CAT <b>INK</b><span class="bts">TATTOOS &amp; PIERCINGS · HUTCHINSON MN</span></span>
       </a>
       <nav>
+        <a href="#coverup">Cover-up</a>
         <a href="#flash">Flash</a>
         <a href="#work">Work</a>
-        <a href="#coverup">Cover-up</a>
         <a href="#piercing">Piercing</a>
         <a href="tel:+13206991012">Book</a>
       </nav>
@@ -1389,9 +1687,9 @@
       <div class="mwrap">
         <button class="mbtn" id="mbtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
         <div class="mnav" id="mnav">
+          <a href="#coverup">COVER-UP</a>
           <a href="#flash">FLASH</a>
           <a href="#work">WORK</a>
-          <a href="#coverup">COVER-UP</a>
           <a href="#piercing">PIERCING</a>
           <a href="tel:+13206991012">CALL TO BOOK &nbsp;//&nbsp; (320) 699-1012</a>
         </div>
@@ -1413,6 +1711,46 @@
         </div>
       </div>
     </section>
+
+    <!-- COVER-UP -->
+    <section id="coverup" aria-labelledby="coverupTitle">
+      <div class="coverProof" aria-labelledby="coverupTitle">
+        <div class="coverProofHead">
+          <div>
+            <div class="eyebrow">REAL COVER-UP PROOF</div>
+            <h3 id="coverupTitle">OLD INK. <span>REWORKED.</span></h3>
+          </div>
+          <p>Slide from the complete before photo to the complete finished tattoo.</p>
+        </div>
+        <div class="compareViewport" aria-label="Tattoo cover-up transformation">
+          <div class="compareStage" id="compareStage">
+            <figure class="comparePanel compareBefore">
+              <img src="media/coverup-before.jpeg" alt="Full tattoo before the Alley Cat Ink cover-up">
+              <figcaption>BEFORE</figcaption>
+            </figure>
+            <figure class="comparePanel compareAfter" id="compareAfter">
+              <img src="media/coverup-after.jpeg" alt="Full tattoo after the Alley Cat Ink cover-up">
+              <figcaption>AFTER</figcaption>
+            </figure>
+            <span class="compareBlackWipe" id="compareBlackWipe" aria-hidden="true"></span>
+            <span class="compareDivider" id="compareDivider" aria-hidden="true"></span>
+          </div>
+        </div>
+        <label class="iosSlider">
+          <input class="iosRange" id="compareSlider" type="range" min="0" max="100" value="0" step="1" aria-label="Slide from the full tattoo before photo to the full tattoo after photo">
+          <span class="iosRail" aria-hidden="true">
+            <span class="iosProgress" id="compareProgress"></span>
+            <span class="iosThumb" id="compareThumb"></span>
+          </span>
+        </label>
+        <div class="compareBottom">
+          <span>BEFORE ← SLIDE → AFTER</span>
+          <button type="button" id="compareReset">BACK TO BEFORE ↻</button>
+          <a href="tel:+13206991012">START A COVER-UP CONSULT ↗</a>
+        </div>
+      </div>
+    </section>
+
 
     <!-- INK STRIP -->
     <section class="inkline" aria-label="Good ink. Straight-up pricing.">
@@ -1519,45 +1857,6 @@
       <button class="btn line workMore" id="workMore" type="button" aria-expanded="false" aria-controls="workGrid">SHOW MORE WORK</button>
     </section>
 
-    <!-- COVER-UP -->
-    <section id="coverup" aria-labelledby="coverupTitle">
-      <div class="coverProof" aria-labelledby="coverupTitle">
-        <div class="coverProofHead">
-          <div>
-            <div class="eyebrow">REAL COVER-UP PROOF</div>
-            <h3 id="coverupTitle">OLD INK. <span>REWORKED.</span></h3>
-          </div>
-          <p>Slide from the complete before photo to the complete finished tattoo.</p>
-        </div>
-        <div class="compareViewport" aria-label="Tattoo cover-up transformation">
-          <div class="compareStage" id="compareStage">
-            <figure class="comparePanel compareBefore">
-              <img src="media/coverup-before.jpeg" alt="Full tattoo before the Alley Cat Ink cover-up">
-              <figcaption>BEFORE</figcaption>
-            </figure>
-            <figure class="comparePanel compareAfter" id="compareAfter">
-              <img src="media/coverup-after.jpeg" alt="Full tattoo after the Alley Cat Ink cover-up">
-              <figcaption>AFTER</figcaption>
-            </figure>
-            <span class="compareBlackWipe" id="compareBlackWipe" aria-hidden="true"></span>
-            <span class="compareDivider" id="compareDivider" aria-hidden="true"></span>
-          </div>
-        </div>
-        <label class="iosSlider">
-          <input class="iosRange" id="compareSlider" type="range" min="0" max="100" value="0" step="1" aria-label="Slide from the full tattoo before photo to the full tattoo after photo">
-          <span class="iosRail" aria-hidden="true">
-            <span class="iosProgress" id="compareProgress"></span>
-            <span class="iosThumb" id="compareThumb"></span>
-          </span>
-        </label>
-        <div class="compareBottom">
-          <span>BEFORE ← SLIDE → AFTER</span>
-          <button type="button" id="compareReset">BACK TO BEFORE ↻</button>
-          <a href="tel:+13206991012">START A COVER-UP CONSULT ↗</a>
-        </div>
-      </div>
-    </section>
-
     <!-- PIERCING -->
     <section id="piercing">
       <div class="shead rv">
@@ -1661,7 +1960,24 @@
     <div class="fv">© 2026 ALLEY CAT INK · SITE BY MLR STUDIO</div>
   </footer>
 
-  <div id="lb"><img id="lbi" src="" alt="Enlarged tattoo work"></div>
+  <div class="imageViewer" id="imageViewer" role="dialog" aria-modal="true" aria-labelledby="imageViewerTitle" aria-hidden="true">
+    <div class="imageViewerPanel">
+      <div class="imageViewerBar">
+        <span class="imageViewerTitle" id="imageViewerTitle">IMAGE PREVIEW</span>
+        <button class="imageViewerClose" id="imageViewerClose" type="button" aria-label="Close image viewer">CLOSE ×</button>
+      </div>
+      <div class="imageViewerStage" id="imageViewerStage">
+        <img class="imageViewerImage" id="imageViewerImage" src="" alt="">
+        <span class="imageViewerHint">PINCH / SCROLL TO ZOOM · DRAG TO PAN</span>
+      </div>
+      <div class="imageViewerControls" aria-label="Image zoom controls">
+        <button type="button" id="imageViewerZoomOut" aria-label="Zoom out">−</button>
+        <button type="button" id="imageViewerReset">RESET VIEW</button>
+        <span id="imageViewerZoomValue" aria-live="polite">100%</span>
+        <button type="button" id="imageViewerZoomIn" aria-label="Zoom in">+</button>
+      </div>
+    </div>
+  </div>
 
   <div class="contactChoices" id="contactChoices" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
     <div class="contactCard">
@@ -1687,129 +2003,272 @@
 
     /* ================= FLASH WHEEL ================= */
     var PIECES = [['media/flash_sm/C001.jpg', 'FLASH 001', 'media/flash/C001.jpg'], ['media/flash_sm/C002.jpg', 'FLASH 002', 'media/flash/C002.jpg'], ['media/flash_sm/C003.jpg', 'FLASH 003', 'media/flash/C003.jpg'], ['media/flash_sm/C004.jpg', 'FLASH 004', 'media/flash/C004.jpg'], ['media/flash_sm/C006.jpg', 'FLASH 006', 'media/flash/C006.jpg'], ['media/flash_sm/C007.jpg', 'FLASH 007', 'media/flash/C007.jpg'], ['media/flash_sm/C008.jpg', 'FLASH 008', 'media/flash/C008.jpg'], ['media/flash_sm/C009.jpg', 'FLASH 009', 'media/flash/C009.jpg'], ['media/flash_sm/C010.jpg', 'FLASH 010', 'media/flash/C010.jpg'], ['media/flash_sm/C011.jpg', 'FLASH 011', 'media/flash/C011.jpg'], ['media/flash_sm/C012.jpg', 'FLASH 012', 'media/flash/C012.jpg'], ['media/flash_sm/C015.jpg', 'FLASH 015', 'media/flash/C015.jpg'], ['media/flash_sm/C016.jpg', 'FLASH 016', 'media/flash/C016.jpg'], ['media/flash_sm/C017.jpg', 'FLASH 017', 'media/flash/C017.jpg'], ['media/flash_sm/C018.jpg', 'FLASH 018', 'media/flash/C018.jpg'], ['media/flash_sm/C020.jpg', 'FLASH 020', 'media/flash/C020.jpg'], ['media/flash_sm/C021.jpg', 'FLASH 021', 'media/flash/C021.jpg'], ['media/flash_sm/C022.jpg', 'FLASH 022', 'media/flash/C022.jpg'], ['media/flash_sm/C023.jpg', 'FLASH 023', 'media/flash/C023.jpg'], ['media/flash_sm/C028.jpg', 'FLASH 028', 'media/flash/C028.jpg'], ['media/flash_sm/C029.jpg', 'FLASH 029', 'media/flash/C029.jpg'], ['media/flash_sm/C030.jpg', 'FLASH 030', 'media/flash/C030.jpg'], ['media/flash_sm/C031.jpg', 'FLASH 031', 'media/flash/C031.jpg'], ['media/flash_sm/C032.jpg', 'FLASH 032', 'media/flash/C032.jpg'], ['media/flash_sm/C034.jpg', 'FLASH 034', 'media/flash/C034.jpg'], ['media/flash_sm/C036.jpg', 'FLASH 036', 'media/flash/C036.jpg'], ['media/flash_sm/C039.jpg', 'FLASH 039', 'media/flash/C039.jpg'], ['media/flash_sm/C041.jpg', 'FLASH 041', 'media/flash/C041.jpg'], ['media/flash_sm/C046.jpg', 'FLASH 046', 'media/flash/C046.jpg'], ['media/flash_sm/C048.jpg', 'FLASH 048', 'media/flash/C048.jpg'], ['media/flash_sm/C049.jpg', 'FLASH 049', 'media/flash/C049.jpg'], ['media/flash_sm/C050.jpg', 'FLASH 050', 'media/flash/C050.jpg'], ['media/flash_sm/C051.jpg', 'FLASH 051', 'media/flash/C051.jpg'], ['media/flash_sm/C053.jpg', 'FLASH 053', 'media/flash/C053.jpg'], ['media/flash_sm/C054.jpg', 'FLASH 054', 'media/flash/C054.jpg'], ['media/flash_sm/C055.jpg', 'FLASH 055', 'media/flash/C055.jpg'], ['media/flash_sm/C056.jpg', 'FLASH 056', 'media/flash/C056.jpg'], ['media/flash_sm/C057.jpg', 'FLASH 057', 'media/flash/C057.jpg'], ['media/flash_sm/C059.jpg', 'FLASH 059', 'media/flash/C059.jpg'], ['media/flash_sm/C061.jpg', 'FLASH 061', 'media/flash/C061.jpg'], ['media/flash_sm/C063.jpg', 'FLASH 063', 'media/flash/C063.jpg'], ['media/flash_sm/C065.jpg', 'FLASH 065', 'media/flash/C065.jpg'], ['media/flash_sm/C066.jpg', 'FLASH 066', 'media/flash/C066.jpg'], ['media/flash_sm/C067.jpg', 'FLASH 067', 'media/flash/C067.jpg'], ['media/flash_sm/C068.jpg', 'FLASH 068', 'media/flash/C068.jpg'], ['media/flash_sm/C069.jpg', 'FLASH 069', 'media/flash/C069.jpg'], ['media/flash_sm/C072.jpg', 'FLASH 072', 'media/flash/C072.jpg'], ['media/flash_sm/C073.jpg', 'FLASH 073', 'media/flash/C073.jpg'], ['media/flash_sm/C076.jpg', 'FLASH 076', 'media/flash/C076.jpg'], ['media/flash_sm/C080.jpg', 'FLASH 080', 'media/flash/C080.jpg'], ['media/flash_sm/C081.jpg', 'FLASH 081', 'media/flash/C081.jpg'], ['media/flash_sm/C082.jpg', 'FLASH 082', 'media/flash/C082.jpg'], ['media/flash_sm/C083.jpg', 'FLASH 083', 'media/flash/C083.jpg'], ['media/flash_sm/C084.jpg', 'FLASH 084', 'media/flash/C084.jpg'], ['media/flash_sm/C086.jpg', 'FLASH 086', 'media/flash/C086.jpg'], ['media/flash_sm/C087.jpg', 'FLASH 087', 'media/flash/C087.jpg'], ['media/flash_sm/C088.jpg', 'FLASH 088', 'media/flash/C088.jpg'], ['media/flash_sm/C089.jpg', 'FLASH 089', 'media/flash/C089.jpg'], ['media/flash_sm/C090.jpg', 'FLASH 090', 'media/flash/C090.jpg'], ['media/flash_sm/C091.jpg', 'FLASH 091', 'media/flash/C091.jpg'], ['media/flash_sm/C092.jpg', 'FLASH 092', 'media/flash/C092.jpg'], ['media/flash_sm/C093.jpg', 'FLASH 093', 'media/flash/C093.jpg'], ['media/flash_sm/C094.jpg', 'FLASH 094', 'media/flash/C094.jpg'], ['media/flash_sm/C095.jpg', 'FLASH 095', 'media/flash/C095.jpg'], ['media/flash_sm/C096.jpg', 'FLASH 096', 'media/flash/C096.jpg'], ['media/flash_sm/C097.jpg', 'FLASH 097', 'media/flash/C097.jpg'], ['media/flash_sm/C098.jpg', 'FLASH 098', 'media/flash/C098.jpg'], ['media/flash_sm/C099.jpg', 'FLASH 099', 'media/flash/C099.jpg'], ['media/flash_sm/C100.jpg', 'FLASH 100', 'media/flash/C100.jpg'], ['media/flash_sm/C102.jpg', 'FLASH 102', 'media/flash/C102.jpg'], ['media/flash_sm/C103.jpg', 'FLASH 103', 'media/flash/C103.jpg'], ['media/flash_sm/C105.jpg', 'FLASH 105', 'media/flash/C105.jpg'], ['media/flash_sm/C106.jpg', 'FLASH 106', 'media/flash/C106.jpg'], ['media/flash_sm/C107.jpg', 'FLASH 107', 'media/flash/C107.jpg'], ['media/flash_sm/C108.jpg', 'FLASH 108', 'media/flash/C108.jpg'], ['media/flash_sm/C109.jpg', 'FLASH 109', 'media/flash/C109.jpg'], ['media/flash_sm/C110.jpg', 'FLASH 110', 'media/flash/C110.jpg'], ['media/flash_sm/C111.jpg', 'FLASH 111', 'media/flash/C111.jpg'], ['media/flash_sm/C112.jpg', 'FLASH 112', 'media/flash/C112.jpg'], ['media/flash_sm/C113.jpg', 'FLASH 113', 'media/flash/C113.jpg'], ['media/flash_sm/C114.jpg', 'FLASH 114', 'media/flash/C114.jpg'], ['media/flash_sm/C116.jpg', 'FLASH 116', 'media/flash/C116.jpg'], ['media/flash_sm/C117.jpg', 'FLASH 117', 'media/flash/C117.jpg'], ['media/flash_sm/C118.jpg', 'FLASH 118', 'media/flash/C118.jpg'], ['media/flash_sm/C119.jpg', 'FLASH 119', 'media/flash/C119.jpg'], ['media/flash_sm/C120.jpg', 'FLASH 120', 'media/flash/C120.jpg'], ['media/flash_sm/C121.jpg', 'FLASH 121', 'media/flash/C121.jpg'], ['media/flash_sm/C122.jpg', 'FLASH 122', 'media/flash/C122.jpg'], ['media/flash_sm/C123.jpg', 'FLASH 123', 'media/flash/C123.jpg'], ['media/flash_sm/C124.jpg', 'FLASH 124', 'media/flash/C124.jpg'], ['media/flash_sm/C126.jpg', 'FLASH 126', 'media/flash/C126.jpg'], ['media/flash_sm/C127.jpg', 'FLASH 127', 'media/flash/C127.jpg'], ['media/flash_sm/C128.jpg', 'FLASH 128', 'media/flash/C128.jpg'], ['media/flash_sm/C129.jpg', 'FLASH 129', 'media/flash/C129.jpg'], ['media/flash_sm/C130.jpg', 'FLASH 130', 'media/flash/C130.jpg'], ['media/flash_sm/C131.jpg', 'FLASH 131', 'media/flash/C131.jpg'], ['media/flash_sm/C132.jpg', 'FLASH 132', 'media/flash/C132.jpg'], ['media/flash_sm/C134.jpg', 'FLASH 134', 'media/flash/C134.jpg'], ['media/flash_sm/C139.jpg', 'FLASH 139', 'media/flash/C139.jpg'], ['media/flash_sm/C140.jpg', 'FLASH 140', 'media/flash/C140.jpg'], ['media/flash_sm/C141.jpg', 'FLASH 141', 'media/flash/C141.jpg'], ['media/flash_sm/C142.jpg', 'FLASH 142', 'media/flash/C142.jpg'], ['media/flash_sm/C143.jpg', 'FLASH 143', 'media/flash/C143.jpg'], ['media/flash_sm/C144.jpg', 'FLASH 144', 'media/flash/C144.jpg'], ['media/flash_sm/C145.jpg', 'FLASH 145', 'media/flash/C145.jpg'], ['media/flash_sm/C146.jpg', 'FLASH 146', 'media/flash/C146.jpg'], ['media/flash_sm/C147.jpg', 'FLASH 147', 'media/flash/C147.jpg'], ['media/flash_sm/C148.jpg', 'FLASH 148', 'media/flash/C148.jpg'], ['media/flash_sm/C150.jpg', 'FLASH 150', 'media/flash/C150.jpg'], ['media/flash_sm/C158.jpg', 'FLASH 158', 'media/flash/C158.jpg'], ['media/flash_sm/C159.jpg', 'FLASH 159', 'media/flash/C159.jpg'], ['media/flash_sm/C161.jpg', 'FLASH 161', 'media/flash/C161.jpg'], ['media/flash_sm/C162.jpg', 'FLASH 162', 'media/flash/C162.jpg'], ['media/flash_sm/C163.jpg', 'FLASH 163', 'media/flash/C163.jpg'], ['media/flash_sm/C164.jpg', 'FLASH 164', 'media/flash/C164.jpg'], ['media/flash_sm/C165.jpg', 'FLASH 165', 'media/flash/C165.jpg'], ['media/flash_sm/C166.jpg', 'FLASH 166', 'media/flash/C166.jpg'], ['media/flash_sm/C167.jpg', 'FLASH 167', 'media/flash/C167.jpg'], ['media/flash_sm/C169.jpg', 'FLASH 169', 'media/flash/C169.jpg'], ['media/flash_sm/C170.jpg', 'FLASH 170', 'media/flash/C170.jpg'], ['media/flash_sm/C172.jpg', 'FLASH 172', 'media/flash/C172.jpg'], ['media/flash_sm/C174.jpg', 'FLASH 174', 'media/flash/C174.jpg'], ['media/flash_sm/C175.jpg', 'FLASH 175', 'media/flash/C175.jpg'], ['media/flash_sm/C176.jpg', 'FLASH 176', 'media/flash/C176.jpg'], ['media/flash_sm/C177.jpg', 'FLASH 177', 'media/flash/C177.jpg'], ['media/flash_sm/C179.jpg', 'FLASH 179', 'media/flash/C179.jpg'], ['media/flash_sm/C180.jpg', 'FLASH 180', 'media/flash/C180.jpg'], ['media/flash_sm/C182.jpg', 'FLASH 182', 'media/flash/C182.jpg'], ['media/flash_sm/C183.jpg', 'FLASH 183', 'media/flash/C183.jpg'], ['media/flash_sm/C184.jpg', 'FLASH 184', 'media/flash/C184.jpg'], ['media/flash_sm/C185.jpg', 'FLASH 185', 'media/flash/C185.jpg'], ['media/flash_sm/C186.jpg', 'FLASH 186', 'media/flash/C186.jpg'], ['media/flash_sm/C187.jpg', 'FLASH 187', 'media/flash/C187.jpg'], ['media/flash_sm/C188.jpg', 'FLASH 188', 'media/flash/C188.jpg'], ['media/flash_sm/C189.jpg', 'FLASH 189', 'media/flash/C189.jpg'], ['media/flash_sm/C192.jpg', 'FLASH 192', 'media/flash/C192.jpg'], ['media/flash_sm/C193.jpg', 'FLASH 193', 'media/flash/C193.jpg'], ['media/flash_sm/C194.jpg', 'FLASH 194', 'media/flash/C194.jpg'], ['media/flash_sm/C195.jpg', 'FLASH 195', 'media/flash/C195.jpg'], ['media/flash_sm/C196.jpg', 'FLASH 196', 'media/flash/C196.jpg'], ['media/flash_sm/C197.jpg', 'FLASH 197', 'media/flash/C197.jpg'], ['media/flash_sm/C201.jpg', 'FLASH 201', 'media/flash/C201.jpg'], ['media/flash_sm/C202.jpg', 'FLASH 202', 'media/flash/C202.jpg'], ['media/flash_sm/C204.jpg', 'FLASH 204', 'media/flash/C204.jpg'], ['media/flash_sm/C205.jpg', 'FLASH 205', 'media/flash/C205.jpg'], ['media/flash_sm/C206.jpg', 'FLASH 206', 'media/flash/C206.jpg'], ['media/flash_sm/C207.jpg', 'FLASH 207', 'media/flash/C207.jpg'], ['media/flash_sm/C208.jpg', 'FLASH 208', 'media/flash/C208.jpg'], ['media/flash_sm/C209.jpg', 'FLASH 209', 'media/flash/C209.jpg'], ['media/flash_sm/C210.jpg', 'FLASH 210', 'media/flash/C210.jpg'], ['media/flash_sm/C211.jpg', 'FLASH 211', 'media/flash/C211.jpg'], ['media/flash_sm/C212.jpg', 'FLASH 212', 'media/flash/C212.jpg'], ['media/flash_sm/C213.jpg', 'FLASH 213', 'media/flash/C213.jpg'], ['media/flash_sm/C214.jpg', 'FLASH 214', 'media/flash/C214.jpg'], ['media/flash_sm/C215.jpg', 'FLASH 215', 'media/flash/C215.jpg'], ['media/flash_sm/C216.jpg', 'FLASH 216', 'media/flash/C216.jpg'], ['media/flash_sm/C217.jpg', 'FLASH 217', 'media/flash/C217.jpg'], ['media/flash_sm/C218.jpg', 'FLASH 218', 'media/flash/C218.jpg'], ['media/flash_sm/C219.jpg', 'FLASH 219', 'media/flash/C219.jpg'], ['media/flash_sm/C220.jpg', 'FLASH 220', 'media/flash/C220.jpg'], ['media/flash_sm/C221.jpg', 'FLASH 221', 'media/flash/C221.jpg'], ['media/flash_sm/C222.jpg', 'FLASH 222', 'media/flash/C222.jpg'], ['media/flash_sm/C225.jpg', 'FLASH 225', 'media/flash/C225.jpg'], ['media/flash_sm/C234.jpg', 'FLASH 234', 'media/flash/C234.jpg'], ['media/flash_sm/C235.jpg', 'FLASH 235', 'media/flash/C235.jpg'], ['media/flash_sm/C236.jpg', 'FLASH 236', 'media/flash/C236.jpg'], ['media/flash_sm/C237.jpg', 'FLASH 237', 'media/flash/C237.jpg'], ['media/flash_sm/C238.jpg', 'FLASH 238', 'media/flash/C238.jpg'], ['media/flash_sm/C239.jpg', 'FLASH 239', 'media/flash/C239.jpg'], ['media/flash_sm/C240.jpg', 'FLASH 240', 'media/flash/C240.jpg'], ['media/flash_sm/C241.jpg', 'FLASH 241', 'media/flash/C241.jpg'], ['media/flash_sm/C242.jpg', 'FLASH 242', 'media/flash/C242.jpg'], ['media/flash_sm/C253.jpg', 'FLASH 253', 'media/flash/C253.jpg'], ['media/flash_sm/C254.jpg', 'FLASH 254', 'media/flash/C254.jpg'], ['media/flash_sm/C255.jpg', 'FLASH 255', 'media/flash/C255.jpg'], ['media/flash_sm/C256.jpg', 'FLASH 256', 'media/flash/C256.jpg'], ['media/flash_sm/C257.jpg', 'FLASH 257', 'media/flash/C257.jpg'], ['media/flash_sm/C258.jpg', 'FLASH 258', 'media/flash/C258.jpg'], ['media/flash_sm/C259.jpg', 'FLASH 259', 'media/flash/C259.jpg'], ['media/flash_sm/C272.jpg', 'FLASH 272', 'media/flash/C272.jpg'], ['media/flash_sm/C273.jpg', 'FLASH 273', 'media/flash/C273.jpg'], ['media/flash_sm/C274.jpg', 'FLASH 274', 'media/flash/C274.jpg'], ['media/flash_sm/C275.jpg', 'FLASH 275', 'media/flash/C275.jpg'], ['media/flash_sm/C277.jpg', 'FLASH 277', 'media/flash/C277.jpg'], ['media/flash_sm/C278.jpg', 'FLASH 278', 'media/flash/C278.jpg'], ['media/flash_sm/C279.jpg', 'FLASH 279', 'media/flash/C279.jpg'], ['media/flash_sm/C281.jpg', 'FLASH 281', 'media/flash/C281.jpg'], ['media/flash_sm/C282.jpg', 'FLASH 282', 'media/flash/C282.jpg'], ['media/flash_sm/C284.jpg', 'FLASH 284', 'media/flash/C284.jpg'], ['media/flash_sm/C285.jpg', 'FLASH 285', 'media/flash/C285.jpg'], ['media/flash_sm/C287.jpg', 'FLASH 287', 'media/flash/C287.jpg'], ['media/flash_sm/C288.jpg', 'FLASH 288', 'media/flash/C288.jpg'], ['media/flash_sm/C290.jpg', 'FLASH 290', 'media/flash/C290.jpg'], ['media/flash_sm/C293.jpg', 'FLASH 293', 'media/flash/C293.jpg'], ['media/flash_sm/C294.jpg', 'FLASH 294', 'media/flash/C294.jpg'], ['media/flash_sm/C295.jpg', 'FLASH 295', 'media/flash/C295.jpg'], ['media/flash_sm/C296.jpg', 'FLASH 296', 'media/flash/C296.jpg'], ['media/flash_sm/C298.jpg', 'FLASH 298', 'media/flash/C298.jpg'], ['media/flash_sm/C299.jpg', 'FLASH 299', 'media/flash/C299.jpg'], ['media/flash_sm/C300.jpg', 'FLASH 300', 'media/flash/C300.jpg'], ['media/flash_sm/C301.jpg', 'FLASH 301', 'media/flash/C301.jpg'], ['media/flash_sm/C302.jpg', 'FLASH 302', 'media/flash/C302.jpg'], ['media/flash_sm/C303.jpg', 'FLASH 303', 'media/flash/C303.jpg'], ['media/flash_sm/C304.jpg', 'FLASH 304', 'media/flash/C304.jpg'], ['media/flash_sm/C305.jpg', 'FLASH 305', 'media/flash/C305.jpg'], ['media/flash_sm/C306.jpg', 'FLASH 306', 'media/flash/C306.jpg'], ['media/flash_sm/C307.jpg', 'FLASH 307', 'media/flash/C307.jpg'], ['media/flash_sm/C308.jpg', 'FLASH 308', 'media/flash/C308.jpg'], ['media/flash_sm/C310.jpg', 'FLASH 310', 'media/flash/C310.jpg'], ['media/flash_sm/C311.jpg', 'FLASH 311', 'media/flash/C311.jpg'], ['media/flash_sm/C312.jpg', 'FLASH 312', 'media/flash/C312.jpg'], ['media/flash_sm/C313.jpg', 'FLASH 313', 'media/flash/C313.jpg'], ['media/flash_sm/C314.jpg', 'FLASH 314', 'media/flash/C314.jpg'], ['media/flash_sm/C315.jpg', 'FLASH 315', 'media/flash/C315.jpg'], ['media/flash_sm/C316.jpg', 'FLASH 316', 'media/flash/C316.jpg'], ['media/flash_sm/C318.jpg', 'FLASH 318', 'media/flash/C318.jpg'], ['media/flash_sm/C320.jpg', 'FLASH 320', 'media/flash/C320.jpg'], ['media/flash_sm/C322.jpg', 'FLASH 322', 'media/flash/C322.jpg'], ['media/flash_sm/C323.jpg', 'FLASH 323', 'media/flash/C323.jpg'], ['media/flash_sm/C324.jpg', 'FLASH 324', 'media/flash/C324.jpg'], ['media/flash_sm/C325.jpg', 'FLASH 325', 'media/flash/C325.jpg'], ['media/flash_sm/C326.jpg', 'FLASH 326', 'media/flash/C326.jpg'], ['media/flash_sm/C327.jpg', 'FLASH 327', 'media/flash/C327.jpg'], ['media/flash_sm/C328.jpg', 'FLASH 328', 'media/flash/C328.jpg'], ['media/flash_sm/C329.jpg', 'FLASH 329', 'media/flash/C329.jpg'], ['media/flash_sm/C330.jpg', 'FLASH 330', 'media/flash/C330.jpg'], ['media/flash_sm/C331.jpg', 'FLASH 331', 'media/flash/C331.jpg'], ['media/flash_sm/C332.jpg', 'FLASH 332', 'media/flash/C332.jpg'], ['media/flash_sm/C333.jpg', 'FLASH 333', 'media/flash/C333.jpg'], ['media/flash_sm/C334.jpg', 'FLASH 334', 'media/flash/C334.jpg'], ['media/flash_sm/C335.jpg', 'FLASH 335', 'media/flash/C335.jpg'], ['media/flash_sm/C336.jpg', 'FLASH 336', 'media/flash/C336.jpg'], ['media/flash_sm/C337.jpg', 'FLASH 337', 'media/flash/C337.jpg'], ['media/flash_sm/C338.jpg', 'FLASH 338', 'media/flash/C338.jpg'], ['media/flash_sm/C339.jpg', 'FLASH 339', 'media/flash/C339.jpg'], ['media/flash_sm/C340.jpg', 'FLASH 340', 'media/flash/C340.jpg'], ['media/flash_sm/C341.jpg', 'FLASH 341', 'media/flash/C341.jpg'], ['media/flash_sm/C342.jpg', 'FLASH 342', 'media/flash/C342.jpg'], ['media/flash_sm/C343.jpg', 'FLASH 343', 'media/flash/C343.jpg'], ['media/flash_sm/C344.jpg', 'FLASH 344', 'media/flash/C344.jpg'], ['media/flash_sm/C345.jpg', 'FLASH 345', 'media/flash/C345.jpg'], ['media/flash_sm/C346.jpg', 'FLASH 346', 'media/flash/C346.jpg'], ['media/flash_sm/C347.jpg', 'FLASH 347', 'media/flash/C347.jpg'], ['media/flash_sm/C348.jpg', 'FLASH 348', 'media/flash/C348.jpg'], ['media/flash_sm/C349.jpg', 'FLASH 349', 'media/flash/C349.jpg'], ['media/flash_sm/C350.jpg', 'FLASH 350', 'media/flash/C350.jpg'], ['media/flash_sm/C351.jpg', 'FLASH 351', 'media/flash/C351.jpg'], ['media/flash_sm/C352.jpg', 'FLASH 352', 'media/flash/C352.jpg'], ['media/flash_sm/C353.jpg', 'FLASH 353', 'media/flash/C353.jpg'], ['media/flash_sm/C354.jpg', 'FLASH 354', 'media/flash/C354.jpg'], ['media/flash_sm/C355.jpg', 'FLASH 355', 'media/flash/C355.jpg']  , ['media/flash_sm/C357.jpg', 'FLASH 357', 'media/flash/C357.jpg'] ];
-    var POS = ['50% 50%', '28% 35%', '72% 60%', '35% 70%', '65% 25%', '50% 82%', '20% 55%', '78% 45%'];
+
     var wheel = document.getElementById('wheel');
-    var WHEEL_PIECES = PIECES.slice(0, 100);
-    WHEEL_PIECES.slice(0, 4).forEach(function (p) { var im = new Image(); im.src = p[0]; });
+    var WHEEL_PIECES = PIECES;
+    WHEEL_PIECES.slice(0, 4).forEach(function (p) {
+      var preload = new Image();
+      preload.src = p[0];
+    });
+
     for (var fi = 0; fi < WHEEL_PIECES.length; fi++) {
-      var p = WHEEL_PIECES[fi], d = document.createElement('article');
+      var p = WHEEL_PIECES[fi];
+      var d = document.createElement('button');
+      d.type = 'button';
       d.className = 'fcard';
-      d.innerHTML = '<span class="fh">SWIPE UP / DOWN</span>' +
-        '<img draggable="false" decoding="async" data-s="' + p[0] + '" style="object-position:' + POS[fi % 8] + '" alt="Alley Cat Ink flash design">';
+      d.setAttribute('data-index', String(fi));
+      d.setAttribute('aria-label', 'Open flash design');
+      d.setAttribute('tabindex', fi === 0 ? '0' : '-1');
+      d.innerHTML = '<span class="fh">TAP TO VIEW</span>' +
+        '<img draggable="false" decoding="async" loading="lazy" data-s="' + p[0] + '" data-full="' + p[2] + '" alt="Alley Cat Ink flash design">';
       wheel.appendChild(d);
     }
+
     var cards = [].slice.call(wheel.querySelectorAll('.fcard'));
     var n = cards.length;
     var IMGS = cards.map(function (c) { return c.querySelector('img'); });
-    var mqs = window.matchMedia('(max-width: 640px)');
-    var HORZ = false;
-    var SP = 92, total = SP * n, off = 0, target = 0, vel = 0, drag = false, moved = 0, lastP = 0;
-    var curOn = -1, mobRAF = 0;
-    function shortest(dd) { return ((dd % total) + total + total / 2) % total - total / 2; }
-    function setOn(i) {
-      if (i === curOn) return;
-      if (curOn >= 0) cards[curOn].classList.remove('on');
-      cards[i].classList.add('on');
-      curOn = i;
+    var wheelPos = 0;
+    var wheelVelocity = 0;
+    var wheelSnapTarget = 0;
+    var wheelDragging = false;
+    var wheelPointerId = null;
+    var wheelMoved = 0;
+    var wheelAxis = null;
+    var wheelLastX = 0;
+    var wheelLastY = 0;
+    var wheelQuietAt = performance.now();
+    var wheelSuppressClick = false;
+    var wheelLastFrame = 0;
+    var curOn = -1;
+
+    function modWheel(value, length) {
+      return ((value % length) + length) % length;
     }
-    /* ===== desktop: absolute vertical wheel, rAF physics ===== */
-    function render(force) {
-      var act = ((Math.round(-off / SP)) % n + n) % n;
+
+    function wheelDistance(index, position) {
+      var distance = index - modWheel(position, n);
+      if (distance > n / 2) distance -= n;
+      if (distance < -n / 2) distance += n;
+      return distance;
+    }
+
+    function setFlashActive(index) {
+      if (index === curOn) return;
+      if (curOn >= 0) {
+        cards[curOn].classList.remove('on');
+        cards[curOn].setAttribute('aria-hidden', 'true');
+        cards[curOn].setAttribute('tabindex', '-1');
+      }
+      cards[index].classList.add('on');
+      cards[index].setAttribute('aria-hidden', 'false');
+      cards[index].setAttribute('tabindex', '0');
+      curOn = index;
+    }
+
+    function renderFlashWheel() {
+      var mobile = window.innerWidth <= 640;
+      var reach = Math.min(wheel.clientWidth * (mobile ? .72 : .43), mobile ? 178 : 420);
+      var angleStep = mobile ? .53 : .46;
+      var depthSize = mobile ? 165 : 320;
+      var active = modWheel(Math.round(wheelPos), n);
+      setFlashActive(active);
+
       for (var i = 0; i < n; i++) {
-        var y = ((i * SP + off) % total + total + total / 2) % total - total / 2;
-        var c = cards[i], L = c._l || (c._l = { d: 2, t: null, os: '', z: -1, on: -1 });
-        if (y > 420 || y < -420) {
-          if (L.d !== 1) { c.style.display = 'none'; L.d = 1; }
-          if (L.on !== 0) { c.classList.remove('on'); L.on = 0; }
+        var card = cards[i];
+        var distance = wheelDistance(i, wheelPos);
+        if (Math.abs(distance) > 4) {
+          if (card.style.display !== 'none') card.style.display = 'none';
+          card.setAttribute('aria-hidden', 'true');
           continue;
         }
-        var f = force;
-        if (L.d !== 0) { c.style.display = ''; L.d = 0; f = 1; }
-        var im = IMGS[i];
-        if (im && !im.src) im.src = im.getAttribute('data-s');
-        if (im && !c._dd) { c._dd = 1; im.decode().catch(function () { }); }
-        var dd = Math.min(Math.abs(y) / SP, 3);
-        var tf = 'translate(-50%,-50%) translateY(' + y + 'px) scale(' + Math.max(.72, 1.06 - .13 * dd).toFixed(3) + ') translateZ(0)';
-        var os = Math.max(.16, 1 - .31 * dd).toFixed(3);
-        var z = Math.max(1, 80 - Math.round(Math.abs(y) / 24));
-        if (f || L.t !== tf) { c.style.transform = tf; L.t = tf; }
-        if (f || L.os !== os) { c.style.opacity = os; L.os = os; }
-        if (f || L.z !== z) { c.style.zIndex = z; L.z = z; }
-        var on = i === act ? 1 : 0;
-        if (L.on !== on) { c.classList.toggle('on', on === 1); L.on = on; }
-      }
-    }
-    (function tickFrame() {
-      if (!HORZ) {
-        if (!drag) {
-          if (Math.abs(vel) > 0.15) { target += vel; vel *= 0.93; }
-          else { target -= 0.42; }
+
+        card.style.display = '';
+        var angle = distance * angleStep;
+        var depth = (Math.cos(angle) + 1) / 2;
+        var x = Math.sin(angle) * reach;
+        var y = -Math.abs(distance) * (mobile ? 2 : 4) - depth * (mobile ? 4 : 10);
+        var z = Math.cos(angle) * depthSize;
+        var scale = (mobile ? .62 : .58) + depth * (mobile ? .38 : .42);
+        var rotation = -Math.sin(angle) * (mobile ? 9 : 15);
+        var transform = 'translate(-50%, -50%) translate3d(' +
+          x.toFixed(2) + 'px, ' + y.toFixed(2) + 'px, ' + z.toFixed(2) + 'px) scale(' +
+          scale.toFixed(4) + ') rotateY(' + rotation.toFixed(2) + 'deg)';
+        var opacity = (.18 + depth * .82).toFixed(3);
+        var zIndex = String(Math.round(depth * 100) - Math.round(Math.abs(distance)));
+
+        card.style.transform = transform;
+        card.style.opacity = opacity;
+        card.style.zIndex = zIndex;
+
+        var image = IMGS[i];
+        if (image && !image.src && Math.abs(distance) <= 2) {
+          image.src = image.getAttribute('data-s');
+          if (image.decode) image.decode().catch(function () { });
         }
-        var d = target - off;
-        if (d > 0.05 || d < -0.05) { off = drag ? target : off + d * 0.22; render(); }
       }
-      requestAnimationFrame(tickFrame);
-    })();
-    wheel.addEventListener('dragstart', function (e) { e.preventDefault(); });
-    wheel.addEventListener('pointerdown', function (e) {
-      if (HORZ) return;
-      if (e.pointerType === 'mouse' && e.button !== 0) return;
-      drag = true; moved = 0; lastP = e.clientY; vel = 0;
-      wheel.classList.add('is-dragging');
-      wheel.setPointerCapture(e.pointerId);
-    });
-    wheel.addEventListener('pointermove', function (e) {
-      if (!drag || HORZ) return;
-      var dp = e.clientY - lastP; lastP = e.clientY;
-      target += dp; moved += Math.abs(dp);
-      vel = Math.max(-100, Math.min(100, vel * 0.7 + dp * 0.3));
-    });
-    wheel.addEventListener('pointerup', function (e) {
-      if (HORZ) return;
-      drag = false;
+    }
+
+    function wheelDestination(index, extraTurns) {
+      var delta = wheelDistance(index, wheelPos);
+      wheelVelocity = 0;
+      wheelSnapTarget = wheelPos + delta + (extraTurns || 0);
+      wheelQuietAt = performance.now();
+    }
+
+    function finishWheelMotion() {
+      wheelVelocity = 0;
+      wheelSnapTarget = Math.round(wheelPos);
+    }
+
+    function flashWheelFrame(now) {
+      var dt = Math.min(34, now - (wheelLastFrame || now));
+      wheelLastFrame = now;
+
+      if (!wheelDragging) {
+        if (wheelSnapTarget === null) {
+          if (Math.abs(wheelVelocity) > .0005) {
+            wheelPos += wheelVelocity * dt / 16.7;
+            wheelVelocity *= Math.pow(.88, dt / 16.7);
+          } else {
+            wheelVelocity = 0;
+            wheelSnapTarget = Math.round(wheelPos);
+          }
+        }
+
+        if (wheelSnapTarget !== null) {
+          var difference = wheelSnapTarget - wheelPos;
+          wheelPos += difference * Math.min(1, .24 * dt / 16.7);
+          if (Math.abs(difference) < .001) {
+            wheelPos = wheelSnapTarget;
+            wheelSnapTarget = null;
+          }
+        }
+
+        if (wheelSnapTarget === null && Math.abs(wheelVelocity) < .001 &&
+          now - wheelQuietAt > 6500 && !document.hidden &&
+          !(document.body.classList.contains('image-viewer-open'))) {
+          wheelSnapTarget = Math.round(wheelPos) - 1;
+          wheelQuietAt = now;
+        }
+      }
+
+      renderFlashWheel();
+      requestAnimationFrame(flashWheelFrame);
+    }
+
+    function finishWheelPointer(e) {
+      if (!wheelDragging) return;
+      if (e && e.pointerId !== undefined && wheelPointerId !== null && e.pointerId !== wheelPointerId) return;
+      var wasMoved = wheelMoved > 10;
+      wheelDragging = false;
       wheel.classList.remove('is-dragging');
-      if (wheel.hasPointerCapture(e.pointerId)) wheel.releasePointerCapture(e.pointerId);
-      if (moved > 8) return;
-      var r = wheel.getBoundingClientRect();
-      var p = e.clientY - (r.top + r.height / 2);
-      var i = ((Math.round((p - off) / SP)) % n + n) % n;
-      target += shortest(-i * SP - target);
+      wheelPointerId = null;
+      if (e && e.pointerId !== undefined && wheel.hasPointerCapture(e.pointerId)) {
+        try { wheel.releasePointerCapture(e.pointerId); } catch (err) { }
+      }
+      if (wasMoved) {
+        wheelSuppressClick = true;
+        wheelVelocity = Math.max(-.16, Math.min(.16, wheelVelocity * 1.8));
+        wheelSnapTarget = Math.round(wheelPos + wheelVelocity * 7);
+      } else {
+        finishWheelMotion();
+      }
+      wheelQuietAt = performance.now();
+    }
+
+    wheel.addEventListener('dragstart', function (e) { e.preventDefault(); });
+    wheel.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+
+    wheel.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      wheelDragging = true;
+      wheelPointerId = e.pointerId;
+      wheelMoved = 0;
+      wheelAxis = null;
+      wheelLastX = e.clientX;
+      wheelLastY = e.clientY;
+      wheelVelocity = 0;
+      wheelSnapTarget = null;
+      wheelQuietAt = performance.now();
+      wheel.classList.add('is-dragging');
+      try { wheel.setPointerCapture(e.pointerId); } catch (err) { }
+      e.preventDefault();
     });
-    function releaseWheel() { drag = false; wheel.classList.remove('is-dragging'); }
-    wheel.addEventListener('pointercancel', releaseWheel);
-    wheel.addEventListener('lostpointercapture', releaseWheel);
-    window.addEventListener('pointerup', releaseWheel, { passive: true });
-    /* ===== phone: native horizontal scroller - browser owns momentum + snap, zero jank ===== */
-    function mobCenter(el, smooth) {
-      wheel.scrollTo({ left: el.offsetLeft - (wheel.clientWidth - el.offsetWidth) / 2, behavior: smooth ? 'smooth' : 'auto' });
-    }
-    function mobUpdate() {
-      var c0 = cards[0];
-      var stride = c0.offsetWidth + 14;
-      var i = Math.round((wheel.scrollLeft + wheel.clientWidth / 2 - c0.offsetLeft - c0.offsetWidth / 2) / stride);
-      setOn(((i % n) + n) % n);
-    }
-    wheel.addEventListener('scroll', function () {
-      if (!HORZ || mobRAF) return;
-      mobRAF = requestAnimationFrame(function () { mobRAF = 0; mobUpdate(); });
-    }, { passive: true });
+
+    wheel.addEventListener('pointermove', function (e) {
+      if (!wheelDragging || e.pointerId !== wheelPointerId) return;
+      var dx = e.clientX - wheelLastX;
+      var dy = e.clientY - wheelLastY;
+      if (!wheelAxis && Math.hypot(e.clientX - (wheelLastX - dx), e.clientY - (wheelLastY - dy)) > 4) {
+        wheelAxis = Math.abs(dx) >= Math.abs(dy) ? 'x' : 'y';
+      }
+      var movement = wheelAxis === 'y' ? dy : dx;
+      var stride = wheelAxis === 'y'
+        ? Math.max(150, wheel.clientHeight * .42)
+        : Math.max(150, wheel.clientWidth * .34);
+      var delta = -movement / stride;
+      wheelLastX = e.clientX;
+      wheelLastY = e.clientY;
+      if (!wheelAxis) return;
+      wheelPos += delta;
+      wheelVelocity = delta;
+      wheelMoved += Math.hypot(dx, dy);
+      renderFlashWheel();
+      e.preventDefault();
+    });
+
+    wheel.addEventListener('pointerup', finishWheelPointer);
+    wheel.addEventListener('pointercancel', function (e) {
+      if (!wheelDragging) return;
+      wheelDragging = false;
+      wheel.classList.remove('is-dragging');
+      wheelPointerId = null;
+      wheelVelocity = 0;
+      wheelSnapTarget = Math.round(wheelPos);
+      wheelQuietAt = performance.now();
+      if (e.pointerId !== undefined && wheel.hasPointerCapture(e.pointerId)) {
+        try { wheel.releasePointerCapture(e.pointerId); } catch (err) { }
+      }
+    });
+    window.addEventListener('pointerup', finishWheelPointer, { passive: true });
+
     wheel.addEventListener('click', function (e) {
-      if (!HORZ) return;
-      var el = e.target && e.target.closest ? e.target.closest('.fcard') : null;
-      if (el) mobCenter(el, true);
+      var card = e.target && e.target.closest ? e.target.closest('.fcard') : null;
+      if (!card) return;
+      if (wheelSuppressClick) {
+        wheelSuppressClick = false;
+        return;
+      }
+      var index = Number(card.getAttribute('data-index'));
+      var active = modWheel(Math.round(wheelPos), n);
+      if (index !== active) {
+        wheelDestination(index, 0);
+        return;
+      }
+      var image = card.querySelector('img');
+      if (image) openImageViewer(image.getAttribute('data-full'), 'Alley Cat Ink flash design', 'FLASH DESIGN');
     });
-    /* spin for random */
+
+    wheel.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+      e.preventDefault();
+      var active = modWheel(Math.round(wheelPos), n);
+      var step = (e.key === 'ArrowLeft' || e.key === 'ArrowUp') ? -1 : 1;
+      wheelDestination(modWheel(active + step, n), 0);
+    });
+
     document.getElementById('spin').addEventListener('click', function () {
-      var r = Math.floor(Math.random() * n);
-      if (HORZ) { mobCenter(cards[r], true); }
-      else { vel = 0; target += shortest(-r * SP - target) + (Math.random() < 0.5 ? -1 : 1) * total * (2 + Math.floor(Math.random() * 3)); }
+      var randomIndex = Math.floor(Math.random() * n);
+      var rounds = n * (2 + Math.floor(Math.random() * 2));
+      wheelVelocity = 0;
+      wheelSnapTarget = wheelPos + wheelDistance(randomIndex, wheelPos) +
+        (Math.random() < .5 ? -rounds : rounds);
+      wheelQuietAt = performance.now();
     });
-    /* Images load only when their cards enter the visible wheel window. */
-    /* breakpoint switch: strip desktop inline styles before native layout takes over */
-    function layout() { HORZ = false; render(true); }
-    if (mqs.addEventListener) mqs.addEventListener('change', layout);
-    else if (mqs.addListener) mqs.addListener(layout);
-    render(true);
+
+    window.addEventListener('resize', renderFlashWheel);
+    renderFlashWheel();
+    requestAnimationFrame(flashWheelFrame);
 
     /* ================= BEFORE / AFTER ================= */
     var compareSlider = document.getElementById('compareSlider');
@@ -1820,61 +2279,113 @@
     var compareProgress = document.getElementById('compareProgress');
     var compareThumb = document.getElementById('compareThumb');
     var compareValue = 0;
+    var comparePending = 0;
+    var compareFrame = 0;
+    var compareStageDragging = false;
+    var comparePointerId = null;
 
-    function setCompare(value) {
-      compareValue = Math.max(0, Math.min(100, value));
+    function paintCompare(value) {
+      compareValue = Math.max(0, Math.min(100, Number(value) || 0));
       compareSlider.value = String(compareValue);
-      var compareClip = 'inset(0 ' + (100 - compareValue) + '% 0 0)';
+      var compareClip = 'inset(0 ' + (100 - compareValue).toFixed(3) + '% 0 0)';
       compareAfter.style.clipPath = compareClip;
       compareAfter.style.webkitClipPath = compareClip;
-      compareBlackWipe.style.left = 'calc(' + compareValue + '% - 10px)';
-      compareDivider.style.left = compareValue + '%';
-      compareProgress.style.width = compareValue >= 99.5 ? '100%' : 'calc(' + compareValue + '% - ' + (compareValue * .44) + 'px)';
-      compareThumb.style.left = 'calc(22px + ' + compareValue + '% - ' + (compareValue * .44) + 'px)';
-      compareSlider.setAttribute('aria-valuetext', compareValue === 0 ? 'Full before photo' : compareValue === 100 ? 'Full after photo' : Math.round(compareValue) + ' percent toward the after photo');
+      compareBlackWipe.style.left = compareValue.toFixed(3) + '%';
+      compareDivider.style.left = compareValue.toFixed(3) + '%';
+      compareProgress.style.width = compareValue >= 99.5 ? '100%' : 'calc(' +
+        compareValue.toFixed(3) + '% - ' + (compareValue * .44).toFixed(3) + 'px)';
+      compareThumb.style.left = 'calc(22px + ' + compareValue.toFixed(3) + '% - ' +
+        (compareValue * .44).toFixed(3) + 'px)';
+      compareSlider.setAttribute('aria-valuetext',
+        compareValue === 0 ? 'Full before photo' :
+        compareValue === 100 ? 'Full after photo' :
+        Math.round(compareValue) + ' percent toward the after photo');
     }
 
-    function setCompareFromX(clientX, rect) {
-      setCompare(((clientX - rect.left) / Math.max(1, rect.width)) * 100);
+    function setCompare(value, immediate) {
+      comparePending = Math.max(0, Math.min(100, Number(value) || 0));
+      if (immediate) {
+        if (compareFrame) cancelAnimationFrame(compareFrame);
+        compareFrame = 0;
+        paintCompare(comparePending);
+        return;
+      }
+      if (compareFrame) return;
+      compareFrame = requestAnimationFrame(function () {
+        compareFrame = 0;
+        paintCompare(comparePending);
+      });
     }
 
-    compareSlider.addEventListener('input', function () { setCompare(Number(compareSlider.value)); });
-    compareSlider.addEventListener('change', function () { setCompare(Number(compareSlider.value)); });
-
-    /* The image itself is a touch-friendly comparison control on phones. */
-    var compareStageDragging = false;
-    function setCompareFromStagePointer(e) {
-      setCompareFromX(e.clientX, compareStage.getBoundingClientRect());
+    function setCompareFromX(clientX, rect, immediate) {
+      setCompare(((clientX - rect.left) / Math.max(1, rect.width)) * 100, immediate);
     }
+
+    compareSlider.addEventListener('input', function () {
+      setCompare(Number(compareSlider.value), false);
+    });
+    compareSlider.addEventListener('change', function () {
+      setCompare(Number(compareSlider.value), true);
+    });
+
+    function setCompareFromStagePointer(e, immediate) {
+      setCompareFromX(e.clientX, compareStage.getBoundingClientRect(), immediate);
+    }
+
     compareStage.addEventListener('pointerdown', function (e) {
       if (e.pointerType === 'mouse' && e.button !== 0) return;
       compareStageDragging = true;
-      setCompareFromStagePointer(e);
-      compareStage.setPointerCapture(e.pointerId);
+      comparePointerId = e.pointerId;
+      compareStage.classList.add('is-dragging');
+      setCompareFromStagePointer(e, true);
+      try { compareStage.setPointerCapture(e.pointerId); } catch (err) { }
       e.preventDefault();
     });
+
     compareStage.addEventListener('pointermove', function (e) {
+      if (!compareStageDragging || e.pointerId !== comparePointerId) return;
+      var events = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
+      var point = events[events.length - 1] || e;
+      setCompareFromStagePointer(point, false);
+      e.preventDefault();
+    });
+
+    function finishComparePointer(e) {
+      if (!compareStageDragging) return;
+      if (e && e.pointerId !== undefined && comparePointerId !== null && e.pointerId !== comparePointerId) return;
+      compareStageDragging = false;
+      compareStage.classList.remove('is-dragging');
+      var id = comparePointerId;
+      comparePointerId = null;
+      if (e && e.pointerId !== undefined && compareStage.hasPointerCapture(e.pointerId)) {
+        try { compareStage.releasePointerCapture(e.pointerId); } catch (err) { }
+      }
+      setCompare(compareValue, true);
+    }
+
+    compareStage.addEventListener('pointerup', finishComparePointer);
+    compareStage.addEventListener('pointercancel', finishComparePointer);
+    window.addEventListener('pointerup', finishComparePointer, { passive: true });
+    compareStage.addEventListener('lostpointercapture', function () {
       if (compareStageDragging) {
-        setCompareFromStagePointer(e);
-        e.preventDefault();
+        compareStageDragging = false;
+        compareStage.classList.remove('is-dragging');
+        comparePointerId = null;
       }
     });
-    function releaseCompareStage(e) {
-      compareStageDragging = false;
-      if (e.pointerId !== undefined && compareStage.hasPointerCapture(e.pointerId)) compareStage.releasePointerCapture(e.pointerId);
-    }
-    compareStage.addEventListener('pointerup', releaseCompareStage);
-    compareStage.addEventListener('pointercancel', releaseCompareStage);
-    compareStage.addEventListener('lostpointercapture', function () { compareStageDragging = false; });
 
     compareSlider.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowLeft') { e.preventDefault(); setCompare(compareValue - 5); }
-      if (e.key === 'ArrowRight') { e.preventDefault(); setCompare(compareValue + 5); }
-      if (e.key === 'Home') { e.preventDefault(); setCompare(0); }
-      if (e.key === 'End') { e.preventDefault(); setCompare(100); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); setCompare(compareValue - 5, true); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); setCompare(compareValue + 5, true); }
+      if (e.key === 'Home') { e.preventDefault(); setCompare(0, true); }
+      if (e.key === 'End') { e.preventDefault(); setCompare(100, true); }
     });
-    document.getElementById('compareReset').addEventListener('click', function () { setCompare(0); });
-    setCompare(0);
+
+    document.getElementById('compareReset').addEventListener('click', function () {
+      setCompare(0, true);
+    });
+    setCompare(0, true);
+
 
     /* ================= MOBILE PORTFOLIO LENGTH ================= */
     var workGrid = document.getElementById('workGrid');
@@ -1904,18 +2415,207 @@
 
 
 
-    /* ================= LIGHTBOX ================= */
-    var lb = document.getElementById('lb'), lbi = document.getElementById('lbi');
-    document.querySelectorAll('.witem').forEach(function (w) {
-      w.addEventListener('click', function () {
-        var im = w.querySelector('img'); if (!im) return;
-        lbi.src = im.src; lb.classList.add('show');
+    /* ================= IMAGE VIEWER ================= */
+    var imageViewer = document.getElementById('imageViewer');
+    var imageViewerStage = document.getElementById('imageViewerStage');
+    var imageViewerImage = document.getElementById('imageViewerImage');
+    var imageViewerTitle = document.getElementById('imageViewerTitle');
+    var imageViewerClose = document.getElementById('imageViewerClose');
+    var imageViewerZoomValue = document.getElementById('imageViewerZoomValue');
+    var viewerOpen = false;
+    var viewerReturnFocus = null;
+    var viewerZoom = 1;
+    var viewerX = 0;
+    var viewerY = 0;
+    var viewerPointers = new Map();
+    var viewerPanStart = null;
+    var viewerPinchStart = null;
+
+    function clampViewerZoom(value) {
+      return Math.max(.72, Math.min(4, value));
+    }
+
+    function paintViewer() {
+      imageViewerImage.style.transform = 'translate3d(' + viewerX.toFixed(2) + 'px, ' +
+        viewerY.toFixed(2) + 'px, 0) scale(' + viewerZoom.toFixed(3) + ')';
+      imageViewerZoomValue.textContent = Math.round(viewerZoom * 100) + '%';
+    }
+
+    function resetViewer() {
+      viewerZoom = 1;
+      viewerX = 0;
+      viewerY = 0;
+      viewerPanStart = null;
+      viewerPinchStart = null;
+      paintViewer();
+    }
+
+    function openImageViewer(src, alt, label) {
+      if (!src) return;
+      viewerReturnFocus = document.activeElement;
+      imageViewerTitle.textContent = label || 'IMAGE PREVIEW';
+      imageViewerImage.alt = alt || 'Enlarged image';
+      imageViewerImage.src = src;
+      resetViewer();
+      viewerOpen = true;
+      imageViewer.classList.add('open');
+      imageViewer.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('image-viewer-open');
+      imageViewerClose.focus();
+    }
+
+    function closeImageViewer() {
+      if (!viewerOpen) return;
+      viewerOpen = false;
+      viewerPointers.clear();
+      imageViewer.classList.remove('open');
+      imageViewer.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('image-viewer-open');
+      imageViewerImage.removeAttribute('src');
+      if (viewerReturnFocus && viewerReturnFocus.focus) viewerReturnFocus.focus();
+      viewerReturnFocus = null;
+    }
+
+    function viewerPoints() {
+      return Array.from(viewerPointers.values());
+    }
+
+    function viewerDistance(a, b) {
+      return Math.hypot(a.x - b.x, a.y - b.y);
+    }
+
+    function viewerCenter(a, b) {
+      return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+    }
+
+    imageViewerStage.addEventListener('pointerdown', function (e) {
+      if (!viewerOpen || (e.pointerType === 'mouse' && e.button !== 0)) return;
+      imageViewerStage.classList.add('is-panning');
+      viewerPointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      try { imageViewerStage.setPointerCapture(e.pointerId); } catch (err) { }
+      var points = viewerPoints();
+      if (points.length === 1) {
+        viewerPanStart = { x: e.clientX, y: e.clientY, baseX: viewerX, baseY: viewerY };
+      } else if (points.length === 2) {
+        var center = viewerCenter(points[0], points[1]);
+        viewerPinchStart = {
+          distance: Math.max(1, viewerDistance(points[0], points[1])),
+          zoom: viewerZoom,
+          centerX: center.x,
+          centerY: center.y,
+          baseX: viewerX,
+          baseY: viewerY
+        };
+      }
+      e.preventDefault();
+    });
+
+    imageViewerStage.addEventListener('pointermove', function (e) {
+      if (!viewerOpen || !viewerPointers.has(e.pointerId)) return;
+      viewerPointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      var points = viewerPoints();
+      if (points.length >= 2 && viewerPinchStart) {
+        var center = viewerCenter(points[0], points[1]);
+        viewerZoom = clampViewerZoom(viewerPinchStart.zoom *
+          viewerDistance(points[0], points[1]) / viewerPinchStart.distance);
+        viewerX = viewerPinchStart.baseX + center.x - viewerPinchStart.centerX;
+        viewerY = viewerPinchStart.baseY + center.y - viewerPinchStart.centerY;
+        paintViewer();
+      } else if (points.length === 1 && viewerPanStart) {
+        viewerX = viewerPanStart.baseX + e.clientX - viewerPanStart.x;
+        viewerY = viewerPanStart.baseY + e.clientY - viewerPanStart.y;
+        paintViewer();
+      }
+      e.preventDefault();
+    });
+
+    function finishViewerPointer(e) {
+      if (!viewerPointers.has(e.pointerId)) return;
+      viewerPointers.delete(e.pointerId);
+      if (imageViewerStage.hasPointerCapture(e.pointerId)) {
+        try { imageViewerStage.releasePointerCapture(e.pointerId); } catch (err) { }
+      }
+      var points = viewerPoints();
+      if (points.length === 1) {
+        viewerPanStart = {
+          x: points[0].x,
+          y: points[0].y,
+          baseX: viewerX,
+          baseY: viewerY
+        };
+        viewerPinchStart = null;
+      } else if (!points.length) {
+        viewerPanStart = null;
+        viewerPinchStart = null;
+        imageViewerStage.classList.remove('is-panning');
+      }
+    }
+
+    imageViewerStage.addEventListener('pointerup', finishViewerPointer);
+    imageViewerStage.addEventListener('pointercancel', finishViewerPointer);
+    imageViewerStage.addEventListener('lostpointercapture', function () {
+      if (!viewerPointers.size) imageViewerStage.classList.remove('is-panning');
+    });
+
+    imageViewerStage.addEventListener('wheel', function (e) {
+      if (!viewerOpen) return;
+      e.preventDefault();
+      setViewerZoom(viewerZoom * (e.deltaY < 0 ? 1.12 : .89));
+    }, { passive: false });
+
+    imageViewerStage.addEventListener('dblclick', function () {
+      if (!viewerOpen) return;
+      setViewerZoom(viewerZoom > 1.05 ? 1 : 2);
+    });
+
+    function setViewerZoom(value) {
+      viewerZoom = clampViewerZoom(value);
+      if (viewerZoom <= 1) {
+        viewerZoom = 1;
+        viewerX = 0;
+        viewerY = 0;
+      }
+      paintViewer();
+    }
+
+    imageViewerClose.addEventListener('click', closeImageViewer);
+    imageViewer.addEventListener('click', function (e) {
+      if (e.target === imageViewer) closeImageViewer();
+    });
+    document.getElementById('imageViewerZoomOut').addEventListener('click', function () {
+      setViewerZoom(viewerZoom * .84);
+    });
+    document.getElementById('imageViewerZoomIn').addEventListener('click', function () {
+      setViewerZoom(viewerZoom * 1.2);
+    });
+    document.getElementById('imageViewerReset').addEventListener('click', resetViewer);
+
+    document.querySelectorAll('.witem').forEach(function (item) {
+      var image = item.querySelector('img');
+      if (!image) return;
+      item.setAttribute('role', 'button');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('aria-label', 'Open gallery image');
+      function openGalleryImage() {
+        openImageViewer(image.currentSrc || image.src, image.alt || 'Enlarged gallery image', 'GALLERY IMAGE');
+      }
+      item.addEventListener('click', openGalleryImage);
+      item.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openGalleryImage();
+        }
       });
     });
-    lb.addEventListener('click', function () { lb.classList.remove('show'); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('show'); });
 
-    
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && viewerOpen) {
+        e.preventDefault();
+        closeImageViewer();
+      }
+    });
+
+
     /* ================= MOBILE MENU ================= */
     var mbtn = document.getElementById('mbtn'), mnav = document.getElementById('mnav');
     function mclose() { mnav.classList.remove('open'); mbtn.classList.remove('x'); mbtn.setAttribute('aria-expanded', 'false'); }
