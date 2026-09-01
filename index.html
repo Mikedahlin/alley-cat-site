@@ -958,7 +958,7 @@
     .mnav a:active { background: rgba(63,233,255,.09); color: var(--green) }
     .mnav.open a { opacity: 1; transform: none }
     .mnav.open a:nth-child(1) { transition-delay: .04s } .mnav.open a:nth-child(2) { transition-delay: .08s }
-    .mnav.open a:nth-child(3) { transition-delay: .12s } .mnav.open a:nth-child(4) { transition-delay: .16s }
+    .mnav.open a:nth-child(3) { transition-delay: .12s } .mnav.open a:nth-child(4) { transition-delay: .16s } .mnav.open a:nth-child(5) { transition-delay: .20s }
     @media (max-width: 1020px) { .mwrap { display: block } }
   
     /* ---------- phone header fit ---------- */
@@ -1718,7 +1718,11 @@
       for (var i = 0; i < n; i++) {
         var y = ((i * SP + off) % total + total + total / 2) % total - total / 2;
         var c = cards[i], L = c._l || (c._l = { d: 2, t: null, os: '', z: -1, on: -1 });
-        if (y > 420 || y < -420) { if (L.d !== 1) { c.style.display = 'none'; L.d = 1; } continue; }
+        if (y > 420 || y < -420) {
+          if (L.d !== 1) { c.style.display = 'none'; L.d = 1; }
+          if (L.on !== 0) { c.classList.remove('on'); L.on = 0; }
+          continue;
+        }
         var f = force;
         if (L.d !== 0) { c.style.display = ''; L.d = 0; f = 1; }
         var im = IMGS[i];
