@@ -1655,7 +1655,7 @@
       }
     }
 
-  </style>
+  @media (max-width:640px){.wheel{display:flex!important;flex-direction:row!important;align-items:center!important;gap:14px!important;width:100%!important;height:auto!important;overflow-x:auto!important;overflow-y:hidden!important;padding:20px calc(50% - 112px)!important;scroll-snap-type:x mandatory!important;touch-action:pan-x pan-y!important;cursor:default!important}.wheel::before,.wheel::after{display:none!important}.fcard{position:static!important;left:auto!important;top:auto!important;transform:none!important;width:224px!important;height:304px!important;flex:0 0 auto!important;scroll-snap-align:center!important;touch-action:auto!important}}</style>
   <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TattooParlor","name":"Alley Cat Ink",
 "description":"Tattoos & piercings in Hutchinson, MN. Custom work, cover-ups, flash, and piercing with jewelry included. Walk-ins welcome.",
@@ -1741,7 +1741,7 @@
           </div>
         </div>
         <label class="iosSlider">
-          <input class="iosRange" id="compareSlider" type="range" min="0" max="100" value="0" step="1" aria-label="Slide from the full tattoo before photo to the full tattoo after photo">
+          <input class="iosRange" id="compareSlider" type="range" min="0" max="100" value="50" step="1" aria-label="Slide from the full tattoo before photo to the full tattoo after photo">
           <span class="iosRail" aria-hidden="true">
             <span class="iosProgress" id="compareProgress"></span>
             <span class="iosThumb" id="compareThumb"></span>
@@ -1749,7 +1749,7 @@
         </label>
         <div class="compareBottom">
           <span>BEFORE ← SLIDE → AFTER</span>
-          <button type="button" id="compareReset">BACK TO BEFORE ↻</button>
+          <button type="button" id="compareReset">RESET SPLIT ↻</button>
           <a href="tel:+13206991012">START A COVER-UP CONSULT ↗</a>
         </div>
       </div>
@@ -2076,7 +2076,29 @@
       curOn = index;
     }
 
+    function isMobileWheel() { return window.innerWidth <= 640; }
+    function applyMobileWheel() {
+      for (var i = 0; i < cards.length; i++) {
+        var card = cards[i];
+        card.style.display = '';
+        card.style.opacity = '';
+        card.style.zIndex = '';
+        card.style.transform = '';
+        card.style.left = '';
+        card.style.top = '';
+        card.style.willChange = '';
+        card.setAttribute('aria-hidden', 'false');
+        var image = IMGS[i];
+        if (image && !image.getAttribute('src')) {
+          image.setAttribute('src', image.getAttribute('data-s'));
+          if (i < 3 && image.decode) image.decode().catch(function () { });
+        }
+      }
+      setFlashActive(0);
+      wheelNeedsRender = false;
+    }
     function renderFlashWheel() {
+      if (isMobileWheel()) { applyMobileWheel(); return; }
       var mobile = window.innerWidth <= 640;
       var reach = Math.min(wheel.clientWidth * (mobile ? .72 : .43), mobile ? 178 : 420);
       var angleStep = mobile ? .53 : .46;
@@ -2151,6 +2173,7 @@
     }
 
     function flashWheelFrame(now) {
+      if (isMobileWheel()) { if (wheelNeedsRender) renderFlashWheel(); requestAnimationFrame(flashWheelFrame); return; }
       var dt = Math.min(34, now - (wheelLastFrame || now));
       wheelLastFrame = now;
 
@@ -2324,7 +2347,7 @@
       wheelDestination(modWheel(active + step, n), 0);
     });
 
-    document.getElementById('spin').addEventListener('click', function () {
+    document.getElementById('spin').addEventListener('click', function () { if (window.innerWidth <= 640) { var cs = wheel.querySelectorAll('.fcard'); if (cs.length) { cs[Math.floor(Math.random()*cs.length)].scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); } return; }
       cancelWheelGesture();
       wheelVelocity = .68 + Math.random() * .12;
       wheelSnapTarget = null;
@@ -2446,10 +2469,7 @@
       if (e.key === 'End') { e.preventDefault(); setCompare(100, true); }
     });
 
-    document.getElementById('compareReset').addEventListener('click', function () {
-      setCompare(0, true);
-    });
-    setCompare(0, true);
+    document.getElementById('compareReset').addEventListener('click', function () { setCompare(50, true); }); setCompare(50, true);
 
 
     /* ================= MOBILE PORTFOLIO LENGTH ================= */
