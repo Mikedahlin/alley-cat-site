@@ -2170,6 +2170,7 @@
         wheelSuppressClick = true;
         wheelVelocity = Math.max(-.16, Math.min(.16, wheelVelocity * 1.8));
         wheelSnapTarget = Math.round(wheelPos + wheelVelocity * 7);
+        window.setTimeout(function () { wheelSuppressClick = false; }, 450);
       } else {
         finishWheelMotion();
       }
@@ -2192,7 +2193,6 @@
       wheelQuietAt = performance.now();
       wheel.classList.add('is-dragging');
       try { wheel.setPointerCapture(e.pointerId); } catch (err) { }
-      e.preventDefault();
     });
 
     wheel.addEventListener('pointermove', function (e) {
