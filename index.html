@@ -1396,6 +1396,7 @@
       transform-style: preserve-3d;
       display: block;
       touch-action: pan-y;
+      /* Let the browser own vertical gestures; JavaScript only claims horizontal drags. */
       cursor: grab;
       overscroll-behavior-x: contain;
       overscroll-behavior-y: auto;
@@ -1446,6 +1447,7 @@
       will-change: transform, opacity;
       transition: none !important;
       -webkit-tap-highlight-color: transparent;
+      touch-action: pan-y;
     }
 
     .fcard img {
@@ -2023,19 +2025,13 @@
       d.setAttribute('tabindex', fi === 0 ? '0' : '-1');
       d.innerHTML = '<span class="fh">TAP TO VIEW</span>' +
         '<img draggable="false" decoding="async" loading="lazy" data-s="' + p[0] + '" data-full="' + p[2] + '" alt="Alley Cat Ink flash design">';
-      d.addEventListener('pointerup', function () {
-        if (wheelMoved <= 10) activateFlashCard(d);
-      });
-      d.addEventListener('click', function (e) {
-        e.stopPropagation();
-        activateFlashCard(d);
-      });
       wheel.appendChild(d);
     }
 
     var cards = [].slice.call(wheel.querySelectorAll('.fcard'));
     var n = cards.length;
     var IMGS = cards.map(function (c) { return c.querySelector('img'); });
+    cards.forEach(function (card) { card.style.display = 'none'; });
     var wheelPos = 0;
     var wheelVelocity = 0;
     var wheelSnapTarget = 0;
@@ -2053,6 +2049,8 @@
     var wheelNeedsRender = true;
     var wheelLastFrame = 0;
     var curOn = -1;
+    var visibleCards = [];
+    var suppressWheelClickUntil = 0;
 
     function modWheel(value, length) {
       return ((value % length) + length) % length;
@@ -2086,21 +2084,22 @@
       var active = modWheel(Math.round(wheelPos), n);
       setFlashActive(active);
 
-      for (var i = 0; i < n; i++) {
+      /* Only the nine cards around the current position can be seen. Updating all
+         300+ cards every animation frame was the main source of mobile stutter. */
+      for (var hidden = 0; hidden < visibleCards.length; hidden++) {
+        visibleCards[hidden].style.display = 'none';
+        visibleCards[hidden].setAttribute('aria-hidden', 'true');
+      }
+      visibleCards = [];
+
+      var center = Math.round(wheelPos);
+      for (var offset = -4; offset <= 4; offset++) {
+        var i = modWheel(center + offset, n);
         var card = cards[i];
         var distance = wheelDistance(i, wheelPos);
-        if (Math.abs(distance) > 4) {
-          if (card.style.display !== 'none') {
-            card.style.display = 'none';
-            card.setAttribute('aria-hidden', 'true');
-          }
-          continue;
-        }
-
-        if (card.style.display === 'none') {
-          card.style.display = '';
-          card.setAttribute('aria-hidden', i === active ? 'false' : 'true');
-        }
+        card.style.display = '';
+        card.setAttribute('aria-hidden', i === active ? 'false' : 'true');
+        visibleCards.push(card);
 
         var angle = distance * angleStep;
         var depth = (Math.cos(angle) + 1) / 2;
@@ -2193,6 +2192,9 @@
       if (!wheelDragging && wheelPointerId === null) return;
       if (e && e.pointerId !== undefined && wheelPointerId !== null && e.pointerId !== wheelPointerId) return;
       wheelDragging = false;
+      if (wheelPointerId !== null && wheel.hasPointerCapture && wheel.hasPointerCapture(wheelPointerId)) {
+        wheel.releasePointerCapture(wheelPointerId);
+      }
       wheelPointerId = null;
       wheelDownCard = null;
       wheelAxis = null;
@@ -2209,10 +2211,14 @@
       var tapCard = !wasMoved ? (wheelDownCard || (e ? cardAtPoint(e.clientX, e.clientY) : null)) : null;
       wheelDragging = false;
       wheel.classList.remove('is-dragging');
+      if (wheelPointerId !== null && wheel.hasPointerCapture && wheel.hasPointerCapture(wheelPointerId)) {
+        wheel.releasePointerCapture(wheelPointerId);
+      }
       wheelPointerId = null;
       wheelDownCard = null;
       wheelAxis = null;
       if (wasMoved) {
+        suppressWheelClickUntil = performance.now() + 400;
         wheelVelocity = Math.max(-.72, Math.min(.72, wheelVelocity * 1.75));
         wheelSnapTarget = Math.abs(wheelVelocity) < .035 ? Math.round(wheelPos) : null;
       } else {
@@ -2259,6 +2265,7 @@
         if (Math.abs(totalX) <= Math.abs(totalY)) return;
         wheelAxis = 'x';
         wheel.classList.add('is-dragging');
+        if (wheel.setPointerCapture) wheel.setPointerCapture(e.pointerId);
       }
 
       if (wheelAxis !== 'x') return;
@@ -2289,6 +2296,10 @@
     });
 
     wheel.addEventListener('click', function (e) {
+      if (performance.now() < suppressWheelClickUntil) {
+        e.preventDefault();
+        return;
+      }
       var card = e.target && e.target.closest ? e.target.closest('.fcard') : null;
       if (!card) return;
       activateFlashCard(card);
