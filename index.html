@@ -2032,6 +2032,7 @@
     var wheelSnapTarget = 0;
     var wheelDragging = false;
     var wheelPointerId = null;
+    var wheelDownCard = null;
     var wheelMoved = 0;
     var wheelAxis = null;
     var wheelLastX = 0;
@@ -2188,10 +2189,11 @@
       if (!wheelDragging) return;
       if (e && e.pointerId !== undefined && wheelPointerId !== null && e.pointerId !== wheelPointerId) return;
       var wasMoved = wheelMoved > 10;
-      var tapCard = !wasMoved && e ? cardAtPoint(e.clientX, e.clientY) : null;
+      var tapCard = !wasMoved ? (wheelDownCard || (e ? cardAtPoint(e.clientX, e.clientY) : null)) : null;
       wheelDragging = false;
       wheel.classList.remove('is-dragging');
       wheelPointerId = null;
+      wheelDownCard = null;
       if (e && e.pointerId !== undefined && wheel.hasPointerCapture(e.pointerId)) {
         try { wheel.releasePointerCapture(e.pointerId); } catch (err) { }
       }
@@ -2218,6 +2220,7 @@
       if (e.pointerType === 'mouse' && e.button !== 0) return;
       wheelDragging = true;
       wheelPointerId = e.pointerId;
+      wheelDownCard = e.target && e.target.closest ? e.target.closest('.fcard') : null;
       wheelMoved = 0;
       wheelAxis = null;
       wheelLastX = e.clientX;
@@ -2257,6 +2260,7 @@
       wheelDragging = false;
       wheel.classList.remove('is-dragging');
       wheelPointerId = null;
+      wheelDownCard = null;
       wheelVelocity = 0;
       wheelSnapTarget = Math.round(wheelPos);
       wheelQuietAt = performance.now();
