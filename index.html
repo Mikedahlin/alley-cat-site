@@ -1394,9 +1394,11 @@
       perspective: 1600px;
       perspective-origin: 50% 50%;
       transform-style: preserve-3d;
-      touch-action: none;
+      display: block;
+      touch-action: pan-y;
       cursor: grab;
-      overscroll-behavior: contain;
+      overscroll-behavior-x: contain;
+      overscroll-behavior-y: auto;
       isolation: isolate;
     }
 
@@ -1767,7 +1769,7 @@
         </div>
         <div class="fctl">
           <button class="btn line" id="spin">⟳ SPIN FOR RANDOM</button>
-          <span class="fhint">DRAG TO EXPLORE // TAP A CARD TO VIEW</span>
+          <span class="fhint">SWIPE SIDEWAYS // SCROLL DOWN TO CONTINUE // TAP TO VIEW</span>
         </div>
       </div>
       <div class="wheel" id="wheel" aria-label="Scrolling flash gallery"></div>
@@ -2043,8 +2045,11 @@
     var wheelCaptured = false;
     var wheelMoved = 0;
     var wheelAxis = null;
+    var wheelStartX = 0;
+    var wheelStartY = 0;
     var wheelLastX = 0;
     var wheelLastY = 0;
+    var wheelLastMoveAt = 0;
     var wheelQuietAt = performance.now();
     var wheelNeedsRender = true;
     var wheelLastFrame = 0;
@@ -2142,9 +2147,9 @@
 
       if (!wheelDragging) {
         if (wheelSnapTarget === null) {
-          if (Math.abs(wheelVelocity) > .0005) {
+          if (Math.abs(wheelVelocity) > .006) {
             wheelPos += wheelVelocity * dt / 16.7;
-            wheelVelocity *= Math.pow(.88, dt / 16.7);
+            wheelVelocity *= Math.pow(.95, dt / 16.7);
           } else {
             wheelVelocity = 0;
             wheelSnapTarget = Math.round(wheelPos);
@@ -2153,13 +2158,12 @@
 
         if (wheelSnapTarget !== null) {
           var difference = wheelSnapTarget - wheelPos;
-          wheelPos += difference * Math.min(1, .24 * dt / 16.7);
+          wheelPos += difference * Math.min(1, .16 * dt / 16.7);
           if (Math.abs(difference) < .001) {
             wheelPos = wheelSnapTarget;
             wheelSnapTarget = null;
           }
         }
-
       }
 
       if (wheelNeedsRender || wheelDragging || wheelSnapTarget !== null || Math.abs(wheelVelocity) > .0005) {
@@ -2189,7 +2193,7 @@
     function finishWheelPointer(e) {
       if (!wheelDragging) return;
       if (e && e.pointerId !== undefined && wheelPointerId !== null && e.pointerId !== wheelPointerId) return;
-      var wasMoved = wheelMoved > 10;
+      var wasMoved = wheelAxis === 'x' && wheelMoved > 10;
       var tapCard = !wasMoved ? (wheelDownCard || (e ? cardAtPoint(e.clientX, e.clientY) : null)) : null;
       wheelDragging = false;
       wheel.classList.remove('is-dragging');
@@ -2201,8 +2205,8 @@
         try { wheel.releasePointerCapture(e.pointerId); } catch (err) { }
       }
       if (wasMoved) {
-          wheelVelocity = Math.max(-.16, Math.min(.16, wheelVelocity * 1.8));
-        wheelSnapTarget = Math.round(wheelPos + wheelVelocity * 7);
+        wheelVelocity = Math.max(-.72, Math.min(.72, wheelVelocity * 1.75));
+        wheelSnapTarget = Math.abs(wheelVelocity) < .035 ? Math.round(wheelPos) : null;
       } else {
         finishWheelMotion();
         if (tapCard) {
@@ -2223,35 +2227,53 @@
       wheelCaptured = false;
       wheelMoved = 0;
       wheelAxis = null;
-      wheelLastX = e.clientX;
-      wheelLastY = e.clientY;
+      wheelStartX = wheelLastX = e.clientX;
+      wheelStartY = wheelLastY = e.clientY;
+      wheelLastMoveAt = e.timeStamp || performance.now();
       wheelVelocity = 0;
       wheelSnapTarget = null;
       wheelQuietAt = performance.now();
-      wheel.classList.add('is-dragging');
     });
 
     wheel.addEventListener('pointermove', function (e) {
       if (!wheelDragging || e.pointerId !== wheelPointerId) return;
-      var dx = e.clientX - wheelLastX;
-      var dy = e.clientY - wheelLastY;
-      if (!wheelAxis && Math.hypot(e.clientX - (wheelLastX - dx), e.clientY - (wheelLastY - dy)) > 4) {
-        wheelAxis = Math.abs(dx) >= Math.abs(dy) ? 'x' : 'y';
+      var totalX = e.clientX - wheelStartX;
+      var totalY = e.clientY - wheelStartY;
+      wheelMoved = Math.max(wheelMoved, Math.hypot(totalX, totalY));
+
+      if (!wheelAxis) {
+        if (wheelMoved < 7) return;
+        if (Math.abs(totalY) > Math.abs(totalX) * 1.1) {
+          wheelAxis = 'scroll';
+          wheelDragging = false;
+          wheelPointerId = null;
+          wheelDownCard = null;
+          wheelVelocity = 0;
+          wheelSnapTarget = Math.round(wheelPos);
+          wheel.classList.remove('is-dragging');
+          return;
+        }
+        if (Math.abs(totalX) <= Math.abs(totalY)) return;
+        wheelAxis = 'x';
+        wheel.classList.add('is-dragging');
+        if (!wheelCaptured) {
+          try { wheel.setPointerCapture(e.pointerId); wheelCaptured = true; } catch (err) { }
+        }
       }
-      var movement = wheelAxis === 'y' ? dy : dx;
-      var stride = wheelAxis === 'y'
-        ? Math.max(150, wheel.clientHeight * .42)
-        : Math.max(150, wheel.clientWidth * .34);
-      var delta = -movement / stride;
+
+      if (wheelAxis !== 'x') return;
+      var dx = e.clientX - wheelLastX;
+      var moveAt = e.timeStamp || performance.now();
+      var moveDt = Math.max(8, Math.min(50, moveAt - wheelLastMoveAt || 16.7));
+      var stride = Math.max(105, Math.min(220,
+        wheel.clientWidth * (window.innerWidth <= 640 ? .34 : .20)));
+      var delta = -dx / stride;
+      var frameVelocity = delta * 16.7 / moveDt;
       wheelLastX = e.clientX;
       wheelLastY = e.clientY;
-      if (!wheelAxis) return;
-      if (!wheelCaptured) {
-        try { wheel.setPointerCapture(e.pointerId); wheelCaptured = true; } catch (err) { }
-      }
+      wheelLastMoveAt = moveAt;
       wheelPos += delta;
-      wheelVelocity = delta;
-      wheelMoved += Math.hypot(dx, dy);
+      wheelVelocity = wheelVelocity * .58 + frameVelocity * .42;
       wheelNeedsRender = true;
       e.preventDefault();
     });
@@ -2288,11 +2310,9 @@
     });
 
     document.getElementById('spin').addEventListener('click', function () {
-      var randomIndex = Math.floor(Math.random() * n);
-      var rounds = n * (2 + Math.floor(Math.random() * 2));
-      wheelVelocity = 0;
-      wheelSnapTarget = wheelPos + wheelDistance(randomIndex, wheelPos) +
-        (Math.random() < .5 ? -rounds : rounds);
+      var direction = Math.random() < .5 ? -1 : 1;
+      wheelVelocity = direction * (.62 + Math.random() * .20);
+      wheelSnapTarget = null;
       wheelQuietAt = performance.now();
     });
 
