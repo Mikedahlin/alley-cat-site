@@ -2023,8 +2023,7 @@
         '<img draggable="false" decoding="async" loading="lazy" data-s="' + p[0] + '" data-full="' + p[2] + '" alt="Alley Cat Ink flash design">';
       d.addEventListener('click', function (e) {
         e.stopPropagation();
-        if (performance.now() < wheelIgnoreClickUntil) return;
-        activateFlashCard(d);
+          activateFlashCard(d);
       });
       wheel.appendChild(d);
     }
@@ -2044,7 +2043,6 @@
     var wheelLastX = 0;
     var wheelLastY = 0;
     var wheelQuietAt = performance.now();
-    var wheelIgnoreClickUntil = 0;
     var wheelNeedsRender = true;
     var wheelLastFrame = 0;
     var curOn = -1;
@@ -2174,7 +2172,7 @@
     }
 
     function activateFlashCard(card) {
-      if (!card) return;
+      if (!card || document.body.classList.contains('image-viewer-open')) return;
       var index = Number(card.getAttribute('data-index'));
       var active = modWheel(Math.round(wheelPos), n);
       if (index !== active) {
@@ -2206,13 +2204,11 @@
         try { wheel.releasePointerCapture(e.pointerId); } catch (err) { }
       }
       if (wasMoved) {
-        wheelIgnoreClickUntil = performance.now() + 450;
-        wheelVelocity = Math.max(-.16, Math.min(.16, wheelVelocity * 1.8));
+          wheelVelocity = Math.max(-.16, Math.min(.16, wheelVelocity * 1.8));
         wheelSnapTarget = Math.round(wheelPos + wheelVelocity * 7);
       } else {
         finishWheelMotion();
         if (tapCard) {
-          wheelIgnoreClickUntil = performance.now() + 180;
           activateFlashCard(tapCard);
         }
       }
@@ -2224,7 +2220,6 @@
 
     wheel.addEventListener('pointerdown', function (e) {
       if (e.pointerType === 'mouse' && e.button !== 0) return;
-      wheelIgnoreClickUntil = 0;
       wheelDragging = true;
       wheelPointerId = e.pointerId;
       wheelDownCard = e.target && e.target.closest ? e.target.closest('.fcard') : null;
@@ -2284,7 +2279,6 @@
     wheel.addEventListener('click', function (e) {
       var card = e.target && e.target.closest ? e.target.closest('.fcard') : null;
       if (!card) return;
-      if (performance.now() < wheelIgnoreClickUntil) return;
       activateFlashCard(card);
     });
 
