@@ -1662,6 +1662,9 @@
     @media (max-width: 640px) {
       .compareViewport { width: min(100%, 320px) !important; aspect-ratio: 4 / 5 !important; height: auto !important; min-height: 0 !important; max-height: none !important; }
       .fcard { opacity: 1 !important; filter: none !important; }
+    }      /* ===== goose mobile fix 3 (Sep 1 2026): faster wheel scrolling ===== */
+    @media (max-width: 640px) {
+      .wheel { scroll-snap-type: x proximity !important; }
     }  </style>
   <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TattooParlor","name":"Alley Cat Ink",
@@ -2098,7 +2101,7 @@
         var image = IMGS[i];
         if (image && !image.getAttribute('src')) {
           image.setAttribute('src', image.getAttribute('data-s'));
-          if (i < 3 && image.decode) image.decode().catch(function () { });
+          if (i < 6 && image.decode) image.decode().catch(function () { });
         }
       }
       setFlashActive(0);
@@ -2358,19 +2361,27 @@
     });
 
     var mobileScrollRaf = 0;
+    var mobileCardCenters = null;
+    function cacheMobileWheel() {
+      mobileCardCenters = new Array(cards.length);
+      for (var i = 0; i < cards.length; i++) {
+        mobileCardCenters[i] = cards[i].offsetLeft + cards[i].offsetWidth / 2;
+      }
+    }
+    window.addEventListener('resize', function () { mobileCardCenters = null; }, { passive: true });
     wheel.addEventListener('scroll', function () {
-      if (!isMobileWheel() || mobileScrollRaf) return;
+      if (!isMobileWheel()) return;
+      if (!mobileCardCenters) cacheMobileWheel();
+      if (mobileScrollRaf) return;
       mobileScrollRaf = requestAnimationFrame(function () {
         mobileScrollRaf = 0;
-        var wr = wheel.getBoundingClientRect();
-        var mid = wr.left + wr.width / 2;
-        var best = -1, bestD = 1e9;
-        for (var i = 0; i < cards.length; i++) {
-          var r = cards[i].getBoundingClientRect();
-          var d = Math.abs(r.left + r.width / 2 - mid);
+        var target = wheel.scrollLeft + wheel.clientWidth / 2;
+        var best = 0, bestD = 1e9;
+        for (var i = 0; i < mobileCardCenters.length; i++) {
+          var d = Math.abs(mobileCardCenters[i] - target);
           if (d < bestD) { bestD = d; best = i; }
         }
-        if (best >= 0) setFlashActive(best);
+        setFlashActive(best);
       });
     }, { passive: true });
     wheel.addEventListener('keydown', function (e) {
