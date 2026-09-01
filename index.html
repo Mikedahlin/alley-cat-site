@@ -678,72 +678,6 @@
 
     .faqList p b { color: #fff; font-weight: 600 }
 
-    /* ---------- tattoo pricing ---------- */
-    #pricing {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .tgrid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      max-width: 1240px;
-      margin: 0 auto;
-    }
-
-    .tcard {
-      border: 1px solid var(--line);
-      background: var(--panel);
-      padding: 32px 26px;
-      position: relative;
-    }
-
-    .tcard::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 46px;
-      height: 3px;
-      background: var(--green);
-      box-shadow: 0 0 12px rgba(63, 233, 255, .7);
-    }
-
-    .tnum {
-      font-family: var(--disp);
-      font-size: clamp(38px, 5vw, 56px);
-      color: #fff;
-      line-height: 1;
-      letter-spacing: -.5px;
-    }
-
-    .tnum .thr {
-      font-size: .5em;
-      color: var(--green);
-      margin-left: 6px;
-    }
-
-    .tlabel {
-      margin-top: 10px;
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 2.5px;
-      color: var(--green);
-      text-transform: uppercase;
-    }
-
-    .tdesc {
-      margin-top: 14px;
-      color: var(--dim);
-      font-size: 13px;
-      line-height: 1.65;
-    }
-
-    @media (max-width: 1020px) {
-      .tgrid { grid-template-columns: 1fr; }
-    }
-
     /* ---------- artist bio ---------- */
     .about {
       max-width: 880px;
@@ -2080,32 +2014,6 @@
       <div class="pban rv">
         <b>ALL POSTED PRICES INCLUDE JEWELRY!</b>
         <span>FREE JEWELRY EXCHANGE SERVICE — WE INSTALL NEW PROVIDED JEWELRY FOR YOUR SAFETY AND CONVENIENCE</span>
-      </div>
-    </section>
-
-    <!-- TATTOO PRICING -->
-    <section id="pricing" aria-labelledby="pricingTitle">
-      <div class="shead rv">
-        <div class="eyebrow">TATTOO PRICING · STRAIGHT UP</div>
-        <h2 id="pricingTitle" class="big"><span class="nw">NO </span><span class="g ng">SURPRISES.</span></h2>
-        <p class="ssub">SHOP MINIMUM · HOURLY · DEPOSIT</p>
-      </div>
-      <div class="tgrid rv">
-        <div class="tcard">
-          <div class="tnum">$100</div>
-          <div class="tlabel">SHOP MINIMUM</div>
-          <p class="tdesc">Small flash pieces, single-color line work, and quick tattoos start at the shop minimum. Covers chair, setup, and aftercare sheet.</p>
-        </div>
-        <div class="tcard">
-          <div class="tnum">$150<span class="thr">/HR</span></div>
-          <div class="tlabel">RICH'S HOURLY</div>
-          <p class="tdesc">Custom work is billed by the hour. Most pieces finish in one session; larger scale or full sleeves are scheduled in blocks.</p>
-        </div>
-        <div class="tcard">
-          <div class="tnum">$50</div>
-          <div class="tlabel">DEPOSIT</div>
-          <p class="tdesc">Applies to any custom consult and books your appointment. Comes off the final total. Reschedule with 48 hours notice — no fee.</p>
-        </div>
       </div>
     </section>
 
