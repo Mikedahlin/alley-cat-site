@@ -755,29 +755,6 @@
       color: rgba(255, 255, 255, .28)
     }
 
-    /* ---------- lightbox ---------- */
-    #lb {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, .93);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 200;
-      cursor: zoom-out
-    }
-
-    #lb.show {
-      display: flex
-    }
-
-    #lbi {
-      max-width: 92vw;
-      max-height: 90vh;
-      border: 1px solid var(--line);
-      box-shadow: 0 0 80px rgba(63, 233, 255, .12)
-    }
-
     /* ---------- grain ---------- */
     .grain {
       position: fixed;
@@ -806,6 +783,12 @@
 
     .nw {
       animation: neonW 9.6s -3.4s infinite
+    }
+
+    @media (max-width: 1024px) {
+      .ng, .nw {
+        animation: none
+      }
     }
 
     @keyframes neonG {
@@ -872,7 +855,7 @@
     }
 
     @media (max-width:640px) {
-      .hbtns .line {
+      .hbtns {
         display: none
       }
 
@@ -1804,68 +1787,68 @@
         <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w08.jpg" alt="Cheshire cat tattoo"></figure>
         <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w09.jpg" alt="Butterfly tattoo"></figure>
         <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w10.jpg" alt="Marlin tattoo in progress"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w11.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w12.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w13.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w14.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w17.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w18.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w19.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w20.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w21.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w22.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w23.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w24.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w25.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w26.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w27.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w28.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w29.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w30.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w31.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w32.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w33.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w34.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w35.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w36.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w37.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w38.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w39.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w40.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w41.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w42.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w43.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w44.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w45.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w46.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w47.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w48.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w49.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w50.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w51.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w52.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w53.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w54.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w55.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w56.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w57.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w58.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w59.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w60.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w61.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w62.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w63.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w64.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w65.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w66.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w67.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w68.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w69.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w70.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w71.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w72.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w73.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
-        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w74.jpg" alt="Tattoo by Rich Verri — Alley Cat Ink"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w11.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w12.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w13.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w14.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w17.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w18.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w19.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w20.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w21.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w22.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w23.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w24.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w25.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w26.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w27.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w28.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w29.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w30.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w31.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w32.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w33.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w34.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w35.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w36.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w37.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w38.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w39.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w40.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w41.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w42.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w43.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w44.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w45.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w46.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w47.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w48.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w49.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w50.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w51.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w52.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w53.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w54.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w55.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w56.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w57.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w58.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w59.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w60.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w61.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w62.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w63.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w64.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w65.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w66.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w67.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w68.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w69.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w70.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w71.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w72.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w73.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
+        <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w74.jpg" alt="Custom tattoo gallery piece — Alley Cat Ink, Hutchinson MN"></figure>
         <a class="witem wcta" href="tel:+13206991012"><b>+</b>YOUR SKIN NEXT</a>
       </div>
       <button class="btn line workMore" id="workMore" type="button" aria-expanded="false" aria-controls="workGrid">SHOW MORE WORK</button>
@@ -2529,9 +2512,10 @@
     /* ================= CALL / TEXT FALLBACK ================= */
     var contactChoices = document.getElementById('contactChoices');
     function closeContact() { contactChoices.classList.remove('open'); }
+    var isTouchDevice = (navigator.maxTouchPoints > 0) || ('ontouchstart' in window);
     document.addEventListener('click', function (e) {
       var phone = e.target.closest && e.target.closest('a[href^="tel:"],a[href^="sms:"]');
-      if (phone && !phone.hasAttribute('data-direct-phone')) {
+      if (phone && !phone.hasAttribute('data-direct-phone') && !isTouchDevice) {
         e.preventDefault();
         contactChoices.classList.add('open');
       }
