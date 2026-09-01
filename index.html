@@ -1655,7 +1655,14 @@
       }
     }
 
-  @media (max-width:640px){.wheel{display:flex!important;flex-direction:row!important;align-items:center!important;gap:14px!important;width:100%!important;height:auto!important;overflow-x:auto!important;overflow-y:hidden!important;padding:20px calc(50% - 112px)!important;scroll-snap-type:x mandatory!important;touch-action:pan-x pan-y!important;cursor:default!important}.wheel::before,.wheel::after{display:none!important}.fcard{position:static!important;left:auto!important;top:auto!important;transform:none!important;width:224px!important;height:304px!important;flex:0 0 auto!important;scroll-snap-align:center!important;touch-action:auto!important}}</style>
+  @media (max-width:640px){.wheel{display:flex!important;flex-direction:row!important;align-items:center!important;gap:14px!important;width:100%!important;height:auto!important;overflow-x:auto!important;overflow-y:hidden!important;padding:20px calc(50% - 112px)!important;scroll-snap-type:x mandatory!important;touch-action:pan-x pan-y!important;cursor:default!important}.wheel::before,.wheel::after{display:none!important}.fcard{position:static!important;left:auto!important;top:auto!important;transform:none!important;width:224px!important;height:304px!important;flex:0 0 auto!important;scroll-snap-align:center!important;touch-action:auto!important}}    /* ===== goose mobile fix 2 (Sep 1 2026): unblock page scroll over compare, un-ghost wheel cards ===== */
+    .compareStage { touch-action: pan-y !important; }
+    .iosSlider { touch-action: pan-y !important; }
+    .iosRange { touch-action: pan-y !important; }
+    @media (max-width: 640px) {
+      .compareViewport { width: min(100%, 320px) !important; aspect-ratio: 4 / 5 !important; height: auto !important; min-height: 0 !important; max-height: none !important; }
+      .fcard { opacity: 1 !important; filter: none !important; }
+    }  </style>
   <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TattooParlor","name":"Alley Cat Ink",
 "description":"Tattoos & piercings in Hutchinson, MN. Custom work, cover-ups, flash, and piercing with jewelry included. Walk-ins welcome.",
@@ -2207,6 +2214,17 @@
     function activateFlashCard(card) {
       if (!card || document.body.classList.contains('image-viewer-open')) return;
       var index = Number(card.getAttribute('data-index'));
+      if (isMobileWheel()) {
+        if (!(index >= 0)) return;
+        if (card.classList.contains('on')) {
+          var image0 = card.querySelector('img');
+          if (image0) openImageViewer(image0.getAttribute('data-full'), 'Alley Cat Ink flash design', 'FLASH DESIGN');
+        } else {
+          setFlashActive(index);
+          card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+        return;
+      }
       var active = modWheel(Math.round(wheelPos), n);
       if (index !== active) {
         wheelDestination(index, 0);
@@ -2339,6 +2357,22 @@
       activateFlashCard(card);
     });
 
+    var mobileScrollRaf = 0;
+    wheel.addEventListener('scroll', function () {
+      if (!isMobileWheel() || mobileScrollRaf) return;
+      mobileScrollRaf = requestAnimationFrame(function () {
+        mobileScrollRaf = 0;
+        var wr = wheel.getBoundingClientRect();
+        var mid = wr.left + wr.width / 2;
+        var best = -1, bestD = 1e9;
+        for (var i = 0; i < cards.length; i++) {
+          var r = cards[i].getBoundingClientRect();
+          var d = Math.abs(r.left + r.width / 2 - mid);
+          if (d < bestD) { bestD = d; best = i; }
+        }
+        if (best >= 0) setFlashActive(best);
+      });
+    }, { passive: true });
     wheel.addEventListener('keydown', function (e) {
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
       e.preventDefault();
