@@ -895,13 +895,25 @@
       font-weight: 400
     }
 
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0
+    }
+
     .fv {
       max-width: 1240px;
       margin: 14px auto 0;
       font-family: var(--mono);
       font-size: 9px;
       letter-spacing: 2px;
-      color: rgba(255, 255, 255, .28)
+      color: rgba(255, 255, 255, .55)
     }
 
     /* ---------- grain ---------- */
@@ -1900,7 +1912,8 @@
         <div class="coverProofHead">
           <div>
             <div class="eyebrow">REAL COVER-UP PROOF</div>
-            <h3 id="coverupTitle">OLD INK. <span>REWORKED.</span></h3>
+            <h2 class="sr-only">Cover-up tattoos</h2>
+<h3 id="coverupTitle">OLD INK. <span>REWORKED.</span></h3>
           </div>
           <p>Slide from the complete before photo to the complete finished tattoo.</p>
         </div>
@@ -2247,7 +2260,7 @@
       d.type = 'button';
       d.className = 'fcard';
       d.setAttribute('data-index', String(fi));
-      d.setAttribute('aria-label', 'Open flash design');
+      d.setAttribute('aria-label', 'TAP TO VIEW - flash design ' + p[1]);
       d.setAttribute('tabindex', fi === 0 ? '0' : '-1');
       d.innerHTML = '<span class="fh">TAP TO VIEW</span>' +
         '<img draggable="false" decoding="async" data-s="' + p[0] + '" data-full="' + p[2] + '" alt="Alley Cat Ink flash design">';
