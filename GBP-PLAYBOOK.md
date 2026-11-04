@@ -14,7 +14,7 @@ Live site: https://alleycatinkmn.com
 | Address | 113 Main St S, Hutchinson, MN 55350 | Live Facebook page metadata (2026-11-03) |
 | Phone | (320) 699-1012 | Live Facebook page ("Call, DM, or stop by! 320-699-1012") |
 | Website | https://alleycatinkmn.com | Live site |
-| Hours | Tue–Sat 12:00 PM – 7:30 PM; Sun–Mon closed | Site (confirm in GBP) |
+| Hours | Tue–Sat 12:00 PM – 7:30 PM; Sun–Mon closed | Site. GBP currently says 7:00 PM with a 7:30 PM edit stuck in review |
 | Primary category | Tattoo shop | Site + Facebook |
 | Secondary category | Body piercing shop | Site offers piercings |
 | Instagram | https://www.instagram.com/karrotstattoos | Site |
@@ -278,9 +278,9 @@ If Google offers video verification:
 - [x] `robots.txt` added
 - [x] `sitemap.xml` added
 - [x] Vercel cache headers for icons and media
-- [ ] Deploy and verify the live site
+- [x] Deploy and verify the live site
 - [ ] Confirm GBP hours match the site
-- [ ] Confirm the GBP name is exactly `Alley Cat Ink`
+- [x] Confirm the GBP name is exactly `Alley Cat Ink`
 
 ---
 
@@ -288,10 +288,39 @@ If Google offers video verification:
 
 | Item | Value | Notes |
 |---|---|---|
-| GBP current name | | Must match `Alley Cat Ink` |
-| GBP current hours | | Must match the site |
-| GBP current review count | | Record before edits |
-| GBP current rating | | Record before edits |
+| GBP current name | Alley Cat Ink | Confirmed in editor 2026-11-03 |
+| GBP current hours | Tue–Sat 12:00–19:00 | A 19:30 edit is stuck in review |
+| GBP current review count | 93 | Confirmed 2026-11-03 |
+| GBP current rating | 4.8 | Confirmed 2026-11-03 |
 | Place ID | | Needed for the review link |
 | Separate Glencoe listing? | | Do not merge/duplicate without checking |
 | Appointment link | | Leave blank if none |
+
+---
+
+## Captured 2026-11-03 — actual GBP state
+
+Read directly from the signed-in Business Profile editor.
+
+| Field | Value | Status |
+|---|---|---|
+| Name | Alley Cat Ink | Correct — two words |
+| Category | Tattoo shop | Correct |
+| Address | 146 Franklin St SW, Hutchinson, MN 55350 | Conflicts with site/Facebook (113 Main St S) |
+| Phone | (320) 699-1012 | Correct |
+| Website | facebook.com/profile.php?id=100086398303858 | Google had replaced it; edit to alleycatinkmn.com submitted |
+| Description | (empty) | New 405-character description submitted and now live |
+| Hours | Tue–Sat 12:00–19:00 | 19:30 edit pending |
+| Services | 17 services populated | Edit pending review |
+| Attributes | Wheelchair entrance + parking, cards, onsite services, no delivery | Fine |
+| Socials | Facebook only | Wrong Instagram and wrong-person LinkedIn removed |
+| Owner photos | 16 | No logo, no cover, no exterior |
+| Rating / reviews | 4.8 / 93 | Do not create a duplicate |
+
+**Traps found**
+
+- Google auto-replaced the website with the Facebook profile and auto-added a stranger's LinkedIn (Adam Moonen) and an unrelated Instagram (`ajtattoos_`).
+- The dashboard's "4.4 (34)" card is a different business. The managed listing is 4.8 with 93 reviews.
+- A separate "Alley Cat Ink" exists in Elkhorn, WI (4.8 / 152, 262 area code). Never edit or merge that one.
+- The `alley_cat_ink` Instagram is the Hutchinson shop's (Rich Verri, Hutchinson, MN).
+
