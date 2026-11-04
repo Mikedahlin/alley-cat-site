@@ -174,8 +174,8 @@ Use files already in `media/`:
 
 | GBP category | Files |
 |---|---|
-| Logo | **Uploaded 2026-11-03 — pending review** |
-| Cover | **Uploaded 2026-11-03 — pending review** |
+| Logo | `media/logo.jpg` |
+| Cover | `media/hero-poster.jpg` or a strong wide work image |
 | Exterior | A current storefront/sign photo at 113 Main St S |
 | Interior | Clean studio photos |
 | Team | Approved artist photos |
@@ -316,7 +316,7 @@ Read directly from the signed-in Business Profile editor.
 | Services | 17 services populated | Edit pending review |
 | Attributes | Wheelchair entrance + parking, cards, onsite services, no delivery | Fine |
 | Socials | Facebook + **Instagram `alley_cat_ink`** | **LIVE** — public panel now shows Instagram + Facebook only |
-| Owner photos | 16 | Logo + cover uploaded 2026-11-03 (**pending review**). No exterior/interior yet — manual upload |
+| Owner photos | 16 | No logo, no cover, no exterior — upload must be manual |
 | Rating / reviews | 4.8 / 93 | Do not create a duplicate |
 
 **Traps found**
@@ -335,9 +335,10 @@ Read directly from the signed-in Business Profile editor.
 The GBP media tool (`/promote/photos/mediatool`) creates no `input[type=file]` and exposes no drop target, so browser automation cannot upload. Do it by hand at
 `https://www.google.com/local/business/9421026394677469151/promote/photos/mediatool`
 
-**1. Logo** — **DONE 2026-11-03**, pending review. Uploaded a 1080×1080 tan/gold logo on white.
+**1. Logo** — `media/logo.jpg` (2048×2048, square). Click **Add a logo**.
 
-**2. Cover** — **DONE 2026-11-03**, pending review. Uploaded a 1920×1280 (3:2) dark cover.
+**2. Cover** — `media/hero-poster.jpg` (1280×720, 16:9). Click **Add a cover photo**.
+If the poster is a graphic/collage rather than a real photo, use a wide shot of the storefront instead.
 
 **3. Exterior** — not in the repo. Shoot the storefront: sign readable, `113` visible, daylight, straight on.
 
@@ -355,28 +356,6 @@ Suggested: `w10.jpg`, `w26.jpg`, `w34.jpg`, `w46.jpg` — open them first and sw
 - Re-check after 24 h that Google accepted them; the logo sometimes needs re-cropping.
 
 Priority if short on time: logo → cover → exterior → work photos.
-
----
-
-## Site brand assets (live 2026-11-03)
-
-The new Google logo/cover are now the site's brand assets. Source files live in `media/`.
-
-| File | Size | Use |
-|---|---|---|
-| `media/logo-mark.png` | 512×512, transparent | Header `.brand img`, `.aboutPhoto`, JSON-LD `image`/`logo` |
-| `media/og-cover.jpg` | 1200×630 | `og:image` + `twitter:image` |
-| `media/icon-512.png` | 512×512, dark tile | Android / PWA icon |
-| `media/icon-180.png` | 180×180, dark tile | Apple touch icon |
-| `media/favicon-32.png` | 32×32, dark tile | Browser tab |
-| `media/favicon.svg` | embedded 128px tile | SVG-capable browsers |
-| `favicon.ico` (repo root) | 16/32/48/64 | Legacy `/favicon.ico` requests |
-
-How the logo was made: downloaded Google's compressed 1080×1080 copy, flood-filled the white background to transparent from all four corners (threshold 45), cropped to the art bounding box, then re-padded to a square with a 4% margin. Icons use a `#0a0d0a` rounded tile behind the mark so tan/gold stays readable on light browser chrome.
-
-Rollback: `media/logo.jpg` (old dark-green 2048) and `media/hero-poster.jpg` (old 16:9 poster) are still in the repo.
-
-**Caveat:** these are derived from Google's compressed copies, not the designer's originals. If the originals turn up, replace `logo-mark.png` and `og-cover.jpg` and bump the icon `?v=` query to `5`.
 
 ---
 
