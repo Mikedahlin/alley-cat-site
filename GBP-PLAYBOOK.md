@@ -308,14 +308,14 @@ Read directly from the signed-in Business Profile editor.
 |---|---|---|
 | Name | Alley Cat Ink | Correct — two words |
 | Category | Tattoo shop | Correct |
-| Address | 146 Franklin St SW → **113 Main St S** | **PENDING review** (user confirmed 113 Main St S is current) |
+| Address | 146 Franklin St SW → **113 Main St S** | **PENDING** — Google says up to 7 days |
 | Phone | (320) 699-1012 | Correct |
-| Website | facebook.com/profile.php?id=100086398303858 → **alleycatinkmn.com** | **PENDING review** |
+| Website | facebook.com/profile.php?id=100086398303858 → **alleycatinkmn.com** | **PENDING** — up to 7 days |
 | Description | 405-character description | **LIVE** |
-| Hours | Tue–Sat 12:00–19:00 | 19:30 edit still pending |
+| Hours | Tue–Sat 12:00–19:00 | 19:30 edit still pending. Owner's own review replies say the shop meant to close at **7:00 PM** |
 | Services | 17 services populated | Edit pending review |
 | Attributes | Wheelchair entrance + parking, cards, onsite services, no delivery | Fine |
-| Socials | Facebook + **Instagram `alley_cat_ink`** | Instagram addition **PENDING review**; wrong Instagram and wrong-person LinkedIn removed |
+| Socials | Facebook + **Instagram `alley_cat_ink`** | **LIVE** — public panel now shows Instagram + Facebook only |
 | Owner photos | 16 | No logo, no cover, no exterior — upload must be manual |
 | Rating / reviews | 4.8 / 93 | Do not create a duplicate |
 
@@ -356,4 +356,17 @@ Suggested: `w10.jpg`, `w26.jpg`, `w34.jpg`, `w46.jpg` — open them first and sw
 - Re-check after 24 h that Google accepted them; the logo sometimes needs re-cropping.
 
 Priority if short on time: logo → cover → exterior → work photos.
+
+---
+
+## Review backlog (2026-11-03)
+
+- Page 1 of the review list: **8 of 10 reviews have no reply**. Total is "of many" (93 reviews), so expect most to be unanswered.
+- The two replies that do exist are from Aug 2025 and are long, defensive paragraphs about closing early. They read badly in public.
+- Those replies also contain the proof on hours: the owner wrote *"it says we're open till 9:00 on Google even though we tried to change it to seven"*. The intended close is **7:00 PM**, not 7:30. The site is the outlier.
+- Recent 5-star reviews with no reply: Betty Brandt (3 days), Anna (7 weeks), Patty Marconcini (17 weeks), Angela Remily (20 weeks, rating only), Gideon Powell (20 weeks), Faith Ross (23 weeks, rating only), bethann mcguire (29 weeks).
+
+Suggested next move: short, warm replies (1–2 sentences) to the last 10, then work backwards. Do not argue with negative reviews in public; move it to a phone call.
+
+**Hours decision (open):** the user asked to leave hours alone for now and double-check. Until then the site says 7:30 PM and Google says 7:00 PM.
 
