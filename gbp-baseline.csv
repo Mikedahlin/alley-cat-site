@@ -10,8 +10,8 @@ description,(empty),"Alley Cat Ink is a tattoo and piercing studio in downtown H
 services,"Abstract tattoos; Color ink tattoos; Custom tattoo lettering; Delicate dot work; Eyebrow piercing; Female tattoos; Fine line; Industrial piercings; Male tattoos; Mandala; Memorial; Nose piercing; Old-fashioned; Piercings; Solid black work; Tattoo cover-ups & reworkings; Tattoo design",,GBP editor,verified,Already populated; edit pending review
 attributes,"Wheelchair accessible entrance; wheelchair accessible parking; accepts credit/debit cards; not cash-only; onsite services; no delivery; no electronics recycling",,GBP editor,verified,
 appointment_link,(none),,GBP editor,verified,No booking system
-logo_photo,(none),,Photos tab,verified,"No logo set; dashboard prompts Add a logo"
-cover_photo,(none),,Photos tab,verified,"No cover set; dashboard prompts Add a cover photo"
+logo_photo,(none),New tan/gold logo on white (1080x1080),Photos tab 2026-11-03,PENDING,Uploaded by owner 2026-11-03; awaiting Google review. Site uses a transparent derivative: media/logo-mark.png
+cover_photo,(none),Dark cover (1920x1280),Photos tab 2026-11-03,PENDING,Uploaded by owner 2026-11-03; awaiting Google review. Site uses a 1200x630 crop: media/og-cover.jpg
 exterior_photo,(missing),,Photos tab,verified,Dashboard prompts Add exterior photo
 interior_photo,,,Photos tab,unknown,
 team_photo,,,Photos tab,unknown,
@@ -24,7 +24,7 @@ review_count,93,,Google knowledge panel 2026-11-03,verified,4.4(34) seen elsewhe
 rating,4.8,,Google knowledge panel 2026-11-03,verified,
 profile_completeness,Complete,,GBP dashboard,verified,
 customer_interactions,1919,,GBP dashboard,verified,
-social_profiles,"Instagram ajtattoos_; LinkedIn adam-moonen; Facebook","Facebook; Instagram @alley_cat_ink (pending)",GBP editor,PENDING,Wrong Instagram and wrong-person LinkedIn removed. Correct shop Instagram is @alley_cat_ink (per Google profile association); addition awaiting review.
+social_profiles,"Instagram ajtattoos_; LinkedIn adam-moonen; Facebook","Facebook; Instagram @alley_cat_ink",GBP editor,LIVE,Wrong Instagram and wrong-person LinkedIn removed. Public panel now shows Instagram + Facebook only.
 place_id,,ChIJo1LijnST9YcRtkI4wUKkcUg,Google Maps 2026-11-03,verified,Resolves to Alley Cat Ink 4.8 (93) Hutchinson MN
 review_link,,https://search.google.com/local/writereview?placeid=ChIJo1LijnST9YcRtkI4wUKkcUg,Google Maps 2026-11-03,verified,Opens the review form for the correct listing
 maps_link,,https://www.google.com/maps/place/?q=place_id:ChIJo1LijnST9YcRtkI4wUKkcUg,Google Maps 2026-11-03,verified,
