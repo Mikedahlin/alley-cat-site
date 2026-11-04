@@ -292,7 +292,9 @@ If Google offers video verification:
 | GBP current hours | Tue–Sat 12:00–19:00 | A 19:30 edit is stuck in review |
 | GBP current review count | 93 | Confirmed 2026-11-03 |
 | GBP current rating | 4.8 | Confirmed 2026-11-03 |
-| Place ID | | Needed for the review link |
+| Place ID | `ChIJo1LijnST9YcRtkI4wUKkcUg` | Verified: resolves to Alley Cat Ink, 4.8 (93), Hutchinson |
+| Review link | `https://search.google.com/local/writereview?placeid=ChIJo1LijnST9YcRtkI4wUKkcUg` | Verified Place ID |
+| Maps link | `https://www.google.com/maps/place/?q=place_id:ChIJo1LijnST9YcRtkI4wUKkcUg` | Verified |
 | Separate Glencoe listing? | | Do not merge/duplicate without checking |
 | Appointment link | | Leave blank if none |
 
@@ -306,15 +308,15 @@ Read directly from the signed-in Business Profile editor.
 |---|---|---|
 | Name | Alley Cat Ink | Correct — two words |
 | Category | Tattoo shop | Correct |
-| Address | 146 Franklin St SW, Hutchinson, MN 55350 | Conflicts with site/Facebook (113 Main St S) |
+| Address | 146 Franklin St SW → **113 Main St S** | **PENDING review** (user confirmed 113 Main St S is current) |
 | Phone | (320) 699-1012 | Correct |
-| Website | facebook.com/profile.php?id=100086398303858 | Google had replaced it; edit to alleycatinkmn.com submitted |
-| Description | (empty) | New 405-character description submitted and now live |
-| Hours | Tue–Sat 12:00–19:00 | 19:30 edit pending |
+| Website | facebook.com/profile.php?id=100086398303858 → **alleycatinkmn.com** | **PENDING review** |
+| Description | 405-character description | **LIVE** |
+| Hours | Tue–Sat 12:00–19:00 | 19:30 edit still pending |
 | Services | 17 services populated | Edit pending review |
 | Attributes | Wheelchair entrance + parking, cards, onsite services, no delivery | Fine |
-| Socials | Facebook only | Wrong Instagram and wrong-person LinkedIn removed |
-| Owner photos | 16 | No logo, no cover, no exterior |
+| Socials | Facebook + **Instagram `alley_cat_ink`** | Instagram addition **PENDING review**; wrong Instagram and wrong-person LinkedIn removed |
+| Owner photos | 16 | No logo, no cover, no exterior — upload must be manual |
 | Rating / reviews | 4.8 / 93 | Do not create a duplicate |
 
 **Traps found**
@@ -322,5 +324,36 @@ Read directly from the signed-in Business Profile editor.
 - Google auto-replaced the website with the Facebook profile and auto-added a stranger's LinkedIn (Adam Moonen) and an unrelated Instagram (`ajtattoos_`).
 - The dashboard's "4.4 (34)" card is a different business. The managed listing is 4.8 with 93 reviews.
 - A separate "Alley Cat Ink" exists in Elkhorn, WI (4.8 / 152, 262 area code). Never edit or merge that one.
-- The `alley_cat_ink` Instagram is the Hutchinson shop's (Rich Verri, Hutchinson, MN).
+- The `alley_cat_ink` Instagram is the Hutchinson shop's (Rich Verri, Hutchinson, MN). `@karrotstattoos` is **Kerry Kosel's personal artist account** (bio: "Tattoo artist @alley_cat_ink"), so the site was linking an employee, not the shop.
+- **TikTok trap:** `@alleycatink` is Hutchinson (bio: "📍Hutchinson, MN"). `@alley.cat.ink` is the **Elkhorn, WI** shop. Google's panel links the Elkhorn one — never add it to this listing.
+- Changing the address put the listing into review. Watch for a re-verification prompt; do not submit verification without the owner.
+
+---
+
+## Photo upload — manual only (checklist)
+
+The GBP media tool (`/promote/photos/mediatool`) creates no `input[type=file]` and exposes no drop target, so browser automation cannot upload. Do it by hand at
+`https://www.google.com/local/business/9421026394677469151/promote/photos/mediatool`
+
+**1. Logo** — `media/logo.jpg` (2048×2048, square). Click **Add a logo**.
+
+**2. Cover** — `media/hero-poster.jpg` (1280×720, 16:9). Click **Add a cover photo**.
+If the poster is a graphic/collage rather than a real photo, use a wide shot of the storefront instead.
+
+**3. Exterior** — not in the repo. Shoot the storefront: sign readable, `113` visible, daylight, straight on.
+
+**4. Interior** — not in the repo. Shoot the chairs, artwork, and piercing room; no people's faces without consent.
+
+**5. Work photos** — 4 from `media/work/` (the `w##.jpg` files are the high-res ones, ≥1050 px wide).
+Suggested: `w10.jpg`, `w26.jpg`, `w34.jpg`, `w46.jpg` — open them first and swap any that show a face or a bad heal.
+
+**6. Flash** — 1 sheet from `media/flash/` (the `C###.jpg` files are 750×1000).
+
+**Rules**
+- JPG or PNG, at least 720 px on the short side, under 5 MB each.
+- Add logo first: it also becomes the search-result thumbnail.
+- Do not delete customer photos. Report the personal photo and the house photo via **Report a problem → Privacy concern**.
+- Re-check after 24 h that Google accepted them; the logo sometimes needs re-cropping.
+
+Priority if short on time: logo → cover → exterior → work photos.
 

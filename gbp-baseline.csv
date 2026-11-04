@@ -2,7 +2,7 @@ field,before,after,evidence,status,notes
 business_name,Alley Cat Ink,Alley Cat Ink,GBP editor 2026-11-03,verified,Two words. Matches site wordmark and Facebook page name. Domain is one word only because domains cannot contain spaces.
 primary_category,Tattoo shop,,GBP editor,verified,
 secondary_categories,(none),,GBP editor,verified,Piercings offered on site; secondary category not set
-address,"146 Franklin St SW, Hutchinson, MN 55350",,GBP editor 2026-11-03,BLOCKED,Site + Facebook + user say 113 Main St S; needs user confirmation before save (may trigger re-verification)
+address,"146 Franklin St SW, Hutchinson, MN 55350","113 Main St S, Hutchinson, MN 55350",GBP editor 2026-11-03,PENDING,User confirmed 113 Main St S is current. Edit submitted and awaiting review; may trigger re-verification.
 phone,(320) 699-1012,,GBP editor,verified,
 website,https://www.facebook.com/profile.php?id=100086398303858,https://alleycatinkmn.com/,GBP editor,PENDING,Google had auto-set the Facebook URL; edit submitted and awaiting review
 hours,"Tue-Sat 12:00-19:00; Sun/Mon closed",,GBP editor,verified,A pending edit to 19:30 is stuck ("taking longer than expected")
@@ -24,7 +24,10 @@ review_count,93,,Google knowledge panel 2026-11-03,verified,4.4(34) seen elsewhe
 rating,4.8,,Google knowledge panel 2026-11-03,verified,
 profile_completeness,Complete,,GBP dashboard,verified,
 customer_interactions,1919,,GBP dashboard,verified,
-social_profiles,"Instagram ajtattoos_; LinkedIn adam-moonen; Facebook",Facebook only,GBP editor,REMOVED,Wrong Instagram and wrong-person LinkedIn removed. Correct shop Instagram is @alley_cat_ink (per Google profile association).
+social_profiles,"Instagram ajtattoos_; LinkedIn adam-moonen; Facebook","Facebook; Instagram @alley_cat_ink (pending)",GBP editor,PENDING,Wrong Instagram and wrong-person LinkedIn removed. Correct shop Instagram is @alley_cat_ink (per Google profile association); addition awaiting review.
+place_id,,ChIJo1LijnST9YcRtkI4wUKkcUg,Google Maps 2026-11-03,verified,Resolves to Alley Cat Ink 4.8 (93) Hutchinson MN
+review_link,,https://search.google.com/local/writereview?placeid=ChIJo1LijnST9YcRtkI4wUKkcUg,Google Maps 2026-11-03,verified,Opens the review form for the correct listing
+maps_link,,https://www.google.com/maps/place/?q=place_id:ChIJo1LijnST9YcRtkI4wUKkcUg,Google Maps 2026-11-03,verified,
 calls_30d,,,not captured,unknown,
 direction_requests_30d,,,not captured,unknown,
 website_clicks_30d,,,not captured,unknown,
