@@ -31,6 +31,7 @@ If any of these change, update the visible page, the JSON-LD block in `index.htm
 - `media/loops/hero-reel-1080.mp4` — hero background video (11.2s, black & white: Rich clip + shop wide shot, crossfaded through black; 1920×1080, muted/loop)
 - `media/hero-poster.jpg` — first frame of the hero reel, shown before it loads
 - `media/loops/piercing.mp4` + `media/loops/piercing-poster.jpg` — piercing section loop (black & white)
+- `media/rich-loop.mp4` + `media/rich-poster.jpg` — Rich tattooing loop above the gallery
 - `media/hero.mp4`, `media/loops/piercing-full.mp4`, `media/loops/cat-stabilized.mp4`, `media/loops/cat-clean-source.mp4`, `media/loops/cat-ai-source.mp4` — source cuts, not referenced by the page
 - `media/frames/`, `media/sheets/` — extracted frames and contact sheets used to build the loops
 - `media/work/` — tattoo gallery masters (~1400px, q85) — the WORK grid

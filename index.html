@@ -2023,6 +2023,17 @@
       padding: 0
     }
 
+    .workVideo {
+      max-width: 1240px;
+      margin: 0 auto 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000
+    }
+
+    .workVideo video { display: block; width: 100%; height: auto }
+
     @media (max-width: 900px) {
       .hero { padding: 120px 24px 90px }
     }
@@ -2193,6 +2204,10 @@
         <h2 class="big"><span class="nw">THE GALLERY — </span><span class="g ng">FRESH OFF THE TABLE.</span></h2>
         <p class="wsub">RICH VERRI</p>
       </div>
+      <figure class="workVideo rv">
+        <video src="media/rich-loop.mp4" poster="media/rich-poster.jpg" width="1280" height="720"
+               autoplay muted loop playsinline preload="metadata" aria-label="Rich tattooing at Alley Cat Ink"></video>
+      </figure>
       <div class="wgrid rv" id="workGrid">
           <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w01.jpg" alt="Color rose tattoo"></figure>
         <figure class="witem"><img loading="lazy" decoding="async" src="media/work/w02.jpg" alt="Healed butterfly tattoo"></figure>
@@ -2306,8 +2321,9 @@
         </div>
       </div>
       <figure class="pvid rv">
-        <img src="media/loops/piercing-poster.jpg" width="1080" height="1920"
-             alt="Piercing at Alley Cat Ink" loading="lazy" decoding="async">
+        <video src="media/loops/piercing.mp4" poster="media/loops/piercing-poster.jpg"
+               width="1080" height="1920" autoplay muted loop playsinline preload="metadata"
+               aria-label="Piercing at Alley Cat Ink"></video>
       </figure>
       <div class="pban rv">
         <b>ALL POSTED PRICES INCLUDE JEWELRY!</b>
