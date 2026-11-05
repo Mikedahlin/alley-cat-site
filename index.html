@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050805">
+  <meta name="theme-color" content="#050505">
   <meta name="description"
     content="Alley Cat Ink — tattoos &amp; piercings in Hutchinson, MN. Custom work, cover-ups, flash, and piercing with jewelry included. Walk-ins welcome.">
   <title>Alley Cat Ink — Tattoos &amp; Piercings · Hutchinson, MN</title>
@@ -30,11 +30,10 @@
   <meta name="twitter:image" content="https://alleycatinkmn.com/media/logo.jpg">
 
   <!-- Icons: versioned to bust stale browser favicon caches -->
-  <link rel="icon" type="image/svg+xml" sizes="any" href="/media/favicon.svg?v=3">
-  <link rel="icon" type="image/png" sizes="32x32" href="/media/favicon-32.png?v=3">
-  <link rel="shortcut icon" href="/favicon.ico?v=3">
-  <link rel="apple-touch-icon" sizes="180x180" href="/media/icon-180.png?v=3">
-  <link rel="icon" type="image/png" sizes="512x512" href="/media/icon-512.png?v=3">
+  <link rel="icon" type="image/png" sizes="32x32" href="/media/favicon-32.png?v=4">
+  <link rel="shortcut icon" href="/favicon.ico?v=4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/media/icon-180.png?v=4">
+  <link rel="icon" type="image/png" sizes="512x512" href="/media/icon-512.png?v=4">
   <style>
     * {
       box-sizing: border-box;
@@ -44,14 +43,14 @@
 }
 
     :root {
-      --bg: #050805;
-      --panel: #0a0f0a;
-      --txt: #eefff0;
-      --dim: #c9d7cb;
+      --bg: #050505;
+      --panel: #0c0c0c;
+      --txt: #f5f5f5;
+      --dim: #a6a6a6;
       --line: rgba(255, 255, 255, .14);
-      --green: #3fe9ff;
-      --cyan: #3fe9ff;
-      --gold: #d8a94e;
+      --green: #ffffff;
+      --cyan: #c9c9c9;
+      --gold: #ffffff;
       --disp: 'Arial Black', 'Segoe UI Black', Arial, sans-serif;
       --mono: 'Cascadia Mono', 'JetBrains Mono', ui-monospace, Consolas, monospace;
     }
@@ -99,9 +98,9 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(4, 7, 4, .84);
+      background: rgba(5,5,5, .84);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(63, 233, 255, .18)
+      border-bottom: 1px solid rgba(255,255,255, .18)
     }
 
     .hbar {
@@ -165,7 +164,7 @@
 
     nav a:hover {
       color: var(--green);
-      text-shadow: 0 0 1px var(--green), 0 0 10px rgba(63, 233, 255, .9), 0 0 30px rgba(63, 233, 255, .5)
+      text-shadow: 0 0 1px var(--green), 0 0 10px rgba(255,255,255, .9), 0 0 30px rgba(255,255,255, .5)
     }
 
     .hbtns {
@@ -188,26 +187,27 @@
     }
 
     .btn.solid {
-      background: var(--green);
-      color: #031018;
+      background: linear-gradient(180deg, #ffffff 0%, #ededed 55%, #cfcfcf 100%);
+      color: #080808;
       font-weight: 700;
-      box-shadow: 0 0 22px rgba(63, 233, 255, .35)
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .95), inset 0 -1px 0 rgba(0, 0, 0, .22), 0 0 26px rgba(255, 255, 255, .22)
     }
 
     .btn.solid:hover {
-      background: #7defff;
-      box-shadow: 0 0 36px rgba(63, 233, 255, .6)
+      background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 55%, #dedede 100%);
+      box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 rgba(0, 0, 0, .2), 0 0 40px rgba(255, 255, 255, .45)
     }
 
     .btn.line {
-      border: 1px solid rgba(63, 233, 255, .6);
+      border: 1px solid rgba(255, 255, 255, .45);
       color: var(--green);
-      background: transparent
+      background: rgba(255, 255, 255, .02)
     }
 
     .btn.line:hover {
-      background: rgba(63, 233, 255, .09);
-      box-shadow: 0 0 24px rgba(63, 233, 255, .25)
+      background: rgba(255, 255, 255, .08);
+      border-color: rgba(255, 255, 255, .8);
+      box-shadow: 0 0 24px rgba(255, 255, 255, .25)
     }
 
     /* ---------- hero ---------- */
@@ -236,7 +236,7 @@
       width: 28px;
       height: 2px;
       background: var(--green);
-      box-shadow: 0 0 10px rgba(63, 233, 255, .8)
+      box-shadow: 0 0 10px rgba(255,255,255, .8)
     }
 
     h1 {
@@ -260,9 +260,9 @@
 
     /* ---------- ink strip ---------- */
     .inkline {
-      border-top: 1px solid rgba(63, 233, 255, .22);
-      border-bottom: 1px solid rgba(63, 233, 255, .22);
-      background: rgba(2, 4, 2, .78);
+      border-top: 1px solid rgba(255,255,255, .22);
+      border-bottom: 1px solid rgba(255,255,255, .22);
+      background: rgba(5,5,5, .78);
       padding: 48px 20px;
       text-align: center
     }
@@ -276,7 +276,7 @@
     }
 
     .inkin .g {
-      text-shadow: 0 0 1px #e8fbff, 0 0 12px rgba(63, 233, 255, .9), 0 0 34px rgba(63, 233, 255, .55), 0 0 90px rgba(63, 233, 255, .28)
+      text-shadow: 0 0 1px #ffffff, 0 0 12px rgba(255,255,255, .9), 0 0 34px rgba(255,255,255, .55), 0 0 90px rgba(255,255,255, .28)
     }
 
     /* ---------- section shell ---------- */
@@ -320,7 +320,7 @@
       position: relative;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-      background: radial-gradient(1100px 480px at 50% 0, rgba(63, 233, 255, .05), transparent 60%),
+      background: radial-gradient(1100px 480px at 50% 0, rgba(255,255,255, .05), transparent 60%),
         linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
       background-size: auto, 48px 48px, 48px 48px
@@ -378,16 +378,16 @@
 
     .wheel::before {
       top: 0;
-      background: linear-gradient(180deg, rgba(5, 8, 5, .96), transparent)
+      background: linear-gradient(180deg, rgba(5,5,5, .96), transparent)
     }
 
     .wheel::after {
       bottom: 0;
-      background: linear-gradient(0deg, rgba(5, 8, 5, .96), transparent)
+      background: linear-gradient(0deg, rgba(5,5,5, .96), transparent)
     }
 
     html {
-      background: #050805
+      background: #050505
     }
 
     .bgvid {
@@ -405,7 +405,9 @@
       inset: 0;
       z-index: -1;
       pointer-events: none;
-      background: linear-gradient(180deg, rgba(4, 7, 4, .55), rgba(4, 7, 4, .66) 45%, rgba(4, 7, 4, .76))
+      background:
+        radial-gradient(70% 55% at 50% 8%, rgba(255, 255, 255, .09), transparent 65%),
+        linear-gradient(180deg, rgba(5, 5, 5, .55), rgba(5, 5, 5, .68) 45%, rgba(5, 5, 5, .8))
     }
 
     .heroName {
@@ -414,7 +416,18 @@
       line-height: .92;
       letter-spacing: 2px;
       margin: 0;
-      text-shadow: 0 0 60px rgba(63, 233, 255, .25)
+      text-shadow: 0 0 60px rgba(255,255,255, .25)
+    }
+
+    /* chrome fill on the accent word */
+    .heroName .ng {
+      background: linear-gradient(180deg, #ffffff 0%, #f4f4f4 26%, #b9b9b9 52%, #ffffff 70%, #dedede 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+      animation: none;
+      filter: drop-shadow(0 0 28px rgba(255, 255, 255, .32))
     }
 
     .hero .ctas {
@@ -427,7 +440,7 @@
       font-family: var(--mono);
       font-size: 13px;
       letter-spacing: 5px;
-      color: #dce8de
+      color: #d6d6d6
     }
 
     .fcard {
@@ -437,7 +450,7 @@
       width: 320px;
       height: 430px;
       border: 1px solid var(--line);
-      background: #0a0d0a;
+      background: #0a0a0a;
       overflow: hidden;
       contain: strict;
       backface-visibility: hidden
@@ -468,7 +481,7 @@
       top: 10px;
       right: 10px;
       background: rgba(0, 0, 0, .72);
-      border: 1px solid rgba(63, 233, 255, .4);
+      border: 1px solid rgba(255,255,255, .4);
       color: var(--green);
       padding: 4px 8px;
       font-family: var(--mono);
@@ -478,7 +491,7 @@
 
     .fcard.on {
       border-color: var(--green);
-      box-shadow: 0 0 0 1px rgba(63, 233, 255, .4), 0 0 46px rgba(63, 233, 255, .28)
+      box-shadow: 0 0 0 1px rgba(255,255,255, .4), 0 0 46px rgba(255,255,255, .28)
     }
 
     /* ---------- work ---------- */
@@ -516,7 +529,7 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
-      border: 1px dashed rgba(63, 233, 255, .55);
+      border: 1px dashed rgba(255,255,255, .55);
       color: var(--green);
       font-family: var(--disp);
       font-size: 19px;
@@ -527,14 +540,14 @@
     }
 
     .wcta:hover {
-      background: rgba(63, 233, 255, .06);
-      box-shadow: 0 0 34px rgba(63, 233, 255, .2) inset
+      background: rgba(255,255,255, .06);
+      box-shadow: 0 0 34px rgba(255,255,255, .2) inset
     }
 
     .wcta b {
       font-size: 34px;
       font-weight: 400;
-      text-shadow: 0 0 18px rgba(63, 233, 255, .8)
+      text-shadow: 0 0 18px rgba(255,255,255, .8)
     }
 
     .witem::after {
@@ -545,7 +558,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      color: #f4d488;
+      color: #ffffff;
       font-family: var(--mono);
       font-size: 15px;
       letter-spacing: 2px;
@@ -561,7 +574,7 @@
 
     /* ---------- piercing ---------- */
     #piercing {
-      background: linear-gradient(180deg, rgba(63, 233, 255, .035), transparent 32%)
+      background: linear-gradient(180deg, rgba(255,255,255, .035), transparent 32%)
     }
 
     .pcols {
@@ -585,7 +598,7 @@
       letter-spacing: 1px;
       margin-bottom: 14px;
       text-transform: uppercase;
-      text-shadow: 0 0 14px rgba(63, 233, 255, .45)
+      text-shadow: 0 0 14px rgba(255,255,255, .45)
     }
 
     .prow {
@@ -619,8 +632,8 @@
     .pban {
       max-width: 1240px;
       margin: 22px auto 0;
-      border: 1px solid rgba(63, 233, 255, .4);
-      background: rgba(63, 233, 255, .06);
+      border: 1px solid rgba(255,255,255, .4);
+      background: rgba(255,255,255, .06);
       padding: 24px;
       text-align: center
     }
@@ -632,7 +645,7 @@
       color: var(--green);
       letter-spacing: 1px;
       text-transform: uppercase;
-      text-shadow: 0 0 18px rgba(63, 233, 255, .5)
+      text-shadow: 0 0 18px rgba(255,255,255, .5)
     }
 
     .pban span {
@@ -720,8 +733,8 @@
       border-radius: 50%;
       border: 1px solid var(--green);
       object-fit: cover;
-      background: #0a0d0a;
-      box-shadow: 0 0 30px rgba(63, 233, 255, .18);
+      background: #0a0a0a;
+      box-shadow: 0 0 30px rgba(255,255,255, .18);
     }
 
     .aboutBody h3 {
@@ -745,7 +758,7 @@
     .aboutBody a {
       color: var(--green);
       text-decoration: none;
-      border-bottom: 1px dotted rgba(63, 233, 255, .45);
+      border-bottom: 1px dotted rgba(255,255,255, .45);
     }
 
     .aboutBody a:hover { border-bottom-color: var(--green) }
@@ -786,12 +799,12 @@
       width: 46px;
       height: 3px;
       background: var(--green);
-      box-shadow: 0 0 12px rgba(63, 233, 255, .7)
+      box-shadow: 0 0 12px rgba(255,255,255, .7)
     }
 
     .feat.c::before {
       background: var(--cyan);
-      box-shadow: 0 0 12px rgba(63, 233, 255, .7)
+      box-shadow: 0 0 12px rgba(255,255,255, .7)
     }
 
     .fico {
@@ -826,7 +839,7 @@
 
     /* ---------- book ---------- */
     #book {
-      background: radial-gradient(900px 420px at 50% 100%, rgba(63, 233, 255, .08), transparent 65%);
+      background: radial-gradient(900px 420px at 50% 100%, rgba(255,255,255, .08), transparent 65%);
       text-align: center
     }
 
@@ -958,15 +971,15 @@
       59%,
       61%,
       100% {
-        text-shadow: 0 0 1px #e8fbff, 0 0 12px rgba(63, 233, 255, .9), 0 0 34px rgba(63, 233, 255, .55), 0 0 90px rgba(63, 233, 255, .28)
+        text-shadow: 0 0 1px #ffffff, 0 0 12px rgba(255,255,255, .9), 0 0 34px rgba(255,255,255, .55), 0 0 90px rgba(255,255,255, .28)
       }
 
       30% {
-        text-shadow: 0 0 1px #e8fbff, 0 0 16px rgba(63, 233, 255, 1), 0 0 46px rgba(63, 233, 255, .72), 0 0 110px rgba(63, 233, 255, .36)
+        text-shadow: 0 0 1px #ffffff, 0 0 16px rgba(255,255,255, 1), 0 0 46px rgba(255,255,255, .72), 0 0 110px rgba(255,255,255, .36)
       }
 
       60.6% {
-        text-shadow: 0 0 1px #e8fbff, 0 0 3px rgba(63, 233, 255, .4), 0 0 8px rgba(63, 233, 255, .14)
+        text-shadow: 0 0 1px #ffffff, 0 0 3px rgba(255,255,255, .4), 0 0 8px rgba(255,255,255, .14)
       }
     }
 
@@ -1081,13 +1094,13 @@
       display: flex; flex-direction: column; gap: 6px; align-items: center; justify-content: center; cursor: pointer }
     .mbtn span { display: block; width: 22px; height: 2px; background: var(--green);
       transition: transform .24s cubic-bezier(.22,1,.36,1), opacity .16s ease }
-    .mbtn:hover { box-shadow: 0 0 22px rgba(63,233,255,.18) inset }
+    .mbtn:hover { box-shadow: 0 0 22px rgba(255,255,255,.18) inset }
     .mbtn.x span:nth-child(1) { transform: translateY(8px) rotate(45deg) }
     .mbtn.x span:nth-child(2) { opacity: 0 }
     .mbtn.x span:nth-child(3) { transform: translateY(-8px) rotate(-45deg) }
     .mnav { position: absolute; top: calc(100% + 10px); right: 0; min-width: 250px; z-index: 400;
       display: flex; flex-direction: column; overflow: hidden; pointer-events: none;
-      background: rgba(5,8,5,.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      background: rgba(5,5,5,.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
       border: 1px solid var(--line); box-shadow: 0 26px 70px rgba(0,0,0,.65);
       clip-path: inset(-2px 0 100% 0); opacity: 0; transform: translateY(-10px);
       transition: clip-path .2s cubic-bezier(.22,1,.36,1), opacity .16s ease, transform .2s cubic-bezier(.22,1,.36,1) }
@@ -1097,7 +1110,7 @@
       letter-spacing: .16em; font-size: 13px; opacity: 0; transform: translateY(-6px);
       transition: opacity .18s ease, transform .18s cubic-bezier(.22,1,.36,1) }
     .mnav a:first-child { border-top: 0 }
-    .mnav a:active { background: rgba(63,233,255,.09); color: var(--green) }
+    .mnav a:active { background: rgba(255,255,255,.09); color: var(--green) }
     .mnav.open a { opacity: 1; transform: none }
     .mnav.open a:nth-child(1) { transition-delay: .04s } .mnav.open a:nth-child(2) { transition-delay: .08s }
     .mnav.open a:nth-child(3) { transition-delay: .12s } .mnav.open a:nth-child(4) { transition-delay: .16s } .mnav.open a:nth-child(5) { transition-delay: .20s }
@@ -1130,7 +1143,7 @@
     #coverup {
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-      background: radial-gradient(900px 520px at 50% 0, rgba(63, 233, 255, .07), transparent 68%);
+      background: radial-gradient(900px 520px at 50% 0, rgba(255,255,255, .07), transparent 68%);
     }
 
     #coverup .coverProof { margin-bottom: 0 }
@@ -1164,7 +1177,7 @@
     .coverProofHead p {
       max-width: 390px;
       margin: 0;
-      color: #f1f5f2;
+      color: #f4f4f4;
       font-size: 16px;
       line-height: 1.6
     }
@@ -1177,7 +1190,7 @@
       overflow: hidden;
       border: 1px solid var(--green);
       background: #000;
-      box-shadow: 0 0 34px rgba(63, 233, 255, .12)
+      box-shadow: 0 0 34px rgba(255,255,255, .12)
     }
 
     .compareStage {
@@ -1263,7 +1276,7 @@
       z-index: 6;
       width: 2px;
       background: #fff;
-      box-shadow: 0 0 0 1px #000, 0 0 12px #000, 0 0 30px rgba(63, 233, 255, .85);
+      box-shadow: 0 0 0 1px #000, 0 0 12px #000, 0 0 30px rgba(255,255,255, .85);
       pointer-events: none;
       transform: translateX(-50%);
       transition: left 120ms cubic-bezier(.2, .8, .2, 1)
@@ -1304,7 +1317,7 @@
       inset: 2px 0;
       overflow: hidden;
       border-radius: 999px;
-      background: #2c2c2e;
+      background: #2a2a2a;
       box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16), inset 0 2px 5px rgba(0, 0, 0, .45)
     }
 
@@ -1313,7 +1326,7 @@
       inset: 0 auto 0 0;
       width: 0;
       border-radius: inherit;
-      background: #0a84ff;
+      background: #ffffff;
       box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12)
     }
 
@@ -1338,7 +1351,7 @@
       flex-wrap: wrap;
       gap: 12px 24px;
       margin-top: 14px;
-      color: #f4f7f4;
+      color: #f4f4f4;
       font: 700 11px/1.5 var(--mono);
       letter-spacing: .08em
     }
@@ -1355,7 +1368,7 @@
       cursor: pointer
     }
 
-    .compareBottom a { color: #bbff39 }
+    .compareBottom a { color: #ffffff }
 
     /* ---------- compact vertical flash wheel ---------- */
 
@@ -1390,7 +1403,7 @@
       opacity: 1 !important;
       filter: brightness(1.08) saturate(1.05) !important;
       border-color: var(--green);
-      box-shadow: 0 14px 34px rgba(63, 233, 255, .22), 0 0 25px rgba(187, 255, 57, .1)
+      box-shadow: 0 14px 34px rgba(255,255,255, .22), 0 0 25px rgba(255,255,255, .12)
     }
 
     .fcard img { object-position: center !important }
@@ -1443,13 +1456,13 @@
       gap: 12px;
       padding: 30px;
       border: 1px solid var(--green);
-      background: #070a07;
-      box-shadow: 0 0 40px rgba(63, 233, 255, .2)
+      background: #080808;
+      box-shadow: 0 0 40px rgba(255,255,255, .2)
     }
 
     .contactCard h2 { margin: 0; font-size: 48px }
     .contactCard p { margin: 0; color: #fff; font: 700 13px/1.5 var(--mono) }
-    .contactCard strong { color: #bbff39; font-size: 26px }
+    .contactCard strong { color: #ffffff; font-size: 26px }
     .contactCard .btn { width: 100%; min-height: 52px; justify-content: center; text-align: center }
     .contactClose { position: absolute; top: 5px; right: 9px; border: 0; background: transparent; color: #fff; font-size: 30px; cursor: pointer }
 
@@ -1559,13 +1572,13 @@
     .wheel::before {
       left: 0;
       right: auto;
-      background: linear-gradient(90deg, rgba(5, 8, 5, .98), transparent);
+      background: linear-gradient(90deg, rgba(5,5,5, .98), transparent);
     }
 
     .wheel::after {
       left: auto;
       right: 0;
-      background: linear-gradient(270deg, rgba(5, 8, 5, .98), transparent);
+      background: linear-gradient(270deg, rgba(5,5,5, .98), transparent);
     }
 
     .fcard {
@@ -1578,7 +1591,7 @@
       padding: 0;
       border: 1px solid var(--line);
       border-radius: 4px;
-      background: #0a0d0a;
+      background: #0a0a0a;
       overflow: hidden;
       appearance: none;
       color: inherit;
@@ -1609,7 +1622,7 @@
 
     .fcard.on {
       border-color: var(--green);
-      box-shadow: 0 0 0 1px rgba(63, 233, 255, .48), 0 18px 56px rgba(63, 233, 255, .24);
+      box-shadow: 0 0 0 1px rgba(255,255,255, .48), 0 18px 56px rgba(255,255,255, .24);
     }
 
     .fcard:focus-visible {
@@ -1639,9 +1652,9 @@
       display: grid;
       grid-template-rows: auto minmax(0, 1fr) auto;
       overflow: hidden;
-      border: 1px solid rgba(63, 233, 255, .55);
-      background: #030503;
-      box-shadow: 0 0 80px rgba(63, 233, 255, .16);
+      border: 1px solid rgba(255,255,255, .55);
+      background: #060606;
+      box-shadow: 0 0 80px rgba(255,255,255, .16);
     }
 
     .imageViewerBar,
@@ -1807,7 +1820,213 @@
     }      /* ===== goose mobile fix 3 (Sep 1 2026): faster wheel scrolling ===== */
     @media (max-width: 640px) {
       .wheel { scroll-snap-type: x proximity !important; }
-    }  </style>
+    }
+
+    .pvid {
+      margin: 36px auto 0;
+      width: min(100%, 320px)
+    }
+
+    .pvid video,
+    .pvid img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255, .35);
+      box-shadow: 0 0 44px rgba(255,255,255, .14)
+    }
+
+    /* gallery collapses at every width, not only under 640px */
+    .wgrid:not(.expanded) .witem:nth-child(n+13) {
+      display: none
+    }
+
+    .workMore {
+      display: flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center
+    }
+
+    /* ---------- glossy monochrome finish ---------- */
+    ::selection { background: #fff; color: #000 }
+
+    header {
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, 0) 72%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08)
+    }
+
+    .brand img {
+      border-radius: 50%;
+      border-color: rgba(255, 255, 255, .22);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .6), 0 0 18px rgba(255, 255, 255, .1)
+    }
+
+    /* glass sheen on panels */
+    .feat,
+    .pban,
+    .contactCard,
+    .faqList details,
+    .coverProof {
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, 0) 46%)
+    }
+
+    .inkline {
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, 0))
+    }
+
+    .btn.solid {
+      letter-spacing: 1.6px
+    }
+
+    .fcard.on {
+      border-color: #fff
+    }
+
+    /* ================= minimal monochrome pass ================= */
+    :root {
+      --bg: #000;
+      --panel: #0a0a0a;
+      --txt: #fff;
+      --dim: #8a8a8a;
+      --line: rgba(255, 255, 255, .09);
+      --disp: 'Segoe UI Variable Display', 'Segoe UI', Helvetica, Arial, sans-serif;
+    }
+
+    html { background: #000 }
+    body { background: transparent }
+
+    .grain, body::after { display: none !important }
+
+    header {
+      background: rgba(0, 0, 0, .74);
+      background-image: none;
+      border-bottom: 1px solid var(--line);
+      box-shadow: none
+    }
+
+    .brand img {
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      box-shadow: none
+    }
+
+    .brandMark {
+      width: 36px;
+      height: 36px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      display: block
+    }
+
+    .aboutPhoto { border-color: var(--line); box-shadow: none }
+
+    .bt, h1, h2.big, .heroName, .wcta, .pcat h3, .pban b,
+    .aboutBody h3, .feat h3, .coverProofHead h3, .faqList summary {
+      font-weight: 700;
+      letter-spacing: -.02em
+    }
+
+    .heroName { font-weight: 800; letter-spacing: -.04em; text-shadow: none }
+
+    .heroName .ng {
+      background: none;
+      -webkit-text-fill-color: currentColor;
+      color: #8f8f8f;
+      filter: none;
+      animation: none;
+      text-shadow: none
+    }
+
+    h2.big { letter-spacing: -.025em }
+
+    .eyebrow { color: #8a8a8a; font-size: 11px; letter-spacing: .22em }
+    .eyebrow::before { width: 18px; background: #fff; box-shadow: none }
+    .heroSub { color: #8a8a8a; letter-spacing: .32em }
+
+    .ng, .nw { animation: none !important }
+    .inkin, .inkin .g { text-shadow: none }
+    nav a:hover { text-shadow: none; color: #fff }
+
+    .btn.solid { background: #fff; color: #000; border-radius: 999px; box-shadow: none }
+    .btn.solid:hover { background: #e6e6e6; box-shadow: none }
+    .btn.line {
+      border-radius: 999px;
+      border-color: rgba(255, 255, 255, .22);
+      background: transparent
+    }
+    .btn.line:hover {
+      background: rgba(255, 255, 255, .06);
+      border-color: rgba(255, 255, 255, .4);
+      box-shadow: none
+    }
+
+    .fcard.on { box-shadow: 0 0 0 1px #fff }
+    .wcta:hover { box-shadow: none; background: rgba(255, 255, 255, .04) }
+    .pvid video { border-radius: 16px; border-color: var(--line); box-shadow: none }
+
+    #coverup, #piercing, #book { background: none }
+
+    .feat, .pban, .contactCard, .coverProof, .compareStage,
+    .faqList details, .pcat, .witem { border-radius: 16px }
+
+    /* glass panels so the fixed logo reads continuously through the page */
+    .coverProof, .feat, .pban, .contactCard, .faqList details, .pcat {
+      background: rgba(10, 10, 10, .52);
+      -webkit-backdrop-filter: blur(18px) saturate(1.05);
+      backdrop-filter: blur(18px) saturate(1.05)
+    }
+
+    /* fixed logo loop behind the entire page */
+    .bgvid {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      pointer-events: none
+    }
+
+    .bgshade {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(180deg,
+          rgba(0, 0, 0, .62),
+          rgba(0, 0, 0, .8) 55%,
+          rgba(0, 0, 0, .9))
+    }
+
+    .hero {
+      position: relative;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 170px 24px 120px;
+      text-align: center;
+      background: transparent;
+      min-height: 0;
+      display: block;
+      overflow: visible;
+      isolation: auto
+    }
+
+    .heroInner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0
+    }
+
+    @media (max-width: 900px) {
+      .hero { padding: 120px 24px 90px }
+    }
+  </style>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1857,13 +2076,13 @@
 </head>
 
 <body>
-  <video class="bgvid" src="media/hero.mp4" poster="media/hero-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+  <video class="bgvid" src="media/logo-bg.mp4" poster="media/logo-bg-poster.jpg" autoplay muted loop playsinline aria-label="Alley Cat Ink animated logo"></video>
   <div class="bgshade"></div>
 
   <header>
     <div class="wrap hbar">
       <a class="brand" href="#home">
-        <img src="media/logo.jpg" alt="Alley Cat Ink logo">
+        <video class="brandMark" src="media/logo-loop.mp4" poster="media/logo-emblem.png" autoplay muted loop playsinline aria-label="Alley Cat Ink logo"></video>
         <span class="bt">ALLEY CAT <b>INK</b><span class="bts">TATTOOS &amp; PIERCINGS · HUTCHINSON MN</span></span>
       </a>
       <nav>
@@ -1896,9 +2115,8 @@
 
     <!-- HERO -->
     <section class="hero" id="home">
-      <div>
-        <h1 class="heroName">ALLEY CAT <span class="ng">INK</span></h1>
-        <div class="heroSub">TATTOOS &amp; PIERCINGS · HUTCHINSON MN</div>
+      <div class="heroInner">
+        <h1 class="sr-only">Alley Cat Ink — Tattoos &amp; Piercings, Hutchinson, MN</h1>
         <div class="ctas">
           <a class="btn solid" href="tel:+13206991012">Book a Chair →</a>
           <a class="btn line" href="#flash">Explore Flash →</a>
@@ -2087,6 +2305,10 @@
           <div class="prow"><span>Nipple</span><i></i><b>$60</b><small>two for $100</small></div>
         </div>
       </div>
+      <figure class="pvid rv">
+        <img src="media/loops/piercing-poster.jpg" width="1080" height="1920"
+             alt="Piercing at Alley Cat Ink" loading="lazy" decoding="async">
+      </figure>
       <div class="pban rv">
         <b>ALL POSTED PRICES INCLUDE JEWELRY!</b>
         <span>FREE JEWELRY EXCHANGE SERVICE — WE INSTALL NEW PROVIDED JEWELRY FOR YOUR SAFETY AND CONVENIENCE</span>
@@ -2096,7 +2318,7 @@
     <!-- ARTIST -->
     <section class="feats" id="artist" aria-labelledby="artistTitle">
       <div class="about rv">
-        <img class="aboutPhoto" src="media/logo.jpg" alt="Alley Cat Ink shop logo">
+        <video class="aboutPhoto" src="media/logo-loop.mp4" poster="media/logo-emblem.png" autoplay muted loop playsinline aria-label="Alley Cat Ink logo"></video>
         <div class="aboutBody">
           <div class="eyebrow">YOUR ARTIST</div>
           <h3 id="artistTitle">RICH <span>VERRI</span></h3>
